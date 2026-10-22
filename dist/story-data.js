@@ -34,6 +34,80 @@
     },
     posts: [
       {
+        id: 'irene-something-nothing', tag: '讨论', category: '追星',
+        title: 'Irene这种样子，难道只有粉丝们见过吗？', author: '匿名', time: '08.17 21:16', views: '2.2k',
+        body: '刚才刷到Irene参加"虽然没准备什么菜"的片段了。\n\n她怎么喝了酒之后这么可爱啊？？\n我之前一直以为她是很冷的那种姐姐。\n\n这个样子只有粉丝们见过吗？？？',
+        image: 'https://aka.doubaocdn.com/s/5ILNlprgte',
+        comments: [
+          { id: 'sn1', user: '匿名', time: '21:18', text: '我们也不知道啊' },
+          { id: 'sn2', user: '匿名', time: '21:18', text: '不是，我就是粉丝，我的社交平台主页现在已经炸锅了，第一次见到她这个样子' },
+          { id: 'sn3', user: '匿名', time: '21:18', text: '我是入坑10年的老粉，我也是头一回看见' },
+          { id: 'sn4', user: '匿名', time: '21:18', text: '粉丝们之前也不知道……' },
+          { id: 'sn5', user: '匿名', time: '21:19', text: '不好意思，我们也是第一次见' }
+        ]
+      },
+      {
+        id: 'irene-daegu-pitch', tag: '讨论', category: '追星',
+        title: '欧尼今天回大邱开球了！', author: '匿名', time: '08.29 19:15', views: '3.1k',
+        body: '今天去看欧尼开球了！\n\n大邱女神真的好美！\n她穿那个三星狮球衣真的太好看了！',
+        image: 'https://aka.doubaocdn.com/s/ut6UfAt3uI',
+        comments: [
+          { id: 'dp1', user: '匿名', time: '19:17', text: '大邱的骄傲啊真的' },
+          { id: 'dp2', user: '匿名', time: '19:18', text: '这就是我们大邱的女神' },
+          { id: 'dp3', user: '匿名', time: '19:20', text: '真的好美，大邱之光' },
+          { id: 'dp4', user: '匿名', time: '19:22', text: '她真的好适合开球啊' },
+          { id: 'dp5', user: '匿名', time: '19:25', text: '我们大邱出来的就是不一样' }
+        ]
+      },
+      {
+        id: 'seulgi-thin', tag: '讨论', category: '追星',
+        title: '涩琪最近是不是瘦了？', author: '匿名', time: '09.05 22:10', views: '1.8k',
+        body: '刚才刷到涩琪上周的YouTube，\n她脸真的小了好多。\n\n而且眼睛好像有点红？\n是没睡好吗？',
+        comments: [
+          { id: 'st1', user: '匿名', time: '22:12', text: '真的瘦了好多' },
+          { id: 'st2', user: '匿名', time: '22:14', text: '我也觉得她最近瘦了' },
+          { id: 'st3', user: '匿名', time: '22:16', text: '但是她真的好漂亮啊' },
+          { id: 'st4', user: '匿名', time: '22:18', text: '希望她多吃点' },
+          { id: 'st5', user: '匿名', time: '22:20', text: '她最近一直在做皮肤管理和身材管理' }
+        ]
+      },
+      {
+        id: 'seulgi-youtube-update', tag: '讨论', category: '追星',
+        title: '涩琪这周YouTube更新了，你们看了吗？', author: '匿名', time: '09.10 18:32', views: '2.4k',
+        body: '今天涩琪YouTube新视频出来了，练舞室vlog。\n她最近是不是瘦了好多啊，脸都小了一圈。\n\n评论区好多人说她看起来好累。',
+        comments: [
+          { id: 'sy1', user: '匿名', time: '18:35', text: '看了！她真的好帅' },
+          { id: 'sy2', user: '匿名', time: '18:38', text: '确实瘦了，但还是好漂亮' },
+          { id: 'sy3', user: '匿名', time: '18:40', text: '练舞室那段真的绝了' },
+          { id: 'sy4', user: '匿名', time: '18:42', text: '她最近一直在做身材管理' },
+          { id: 'sy5', user: '匿名', time: '18:45', text: '我也觉得她看起来有点累，但还是很可爱' }
+        ]
+      },
+      {
+        id: 'seulgi-youtube-no-unnie', tag: '讨论', category: '追星',
+        title: '我怎么觉得涩琪最近YouTube里没提到欧尼？', author: '匿名', time: '09.11 20:15', views: '1.5k',
+        body: '刚才把涩琪最近三期YouTube都刷了一遍。\n\n以前她经常会提到欧尼的，比如"欧尼说这个舞很好看"之类的。\n最近这三期，一次都没提过。\n\n是我想多了吗？',
+        comments: [
+          { id: 'sn1', user: '匿名', time: '20:18', text: '真的吗？我去看看' },
+          { id: 'sn2', user: '匿名', time: '20:20', text: '我也觉得最近没提到' },
+          { id: 'sn3', user: '匿名', time: '20:22', text: '可能就是没什么好提的吧' },
+          { id: 'sn4', user: '匿名', time: '20:25', text: '别想太多' },
+          { id: 'sn5', user: '匿名', time: '20:28', text: '我也觉得最近没提到，但应该没什么' }
+        ]
+      },
+      {
+        id: 'no-photo-together', tag: '讨论', category: '追星',
+        title: '我怎么觉得她们俩最近没怎么同框？', author: '匿名', time: '09.11 21:03', views: '1.7k',
+        body: '刚才在YouTube评论区看到有人说，\n从8月演唱会结束到现在，她们俩好像真的没同框过。\n\n欧尼去开球，涩琪在练舞。\n欧尼去Dior活动，涩琪在拍画报。\n\n行程真的完全错开了。',
+        comments: [
+          { id: 'np1', user: '匿名', time: '21:06', text: '你想多了吧，两个人天天在公司练习，怎么可能没同框' },
+          { id: 'np2', user: '匿名', time: '21:08', text: '就是，只是没被拍到而已' },
+          { id: 'np3', user: '匿名', time: '21:10', text: '行程错开而已' },
+          { id: 'np4', user: '匿名', time: '21:12', text: '日本巡演马上开始了，到时候就知道了' },
+          { id: 'np5', user: '匿名', time: '21:15', text: '我也觉得没什么' }
+        ]
+      },
+      {
         id: 'coldwar', tag: '热议', category: '追星',
         title: '为什么没有一起飞？Irene 到底是什么时候到日本的？', author: 'ㅇㅇ', time: '09.19 20:43', views: '4.7k', airportPhotos: true,
         body: '9月14日先看到涩琪一个人的机场图，当时没有人知道另一位什么时候飞，也没有可靠的公开机场记录。直到今天福冈第一场开演，我才知道 Irene 原来已经在日本。\n\n所以我不是要说“没有图就等于她没去”。我只是觉得这个空白很奇怪：两个人明明是一起的日本活动，却没有一起出发，也没有人说得清 Irene 是什么时候到的。\n\n首场舞台完成得没有问题。编舞、走位、该做的都做了，可两个人都很紧张，很少真正对上视线。谢幕时我一直等她们自然转过去说句话，等到灯亮也没有。\n\n机场没有一起出现，台下也没有以前那种顺手靠近的感觉。舞台上看起来正常，离开舞台又像在刻意绕开对方。是首场太紧张，还是她们在来日本以前就已经闹了点别扭？',
