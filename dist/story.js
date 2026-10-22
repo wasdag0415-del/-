@@ -45,6 +45,8 @@
   let filter = '追星';
   let query = '';
   let sortMode = '热门';
+  let youtubeChannel = 'feed';
+  let youtubeVideo = '';
 
   const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
@@ -130,7 +132,7 @@
   }
 
   function ktstory() {
-    return wrap(`<header class="nf-head nf-kkt-head"><button data-nav="phonehome" aria-label="返回手机">‹</button><strong>KakaoTalk</strong><button data-route="notebook" aria-label="打开备忘录">▤</button></header><div class="nf-kkt-profile"><span>我</span><div><strong>姜涩琪的聊天</strong><small>手机已遗失 · 收件人是涩琪</small></div></div><div class="nf-scroll nf-kkt-list"><button class="nf-kkt-row" data-route="storychat"><span class="nf-kkt-avatar">A</span><span><strong>A</strong><p>${state.officialUnlocked ? 'RV JP出图了。评论区又开始判案。' : state.introRead ? '那张机场图和16号INS，存了吗？' : '热帖炸了。福冈首场，你看了吗？'}</p></span><time>${state.officialUnlocked ? '21:15' : '20:52'}</time>${badge() ? '<i>1</i>' : ''}</button><button class="nf-kkt-row nf-kkt-locked" data-route="couplechat"><span class="nf-kkt-avatar pair">··</span><span><strong>两个人的聊天记录</strong><p>第一章尚未开放。</p></span><b>⌁</b></button><div class="nf-kkt-note">你看到的是涩琪手机里保存的聊天。A 是她认识的同担朋友，会转帖，也会承认自己没看清。</div></div>`, 'nf-kkt-app');
+    return wrap(`<header class="nf-head nf-kkt-head"><button data-nav="phonehome" aria-label="返回手机">‹</button><strong>KakaoTalk</strong><button data-route="notebook" aria-label="打开备忘录">▤</button></header><div class="nf-kkt-profile"><span>我</span><div><strong>姜涩琪的聊天</strong><small>手机已遗失 · 收件人是涩琪</small></div></div><div class="nf-scroll nf-kkt-list"><button class="nf-kkt-row" data-route="storychat"><span class="nf-kkt-avatar">A</span><span><strong>A</strong><p>${state.officialUnlocked ? 'RV JP出图了。评论区又开始判案。' : state.introRead ? '那张机场图和16号INS，存了吗？' : '热帖炸了。福冈首场，你看了吗？'}</p></span><time>${state.officialUnlocked ? '21:15' : '20:52'}</time>${badge() ? '<i>1</i>' : ''}</button><button class="nf-kkt-row" data-route="couplechat"><span class="nf-kkt-avatar pair">I</span><span><strong>组长老师</strong><p>到了告诉我。</p></span><time>21:21</time></button><div class="nf-kkt-note">你看到的是涩琪手机里保存的聊天。A 负责转发论坛消息；“组长老师”是她给 Irene 留下的备注。</div></div>`, 'nf-kkt-app');
   }
 
   function judgmentMarkup() {
@@ -160,7 +162,7 @@
   }
 
   function couplechat() {
-    return wrap(`${head('尚未开放', 'ktstory')}<div class="nf-scroll nf-locked-chapter"><span>⌁</span><h1>两个人的聊天记录</h1><p>论坛仍是匿名粉丝的讨论；这里显示的是涩琪手机里以“你”为收件人的聊天记录。私人聊天会在后续章节以明确的虚构叙事形式逐步开放。</p><button class="nf-primary" data-route="storychat">返回 A 的聊天</button></div>`);
+    return wrap(`${head('组长老师', 'ktstory')}<div class="nf-chat-context">Irene · 涩琪手机里的私聊记录 · 同人虚构</div><div class="nf-scroll nf-chat-scroll nf-couple-chat"><div class="nf-chat-date">9月12日 · 出发前</div><div class="nf-chat-message them"><small>组长老师 · 22:08</small><p>酒店附近那家店还去吗？你之前不是说想顺便拍日本街道。</p></div><div class="nf-chat-message me"><small>你 · 22:14</small><p>先看彩排时间吧。</p></div><div class="nf-chat-message them"><small>组长老师 · 22:15</small><p>我可以配合你的拍摄。你把想去的地方发我就好。</p></div><div class="nf-chat-message me"><small>你 · 22:23</small><p>行程可能不够。先把工作做完。</p></div><div class="nf-chat-date">9月13日 · 00:06</div><div class="nf-chat-message them"><small>组长老师</small><p>我刚才不是要催你。只是想知道你是不是还在生气。</p></div><div class="nf-chat-message me"><small>你</small><p>没有。</p></div><div class="nf-chat-message them"><small>组长老师</small><p>那我们要不要说一下？</p></div><div class="nf-chat-message me"><small>你</small><p>今天先别说了。我有点累。</p></div><div class="nf-chat-date">9月14日 · 出发日</div><div class="nf-chat-message them"><small>组长老师 · 08:41</small><p>你先过去？</p></div><div class="nf-chat-message me"><small>你 · 08:46</small><p>嗯，个人行程先走。</p></div><div class="nf-chat-message them"><small>组长老师 · 08:47</small><p>好。我到的时候告诉你。</p></div><div class="nf-chat-message me"><small>你 · 09:02</small><p>好。</p></div><div class="nf-chat-date">9月18日 · 福冈</div><div class="nf-chat-message them"><small>组长老师 · 23:18</small><p>明天彩排前要不要先对一下？</p></div><div class="nf-chat-message me"><small>你 · 23:26</small><p>工作内容群里有。</p></div><div class="nf-chat-message them"><small>组长老师 · 23:27</small><p>我不是只问工作。</p></div><div class="nf-chat-message me"><small>你 · 23:35</small><p>我知道。演出结束再说吧。</p></div><div class="nf-chat-message them"><small>组长老师 · 23:36</small><p>好。</p></div><div class="nf-chat-date">9月19日 · 首场结束后</div><div class="nf-chat-message them"><small>组长老师 · 21:20</small><p>到了告诉我。</p></div><div class="nf-chat-message me"><small>你 · 21:21</small><p>好。</p></div><div class="nf-chat-silence">她们没有发生严重争吵。<br>一个人在试着重新开口，另一个人把回答缩得越来越短。</div></div><div class="nf-story-chat-tools"><button data-route="ktstory">消息列表</button><button data-route="feed">回论坛</button></div>${notice}`, 'nf-story-chat');
   }
 
   function isAvailable(post) {
@@ -294,7 +296,23 @@
   }
 
   function youtube() {
-    return wrap(`${head('YouTube', 'feed')}<div class="nf-scroll"><div class="nf-yt-wordmark"><i>▶</i> YouTube</div><div class="nf-yt-channels"><div><img src="assets/avatars/youtube-seulgi.jpg" alt="Hi Seulgi 头像"><strong>Hi Seulgi</strong><small>涩琪个人频道</small></div><div><img src="assets/avatars/youtube-irene.jpg" alt="IRENE 头像"><strong>IRENE</strong><small>@IRENEsmtown · 个人频道</small></div><div><img src="assets/avatars/youtube-redvelvet.jpg" alt="Red Velvet 头像"><strong>Red Velvet</strong><small>官方频道</small></div></div><div class="nf-app-note"><strong>福冈场没有可用的公开饭拍。</strong><br>第一章只保留论坛目击文字，不用虚构影像冒充现场资料。</div>${notice}</div>`);
+    const channels = {
+      seulgi: {name:'Hi Seulgi', handle:'@hiseulgi', avatar:'assets/avatars/youtube-seulgi.jpg', cover:'assets/youtube/seulgi-videos.jpg', videos:[['两个最爱！幸福指数爆棚的香港 OOTD VLOG','16:33 · 2024.10.25'],['最爱登场！涩琪和艾琳的乡村度假约会','17:57 · 2024.12.06'],['现役女爱豆的年末工作生活','17:21 · 2025.01.24'],['首次五毛齐聚亮相！忙碌的生日周 Vlog','27:44 · 2025.02.28']]},
+      irene: {name:'IRENE', handle:'@IRENEsmtown', avatar:'assets/avatars/youtube-irene.jpg', cover:'assets/youtube/irene-videos.jpg', videos:[["Back by Popular Demand — It’s Me IRENE | MEXICO",'29:20 · 2025.09.19'],["Back by Popular Demand — It’s Me IRENE",'35:09 · 2025.06.23'],["IRENE’s Sweet Simple Series | London & Madrid",'21:37 · 2024.02.01'],["IRENE’s Sweet Simple Series | Amsterdam & Barcelona",'20:46 · 2023.12.12']]},
+      redvelvet: {name:'Red Velvet', handle:'@redvelvet', avatar:'assets/avatars/youtube-redvelvet.jpg', cover:'assets/youtube/redvelvet-videos.jpg', videos:[["[RV Days] Record (t)our Video #1",'25:00 · 2023.07.08'],["[RV Days] Record (t)our Video #2",'23:59 · 2023.07.18'],["‘RED CIRCLE’ Behind with IRENE & SEULGI",'06:01 · 2023.11.21'],['一个人？两个影子｜Dance Practice & NYE','28:52 · 2024.03.06'],['IRENE & SEULGI — BALANCE Behind','25:02 · 2025.09.15']]}
+    };
+    const nav = `<header class="yt-top"><button data-nav="phonehome" aria-label="返回手机">‹</button><strong><i>▶</i> YouTube</strong><span>⌕　◉</span></header>`;
+    const bottom = `<nav class="yt-bottom"><button data-yt-channel="feed" class="${youtubeChannel==='feed'?'active':''}">⌂<small>首页</small></button><button data-yt-channel="shorts">▣<small>Shorts</small></button><button data-yt-channel="subscriptions">▤<small>订阅内容</small></button><button data-yt-channel="library">◉<small>我的</small></button></nav>`;
+    if (youtubeVideo) {
+      const [key,indexText]=youtubeVideo.split(':'), item=channels[key], video=item.videos[Number(indexText)]||item.videos[0];
+      return wrap(`${nav}<div class="nf-scroll yt-watch"><button class="yt-back" data-yt-back>‹ 返回</button><div class="yt-player" style="--yt-cover:url('${item.cover}')"><span>▶</span></div><h1>${video[0]}</h1><p>${item.name} · ${video[1]}</p><div class="yt-actions"><button>赞</button><button>分享</button><button>保存</button></div><button class="yt-channel-line" data-yt-channel="${key}"><img src="${item.avatar}" alt=""><span><strong>${item.name}</strong><small>${item.handle}</small></span><b>已订阅</b></button><div class="nf-app-note">这是手机内的模拟播放页。公开视频链接会在对应内容核对完成后接入。</div></div>${bottom}`);
+    }
+    if (channels[youtubeChannel]) {
+      const item=channels[youtubeChannel];
+      return wrap(`${nav}<div class="nf-scroll yt-channel-page"><section class="yt-channel-head"><img src="${item.avatar}" alt="${item.name}头像"><div><h1>${item.name}</h1><p>${item.handle}</p><small>公开频道内容整理</small></div></section><div class="yt-tabs"><b>首页</b><span>视频</span><span>播放列表</span></div><h2>上传的视频</h2>${item.videos.map((video,index)=>`<button class="yt-video-row" data-yt-video="${youtubeChannel}:${index}"><span class="yt-thumb" style="--yt-cover:url('${item.cover}');--yt-pos:${20+index*20}%"></span><span><strong>${video[0]}</strong><small>${item.name} · ${video[1]}</small></span><i>⋮</i></button>`).join('')}</div>${bottom}`);
+    }
+    const recommended=[['redvelvet',4],['seulgi',1],['irene',0],['redvelvet',2],['seulgi',3]];
+    return wrap(`${nav}<div class="yt-chips"><button>全部</button><button>音乐</button><button>Vlog</button><button>最近上传</button></div><div class="nf-scroll yt-feed"><section class="yt-subscriptions"><strong>订阅内容</strong><div>${Object.entries(channels).map(([key,item])=>`<button data-yt-channel="${key}"><img src="${item.avatar}" alt=""><small>${item.name}</small></button>`).join('')}</div></section>${recommended.map(([key,index])=>{const item=channels[key],video=item.videos[index];return `<article class="yt-card"><button class="yt-card-thumb" data-yt-video="${key}:${index}" style="--yt-cover:url('${item.cover}');--yt-pos:${20+index*15}%"><span>▶</span></button><div><button data-yt-channel="${key}"><img src="${item.avatar}" alt=""></button><p><strong>${video[0]}</strong><small>${item.name} · ${video[1]}</small></p><i>⋮</i></div></article>`}).join('')}<div class="nf-app-note"><strong>福冈场没有可用的公开饭拍。</strong><br>第一章不使用虚构影像冒充现场资料。</div></div>${bottom}`);
   }
 
   function weverse() {
@@ -334,6 +352,19 @@
     }
     screen.querySelectorAll('[data-route]').forEach((button) => button.onclick = () => go(button.dataset.route));
     screen.querySelectorAll('[data-nav]').forEach((button) => button.onclick = () => context.navigate(button.dataset.nav));
+    screen.querySelectorAll('[data-yt-channel]').forEach((button) => button.onclick = () => {
+      youtubeChannel = button.dataset.ytChannel;
+      youtubeVideo = '';
+      render();
+    });
+    screen.querySelectorAll('[data-yt-video]').forEach((button) => button.onclick = () => {
+      youtubeVideo = button.dataset.ytVideo;
+      render();
+    });
+    screen.querySelectorAll('[data-yt-back]').forEach((button) => button.onclick = () => {
+      youtubeVideo = '';
+      render();
+    });
     screen.querySelectorAll('[data-open-post]').forEach((button) => button.onclick = () => {
       postId = button.dataset.openPost;
       if (!state.read.includes(postId)) state.read.push(postId);
