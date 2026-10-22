@@ -294,7 +294,7 @@
   }
 
   function youtube() {
-    return wrap(`${head('YouTube', 'feed')}<div class="nf-scroll"><div class="nf-yt-wordmark"><i>▶</i> YouTube</div><div class="nf-app-note"><strong>福冈场没有可用的公开饭拍。</strong><br>第一章只保留论坛目击文字，不用虚构影像冒充现场资料。</div>${notice}</div>`);
+    return wrap(`${head('YouTube', 'feed')}<div class="nf-scroll"><div class="nf-yt-wordmark"><i>▶</i> YouTube</div><div class="nf-yt-channels"><div><img src="assets/avatars/youtube-seulgi.jpg" alt="Hi Seulgi 头像"><strong>Hi Seulgi</strong><small>涩琪个人频道</small></div><div><img src="assets/avatars/youtube-irene.jpg" alt="IRENE 头像"><strong>IRENE</strong><small>@IRENEsmtown · 个人频道</small></div><div><img src="assets/avatars/youtube-redvelvet.jpg" alt="Red Velvet 头像"><strong>Red Velvet</strong><small>官方频道</small></div></div><div class="nf-app-note"><strong>福冈场没有可用的公开饭拍。</strong><br>第一章只保留论坛目击文字，不用虚构影像冒充现场资料。</div>${notice}</div>`);
   }
 
   function weverse() {

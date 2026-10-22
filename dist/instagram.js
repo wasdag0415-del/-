@@ -7,6 +7,7 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const date=p=>p.date.replaceAll('-','.');
 const find=id=>D.posts.find(p=>p.id===id);
 const list=()=>D.posts.filter(p=>tab==='own'?p.owner===profile:p.related.includes(profile)).sort((a,b)=>(b.date+(b.time||'')).localeCompare(a.date+(a.time||'')));
+const avatar=p=>p.avatar?`<img src="${p.avatar}" alt="${p.name}头像">`:p.initial;
 function top(title,back=false){return `<header class="ia-head"><button ${back?'data-ig-back':'data-nav="forum"'} aria-label="${back?'返回主页':'返回论坛'}">‹</button><strong>${title}</strong><button data-nav="phonehome" aria-label="返回我的手机">⌂</button></header>`}
 function tile(p){return `<button class="ia-tile ${p.images.length?'':'ia-text-tile'}" data-ig-post="${p.id}" aria-label="打开 ${date(p)} ${esc(p.title)}">${p.images.length?`<img src="${p.images[0].src}" alt="${esc(p.images[0].alt)}" loading="lazy" width="240" height="240">`:`<span class="ia-quote">“</span><strong>${esc(p.title)}</strong>`}<span class="ia-tile-kind">${p.images.length>1?'▣ '+p.images.length:p.kind.includes('存档')?'▤':'▧'}</span><span class="ia-tile-date">${date(p)}</span></button>`}
 function html(state){return `<section class="nf-app ia-app">${postId?post(state):home(state)}</section>`}

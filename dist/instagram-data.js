@@ -5,14 +5,14 @@ window.InstagramArchiveData={
     "seulgi": {
       "handle": "hi_sseulgi",
       "name": "슬기 Seulgi",
-      "initial": "S",
+      "initial": "<img src=\"assets/avatars/instagram-seulgi.jpg\" alt=\"涩琪头像\">",
       "url": "https://www.instagram.com/hi_sseulgi/",
       "color": "#a88662"
     },
     "irene": {
       "handle": "renebaebae",
       "name": "IRENE",
-      "initial": "I",
+      "initial": "<img src=\"assets/avatars/instagram-irene.jpg\" alt=\"珠泫头像\">",
       "url": "https://www.instagram.com/renebaebae/",
       "color": "#c792a1"
     }
