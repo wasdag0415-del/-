@@ -372,7 +372,7 @@
 
   function commentMarkup(comment, post, index) {
     const link = comment.link === 'instagram' ? `<button class="nf-inline" data-open-ig="sg-260916">${esc(comment.label)} ↗</button>` : '';
-    return `<article class="nf-comment"><div class="nf-comment-meta"><strong>${esc(comment.user)}${comment.user === post.author ? '<i>楼主</i>' : ''}</strong><span>${index + 1}楼 · ${esc(comment.time)}</span></div><p>${esc(comment.text)}</p>${link}<div class="nf-pann-comment-foot"><span>回复</span><button aria-label="赞同此楼">△ ${Math.max(3, 34 - index * 3)}</button></div></article>`;
+    return `<article class="nf-comment"><div class="nf-comment-meta"><strong>${esc(comment.user)}${post.author !== '匿名' && comment.user === post.author ? '<i>楼主</i>' : ''}</strong><span>${index + 1}楼 · ${esc(comment.time)}</span></div><p>${esc(comment.text)}</p>${link}<div class="nf-pann-comment-foot"><span>回复</span><button aria-label="赞同此楼">△ ${Math.max(3, 34 - index * 3)}</button></div></article>`;
   }
 
   function forumReplyMarkup() {
