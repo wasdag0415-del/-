@@ -37,7 +37,7 @@
         id: 'irene-something-nothing', tag: '讨论', category: '追星',
         title: 'Irene这种样子，难道只有粉丝们见过吗？', author: '匿名', time: '08.17 21:16', views: '2.2k',
         body: '刚才刷到Irene参加"虽然没准备什么菜"的片段了。\n\n她怎么喝了酒之后这么可爱啊？？\n我之前一直以为她是很冷的那种姐姐。\n\n这个样子只有粉丝们见过吗？？？',
-        image: 'https://aka.doubaocdn.com/s/5ILNlprgte',
+        image: 'assets/forum/irene-something-nothing.png',
         comments: [
           { id: 'sn1', user: '匿名', time: '21:18', text: '我们也不知道啊' },
           { id: 'sn2', user: '匿名', time: '21:18', text: '不是，我就是粉丝，我的社交平台主页现在已经炸锅了，第一次见到她这个样子' },
@@ -50,7 +50,7 @@
         id: 'irene-daegu-pitch', tag: '讨论', category: '追星',
         title: '欧尼今天回大邱开球了！', author: '匿名', time: '08.29 19:15', views: '3.1k',
         body: '今天去看欧尼开球了！\n\n大邱女神真的好美！\n她穿那个三星狮球衣真的太好看了！',
-        image: 'https://aka.doubaocdn.com/s/ut6UfAt3uI',
+        image: 'assets/forum/irene-daegu-pitch.png',
         comments: [
           { id: 'dp1', user: '匿名', time: '19:17', text: '大邱的骄傲啊真的' },
           { id: 'dp2', user: '匿名', time: '19:18', text: '这就是我们大邱的女神' },
