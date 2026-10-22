@@ -230,15 +230,14 @@
 <div class='nf-chat-date'>9月7日 · Dior活动当天</div>
 <div class='nf-chat-message them'><small>组长老师 · 22:30</small><p>活动结束了</p></div>
 <div class='nf-chat-message me'><small>你 · 22:32</small><p>辛苦了，今天真漂亮</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 22:33</small><p>就那样吧。你吃饭了吗</p></div>
-<div class='nf-chat-message me'><small>你 · 22:34</small><p>吃了</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 22:35</small><p>吃的什么</p></div>
-<div class='nf-chat-message me'><small>你 · 22:36</small><p>便利店</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 22:37</small><p>……</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 22:37</small><p>你以前不是说便利店的饭团不好吃吗</p></div>
-<div class='nf-chat-message me'><small>你 · 22:38</small><p>今天饿了</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 22:39</small><p>哦</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 22:39</small><p>那你早点睡吧</p></div>
+<div class='nf-chat-message them'><small>组长老师 · 22:33</small><p>嗯，刚上车</p></div>
+<div class='nf-chat-message me'><small>你 · 22:35</small><p>我把日本空下来的时间整理好了</p></div>
+<div class='nf-chat-message me'><small>你 · 22:35</small><p>福冈有个展，结束早的话可以一起去。还可以拍一段两个人挑唱片的</p></div>
+<div class='nf-chat-message them'><small>组长老师 · 22:39</small><p>到时候看吧</p></div>
+<div class='nf-chat-message me'><small>你 · 22:41</small><p>你不想拍也没关系，我可以改成一个人的</p></div>
+<div class='nf-chat-message them'><small>组长老师 · 22:44</small><p>不是不想。我现在有点累，晚一点再看</p></div>
+<div class='nf-chat-message me'><small>你 · 22:47</small><p>好，我发给你</p></div>
+<div class='nf-chat-message them'><small>组长老师 · 22:51</small><p>嗯</p></div>
 
 <div class='nf-chat-date'>9月10日 · 矛盾爆发</div>
 <div class='nf-chat-message them'><small>组长老师 · 23:06</small><p>你这两天是不是在躲我？</p></div>
