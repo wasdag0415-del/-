@@ -348,9 +348,16 @@
     }).sort((a, b) => sortMode === '最新' ? b.time.localeCompare(a.time) : 0);
   }
 
+  function visibleComments(post) {
+    const postDate = post.time.slice(0, 5);
+    return postDate < '09.19'
+      ? post.comments
+      : post.comments.filter((comment) => comment.time <= storyTime());
+  }
+
   function postCard(post, index) {
     const rank = index + 1;
-    return `<button class="nf-post-card" data-post="${post.id}"><span class="nf-pann-rank ${rank <= 3 ? 'top' : ''}">${String(rank).padStart(2, '0')}</span><span class="nf-pann-row"><span class="nf-row-title"><i class="nf-feed-tag">${esc(post.tag)}</i><strong>${esc(post.title)}</strong><em>(${post.comments.filter((comment) => comment.time <= storyTime()).length})</em>${state.read.includes(post.id) ? '' : '<i class="nf-new-mark">N</i>'}</span><span class="nf-row-info"><span>${esc(post.author)}</span><span>${esc(post.time)}</span><span>浏览 ${esc(post.views)}</span></span></span></button>`;
+    return `<button class="nf-post-card" data-post="${post.id}"><span class="nf-pann-rank ${rank <= 3 ? 'top' : ''}">${String(rank).padStart(2, '0')}</span><span class="nf-pann-row"><span class="nf-row-title"><i class="nf-feed-tag">${esc(post.tag)}</i><strong>${esc(post.title)}</strong><em>(${visibleComments(post).length})</em>${state.read.includes(post.id) ? '' : '<i class="nf-new-mark">N</i>'}</span><span class="nf-row-info"><span>${esc(post.author)}</span><span>${esc(post.time)}</span><span>浏览 ${esc(post.views)}</span></span></span></button>`;
   }
 
   function feed() {
@@ -418,7 +425,7 @@
     const related = (post.related || []).map((id) => DATA.posts.find((item) => item.id === id)).filter((item) => item && isAvailable(item));
     const relatedMarkup = related.length ? `<section class="nf-related-threads"><small>这栋楼的人也在看</small>${related.map((item) => `<button data-open-post="${item.id}"><span>${esc(item.tag)} · ${esc(item.time)}</span><strong>${esc(item.title)}</strong><b>›</b></button>`).join('')}</section>` : '';
     const officialReturn = post.id === 'photo-reactions' ? '<button class="nf-pann-return" data-route="official">回到 RV JP 官方照片 →</button>' : '';
-    const comments = post.comments.filter((comment) => comment.time <= storyTime());
+    const comments = visibleComments(post);
     const playerReplies = (isMain && state.forumReply ? 3 : 0) + (post.id === 'outsider-view' && state.outsiderReply ? 2 : 0);
     const postImage = post.image ? `<figure class="nf-thread-image"><img src="${esc(post.image)}" alt="${esc(post.title)}的帖子配图" loading="lazy"><figcaption>帖子配图 · 公开内容整理</figcaption></figure>` : '';
     return wrap(`${forumHeader()}${notice}<div class="nf-scroll"><div class="nf-pann-breadcrumb"><button data-route="feed">pann</button><span>›</span><span>${esc(post.category)}</span></div><article class="nf-thread"><div class="nf-pann-thread-label">${post.tag === '热议' ? '<span>오늘의 톡</span> 今日热帖' : `${esc(post.tag)} · ${esc(post.category)}`}</div><h1>${esc(post.title)}</h1><div class="nf-pann-byline"><span>${esc(post.author)} (匿名)</span><span>${esc(post.time)}</span></div><div class="nf-pann-thread-stats">浏览 ${esc(post.views)}<span>回复 ${comments.length + playerReplies}</span></div><div class="nf-prose">${esc(post.body)}</div>${postImage}${post.airportPhotos ? airportGallery() : ''}<div class="nf-pann-post-actions"><button class="nf-bookmark ${state.saved.includes(post.id) ? 'on' : ''}" data-save-post="${post.id}"><span>${state.saved.includes(post.id) ? '★' : '☆'}</span><strong>${state.saved.includes(post.id) ? '已收藏' : '收藏帖子'}</strong></button></div></article>${post.id === 'flight-rumor' ? rumorChainMarkup() : ''}<div class="nf-comments-head"><strong>全部回复 <em>${comments.length + playerReplies}</em></strong></div>${comments.map((comment, index) => commentMarkup(comment, post, index)).join('')}${isMain ? forumReplyMarkup() + progressCard() : ''}${post.id === 'outsider-view' ? outsiderReplyMarkup() : ''}${relatedMarkup}${officialReturn}<button class="nf-pann-return" data-route="feed">목록 · 返回列表</button></div><button class="nf-thread-bottom" data-route="notebook">▤ 打开备忘录</button>`);
