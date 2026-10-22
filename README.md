@@ -1,39 +1,56 @@
-[index.html](https://github.com/user-attachments/files/33709536/index.html)
-<!doctype html>
-<html lang="zh-CN">
-<head>
-<base href="./dist/">
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
-<meta name="theme-color" content="#101015"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="mobile-web-app-capable" content="yes"><meta name="description" content="从自己的小手机出发，在论坛、公开动态与网友聊天中慢慢认识两位主人公。">
-<title>Pann · 日本巡演第二夜</title><link rel="stylesheet" href="style.css?v=jp-ins-r1"><link rel="stylesheet" href="ktalk.css?v=jp-ins-r1"><link rel="stylesheet" href="features.css?v=jp-ins-r1"><link rel="stylesheet" href="mobile.css?v=jp-ins-r1"><link rel="stylesheet" href="ios.css?v=jp-ins-r1">
-<link rel="stylesheet" href="story.css?v=jp-ins-r1">
-<link rel="stylesheet" href="pann.css?v=jp-ins-r1">
-<link rel="stylesheet" href="instagram.css?v=jp-ins-r1">
-</head>
-<body>
-<div class="workspace">
-<aside class="editorial">
-<a class="wordmark" href="#" aria-label="互动手机首页"><span class="found-mark">17</span> POCKET STORY <span class="brand-en">INTERACTIVE STORY</span></a>
-<div class="intro"><div class="eyebrow"><i></i> JAPAN TOUR · NIGHT 02</div><h1>散场以后，<br>她们没说完的话<span>。</span></h1><p>日本巡演第二夜，论坛里的一场讨论。<br>从你的手机出发，慢慢认识故事里的人。</p><div class="intro-actions"><button class="primary" id="enter-chat">打开手机 <span>↗</span></button><button class="quiet" id="customize">自由聊天人物设置 →</button></div></div>
-<div class="tiny-story"><span class="orbit">23:17</span><div><p>一条匿名回复，<br>只留下了一个时间。</p><small>CHAPTER 01 · AFTER THE SHOW</small></div></div>
-<footer>同人互动剧情原型 <span>·</span> 非官方模拟界面</footer>
-</aside>
-<main class="phone-stage">
-<div class="orbit-label">PANN · A FAN FICTION <span>●</span></div>
-<section class="phone" aria-label="模拟手机">
-<div class="phone-screen">
-<div class="status-bar"><span id="status-time">09:41</span><div class="island" aria-hidden="true"></div><div class="status-icons" aria-label="信号及电量"><span class="signal">▂▄▆</span><span>◔</span><span class="battery"></span></div></div>
-<div id="screen" class="screen"></div>
-<div id="notification" class="notification" hidden></div>
-<button class="home-indicator" id="home" aria-label="返回手机桌面"></button>
-</div>
-</section>
-<div class="phone-caption"><span class="live-dot"></span> 从论坛开始探索 <span class="caption-line"></span> 虚构同人 · 姜涩琪 × 裴珠泫</div>
-</main>
-<aside class="side-note"><div class="note-heading">FICTIONAL STORY / CHAPTER 01</div><div class="drawn-star">Pann<span> 판 · fan story</span></div><p>从一个匿名帖子开始，<br>你慢慢记住了她们，<br>却还不知道全部故事。</p><span class="handwriting">read between the lines</span><div class="side-rule"></div><div class="guide"><span>01</span> 打开一篇匿名讨论</div><div class="guide"><span>02</span> 对照不同应用的记录</div><div class="guide"><span>03</span> 记下疑问，等下一次更新</div><button class="small-link" id="about">关于这个原型 ↗</button></aside>
-</div>
-<div id="toast" class="toast" role="status" hidden></div>
-<input type="file" id="avatar-upload" accept="image/*" hidden><input type="file" id="photo-upload" accept="image/*" multiple hidden>
-<dialog id="modal"><div id="modal-content"></div><button class="dialog-close" aria-label="关闭" id="close-modal">×</button></dialog>
-<script src="mobile.js?v=jp-ins-r1"></script><script src="voice.js?v=jp-ins-r1"></script><script src="story-data.js?v=jp-ins-r1"></script><script src="instagram-data.js?v=jp-ins-r1"></script><script src="instagram.js?v=jp-ins-r1"></script><script src="story.js?v=jp-ins-r1"></script><script src="app.js?v=jp-ins-r1"></script>
-</body></html>
+# Pann · 日本巡演第二夜
+
+A fictional fan-work exploration game about Kang Seulgi and Bae Juhyun, inside the existing simulated phone. All dialogue, tour incidents, anonymous posts and media reconstructions are invented. Nothing connects to real accounts or celebrity contacts.
+
+## Run and publish
+
+Buildless static HTML/CSS/JS with no build step or runtime dependencies. The current ChatGPT Site is public and deploys `dist/` using `.openai/hosting.json`.
+
+The repository-root `index.html` is the GitHub Pages entry file. It loads the complete application from `dist/`, so the repository has the familiar `index.html` structure without duplicating the 36 MB image collection. GitHub Pages publication is defined in `.github/workflows/pages.yml`. Push the repository to GitHub with `main` as its default branch, then select **GitHub Actions** as the Pages source in the repository settings. Every push to `main` publishes the site; the workflow can also be run manually.
+
+The source code may be opened under the repository owner's chosen license. Photographs in `dist/assets/` are third-party editorial or archived public images and are not covered by a source-code license; preserve their credits and source links.
+
+## Episode 1
+
+Start in the fictional Pann-style forum as an ordinary reader on their own phone. The only two forum categories are fandom discussion and relationship advice. Read a full curtain-call sequence and the anonymous older-partner advice post before comparing their details. The conflict is intentionally small: one person avoids the conversation because she fears becoming a burden, while the other is too exhausted to keep talking or guess what the silence means. A first forum decision unlocks a third-night eyewitness thread and new messages from fellow reader 小满. KakaoTalk then unlocks an explicitly fictional chapter replay of the protagonists' conversation, separate from the player's own phone and real accounts. LYSN is the customizable character-chat area and retains the existing local personas, group chats, voice messages and simulated transfers. Instagram remains public-source material; anonymous forum accounts remain unconfirmed. Stable evidence IDs and saved chat data are retained for compatibility.
+
+Narrative evidence uses labeled HTML/CSS diagrams and text records. The main thread additionally contains credited real airport photographs as atmosphere references, separate from the fictional storyline. LYSN and Weverse are coherent additional story surfaces. The phone's original configurable contacts, local simulated chat, voice messages, simulated transfers, group chats, photos and notes remain available.
+
+## Persistence and updates
+
+- Existing phone data stays under `pocket-star-v1`; recorded audio remains in the existing `pocket-star-audio` IndexedDB.
+- New narrative state uses `foundphone-jp-story-v1` with a versioned schema. It never writes the phone's chat or audio stores.
+- Story records live in `dist/story-data.js`. Keep the episode ID and existing post/comment/evidence IDs stable; append content rather than recreating IDs.
+- `dist/story.js` handles forum browsing, search, clues, branching and independent save export/import. `dist/story.css` styles these views; `dist/pann.css` scopes a Pann-inspired white/red ranked forum and BEST replies to forum views. Forum post recommendations are additive save fields and preserve existing progress.
+- Exploration notes export/import story JSON. Import requires an explicit in-game confirmation before replacement. Settings retain the existing phone export; recorded audio blobs are not included in that text export.
+- Progress stays in this browser; exports support manual backup and transfer. No cloud sync or real AI replies.
+
+## Validation
+
+`npm install` then `npm test` runs DOM-based integration tests using LinkeDOM. Tests cover the full evidence path, alternate reply, hidden search result, save/reload, favorites, escaping and legacy contact/message/audio metadata preservation plus original chat sending and simulated reply. Run `node --check` on shipped JavaScript for syntax.
+
+Managed preview/browser QA was unavailable in this environment; no preview server was started. Visual layout, microphone permissions, audible playback and real phone keyboard behavior still need actual browser/device QA.
+
+
+## Airport photograph credits
+
+The main forum thread includes two real public airport photographs from **2026-09-28**, credited to **Newsen / 지수진**. Files retain the full frame and the original watermark. The forum caption explicitly separates real photographs from fictional posts and relationship storylines.
+
+- `dist/assets/aseul-airport-20260928-irene.jpg`: https://www.newsen.com/news_view.php?code=100100&uid=202609281857343510
+- `dist/assets/aseul-airport-20260928-seulgi.jpg`: https://www.newsen.com/news_view.php?code=100600&uid=202609281934203510
+
+These are third-party editorial photographs, not project-owned or generated assets. Source links and credits are also available in the in-app image viewer.
+
+
+## Public Instagram archive
+
+Instagram now has two selectable public-content profiles: `hi_sseulgi` and `renebaebae`. The curated first batch contains **8 records and 71 locally packaged photographs**. The page explicitly states that it is a dated archive rather than a live or complete copy of either account. Account ownership, dates, source URLs and every image's archived URL are in `dist/instagram-data.js`.
+
+- 2026-09-16: Japanese album update (13 photos) and two dining Stories, from https://theqoo.net/seulgi/4361583608?category=1827551682
+- 2025-05-30: Seulgi update with an Irene image among the carousel, from https://theqoo.net/seulgi/4012428821
+- 2025-06-12 and 2025-06-23: styling/backstage update and BALANCE recap, from https://theqoo.net/seulgi/4018568127
+- 2025-03-30: `by.sseulgi` film photograph of Irene; caption and original-post link are documented at https://www.fanforum.com/f509/baechu-%7Birene%7D-9-~-solo-irene-finally-coming-year-63278447/index10.html
+- 2023-11-19: Irene update and Seulgi's documented public comment, indexed at https://theqoo.net/seulgi/3022087917
+- 2023-10-26: Irene/Seulgi update indexed at https://kpopping.com/kpics/231026-Red-Velvet-Irene-Instagram-Update-with-Seulgi
+
+The last two entries are **text indexes and source links only**: no substitute photographs or invented original captions. The Korean captions for image posts are short archived excerpts, with Chinese reading translations. Real material does not establish a private relationship. The earlier invented drinks/night-road material remains in a separate explicitly fictional view. Images retain their original files; profile thumbnails crop only in CSS, while the post viewer shows the full image. Likes/follower counts are not fabricated. Saved archive records use the additive `igSaved` field in the existing story save; free chat/voice storage is unchanged.
