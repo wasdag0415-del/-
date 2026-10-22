@@ -116,7 +116,6 @@ bindShared();
 screen.querySelectorAll('[data-sms-thread]').forEach(b=>b.onclick=()=>{smsThread=b.dataset.smsThread;render('sms-chat');});
 }
 let smsThread='roaming';
-let smsThread='a';
 function renderSmsChat(){
 const threads={
 roaming:{name:'Japan eSIM',body:`<div class='nf-sms-date'>9月14日 · 14:41</div><div class='nf-sms-bubble'>欢迎抵达日本。您的数据套餐已自动启用，有效期至10月3日 23:59。</div><div class='nf-sms-date'>9月19日 · 20:18</div><div class='nf-sms-bubble'>本日已使用 1.8GB 高速流量。剩余流量 8.2GB。</div>`},
