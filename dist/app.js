@@ -244,6 +244,45 @@ function renderCalendar(){const progress=JapanStory.getState(),done=progress.cha
 ];screen.innerHTML=`<div class="ios-native-app ios-calendar-app ios-calendar-merged">${iosBack('日历')}<div class="ios-app-scroll"><div class="ios-calendar-title"><span>2026年</span><strong>9月</strong><button data-view="opening">回放本章</button></div><div class="ios-weekdays">${['日','一','二','三','四','五','六'].map(day=>`<span>${day}</span>`).join('')}</div><div class="ios-month-grid">${Array.from({length:30},(_,index)=>{const day=index+1,marked=[14,16,19].includes(day);return `<button class="${day===19?'today ':''}${marked?'marked':''}" ${marked?`data-calendar-day="${day}"`:''}><span>${day}</span>${marked?'<i></i>':''}</button>`;}).join('')}</div><section class="ios-calendar-agenda"><header><div><small>9月19日 · 星期六</small><h3>今天</h3></div><span>${done?'3项已整理':'探索中'}</span></header><button data-view="forum"><time>20:43</time><i class="pann-dot"></i><span><strong>Pann 热帖</strong><small>福冈首场的现场讨论</small></span><b>›</b></button><button data-view="ktstory"><time>20:52</time><i class="kkt-dot"></i><span><strong>KakaoTalk</strong><small>同担发来讨论链接</small></span><b>›</b></button><button data-view="${done?'chapterend':'notebook'}"><time>21:22</time><i class="story-dot"></i><span><strong>${done?'第一章记录':'等待整理'}</strong><small>${done?'回看这一章留下的判断':'继续探索其他应用'}</small></span><b>›</b></button></section><section class="ios-calendar-story"><header><div><small>POCKET STORY</small><h3>剧情记录</h3></div><span>${items.filter(item=>item[3]).length}/${items.length}</span></header><p>时间只保存顺序，不替任何人解释。</p><div class="ios-calendar-story-list">${items.map(([date,title,copy,open,route],index)=>`<button class="${open?'unlocked':'locked'}" ${open?`data-view="${route}"`:''}><i>${open?'✓':index+1}</i><span><time>${date}</time><strong>${open?title:'尚未发现'}</strong><small>${open?copy:'继续探索其他应用来解锁'}</small></span><b>›</b></button>`).join('')}</div></section><small class="ios-local-label">剧情回放与关键节点已合并到日历</small></div></div>`;bindShared();screen.querySelectorAll('[data-calendar-day]').forEach(button=>button.onclick=()=>{const day=button.dataset.calendarDay;if(day==='14')render('forum');else if(day==='16')render('instagram');else screen.querySelector('.ios-calendar-agenda')?.scrollIntoView({behavior:'smooth'});});}
 function renderTimeline(){render('calendar');}
 
+/* Enrich the existing phone apps with the locked August-to-departure text. */
+const baseRenderPhone=renderPhone;
+renderPhone=function(){
+ baseRenderPhone();
+ const data=window.PreludeData?.calls||[],scroll=screen.querySelector('.ios-app-scroll');
+ if(!scroll||!data.length)return;
+ const block=document.createElement('section');block.className='nf-prelude-native';
+ block.innerHTML=`<small>此前记录 · 8月—9月13日</small><div class="ios-call-list">${data.map((item,index)=>{const[date,name,type,at,kind,detail]=item;return `<button data-prelude-call="${index}" class="${kind}"><span class="ios-call-avatar">${esc(name.slice(0,1))}</span><span><strong>${esc(name)}</strong><small>${kind==='outgoing'?'↗':'↙'} ${esc(type)} · ${esc(date)}</small></span><time>${esc(at)}</time><b>ⓘ</b></button>`}).join('')}</div>`;
+ scroll.appendChild(block);
+ block.querySelectorAll('[data-prelude-call]').forEach(button=>button.onclick=()=>{const[date,name,type,at,,detail]=data[Number(button.dataset.preludeCall)];showModal(`<h3>${esc(name)}</h3><p>${esc(type)} · ${esc(date)} ${esc(at)}</p><p>${esc(detail)}</p><small>同人虚构剧情记录 · 不会拨打真实电话</small>`);});
+};
+
+const baseRenderBrowser=renderBrowser;
+renderBrowser=function(){
+ baseRenderBrowser();
+ if(browserQuery)return;
+ const history=screen.querySelector('.ios-browser-history'),data=window.PreludeData?.browserHistory||[];
+ if(!history||!data.length)return;
+ history.insertAdjacentHTML('beforeend',`<h3 class="nf-prelude-subhead">此前搜索 · 8月—9月13日</h3>${data.map(([date,item])=>`<button data-prelude-search="${esc(item)}"><span>◷</span><strong>${esc(item)}</strong><time>${esc(date)}</time></button>`).join('')}`);
+ history.querySelectorAll('[data-prelude-search]').forEach(button=>button.onclick=()=>{browserQuery=button.dataset.preludeSearch;renderBrowser();});
+};
+
+const baseRenderCalendar=renderCalendar;
+renderCalendar=function(){
+ baseRenderCalendar();
+ const scroll=screen.querySelector('.ios-app-scroll'),data=window.PreludeData?.calendar||[];
+ if(!scroll||!data.length)return;
+ const block=document.createElement('section');block.className='nf-prelude-calendar';
+ block.innerHTML=`<header><div><small>手机原有日程</small><h3>8月—出发前</h3></div><span>${data.length}项</span></header><div>${data.map(([date,time,title])=>`<article><time>${esc(date)}<br><small>${esc(time)}</small></time><span>${esc(title)}</span></article>`).join('')}</div>`;
+ scroll.appendChild(block);
+};
+
+const baseRenderAlbum=renderAlbum;
+renderAlbum=function(){
+ baseRenderAlbum();
+ const body=screen.querySelector('.page-body');
+ if(body&&window.PreludeData)body.insertAdjacentHTML('beforeend',window.PreludeData.photoHtml());
+};
+
 function showModal(html){$('#modal-content').innerHTML=html;if(!$('#modal').open)$('#modal').showModal();}
 function confirmDialog(title,copy,fn){showModal(`<h3>${esc(title)}</h3><p>${esc(copy)}</p><div class="dialog-buttons"><button class="subtle" id="cancel-action">取消</button><button class="primary wide" id="confirm-action">确认</button></div>`);$('#cancel-action').onclick=()=>$('#modal').close();$('#confirm-action').onclick=()=>{$('#modal').close();fn();};}
 function compressImage(file,max=800){return new Promise((resolve,reject)=>{if(!file.type.startsWith('image/'))return reject(new Error('请选择图片文件。'));if(file.size>15*1024*1024)return reject(new Error('请选择小于 15 MB 的图片。'));const reader=new FileReader();reader.onerror=()=>reject(new Error('图片读取失败。'));reader.onload=()=>{const img=new Image();img.onerror=()=>reject(new Error('这张图片无法读取，请换成 JPG、PNG 或 WebP。'));img.onload=()=>{const ratio=Math.min(1,max/Math.max(img.width,img.height)),canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(img.width*ratio));canvas.height=Math.max(1,Math.round(img.height*ratio));const ctx=canvas.getContext('2d');ctx.fillStyle='#f5f5ee';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.drawImage(img,0,0,canvas.width,canvas.height);resolve(canvas.toDataURL('image/jpeg',.82));};img.src=reader.result;};reader.readAsDataURL(file);});}
