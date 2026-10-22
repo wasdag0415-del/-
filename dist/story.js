@@ -126,7 +126,7 @@
   }
 
   function opening() {
-    return wrap(`<div class="nf-opening"><div class="nf-open-logo">POCKET STORY<span>the same blank</span></div><div class="nf-night-card"><span>FUKUOKA · 2026.09.19</span><div class="nf-moon"></div><i class="nf-window"></i></div><small>第一章 · 首场结束以后</small><h1>大家都在看，<br>却没有人看见全部。</h1><p>从一部被捡到的手机开始。<br>屏幕里留下的同担消息，把你带进正在升温的讨论。</p><button class="nf-primary" data-route="storychat">查看新消息 <span>↗</span></button><button class="nf-text-button" data-nav="phonehome">回到手机桌面</button>${notice}<p class="nf-autosave">进度自动保存在当前浏览器</p></div>`);
+    return wrap(`<div class="nf-opening"><div class="nf-open-logo">POCKET STORY<span>the same blank</span></div><div class="nf-night-card"><span>FUKUOKA · 2026.09.19</span><div class="nf-moon"></div><i class="nf-window"></i></div><h1>大家都在看，<br>却没有人看见全部。</h1><p>你捡到一部处于遗失模式的手机。<br>A 发来的消息，把你带进一篇正在升温的论坛讨论。</p><button class="nf-primary" data-route="storychat">查看 A 的新消息 <span>↗</span></button><button class="nf-text-button" data-nav="phonehome">回到手机桌面</button>${notice}<p class="nf-autosave">进度自动保存在当前浏览器</p></div>`);
   }
 
   function ktstory() {
@@ -272,7 +272,7 @@
   }
 
   function chapterEnd() {
-    const quietThread = state.read.includes('older-sister') ? '<div class="nf-end-whisper"><small>21:21 · 隔壁版求助有新回复</small><p>有人终于发出了一句很短的关心。你不知道这和舞台上的任何人有没有关系，但今晚的沉默忽然有了另一种重量。</p><button data-open-post="older-sister">回去看看她写了什么 →</button></div>' : '';
+    const quietThread = state.read.includes('older-sister') ? '<div class="nf-end-whisper"><small>21:21 · 热帖有新回复</small><p>有人问：楼主是不是删东西了？</p><p>页面往上翻，原来的几句话已经找不到了。你不知道那是楼主自己删的，还是只是论坛刷新后的错觉。</p><button data-open-post="coldwar">回去看看热帖 →</button></div>' : '';
     return wrap(`<div class="nf-opening nf-chapter-end"><div class="nf-open-logo">POCKET STORY<span>the same blank</span></div><small>CHAPTER 01 · COMPLETE</small><h1>照片看起来正常。<br>讨论却没有真正结束。</h1><p>一条传言可以追到源头，官方照片可以确认两人同台。<br>可没有哪张图能解释一个人为什么不敢先开口。</p>${quietThread}<div class="nf-end-date">2026.09.19 · 21:22</div><button class="nf-primary" data-nav="phonehome">返回手机桌面</button><button class="nf-text-button" data-route="notebook">查看第一章备忘录</button><div class="nf-next-locked"><span>CHAPTER 02</span><strong>尚未开放</strong><small>十月的日本相关 INS 将作为下一章前的过渡。</small></div>${notice}</div>`);
   }
 
