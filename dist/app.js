@@ -204,7 +204,8 @@ const PUBLIC_ALBUM_PHOTOS=[
   "title": "街边的绿墙",
   "source": "Instagram · hi_sseulgi · 发布于 2026.09.16，拍摄时间未提供",
   "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
-  "collection": "九月"
+  "collection": "2026年9月16日",
+  "sortDate": "2026-09-16"
  },
  {
   "id": "ig-260916-02",
@@ -214,7 +215,8 @@ const PUBLIC_ALBUM_PHOTOS=[
   "title": "自行车旁",
   "source": "Instagram · hi_sseulgi · 发布于 2026.09.16，拍摄时间未提供",
   "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
-  "collection": "九月"
+  "collection": "2026年9月16日",
+  "sortDate": "2026-09-16"
  },
  {
   "id": "ig-260916-03",
@@ -224,7 +226,8 @@ const PUBLIC_ALBUM_PHOTOS=[
   "title": "树荫下",
   "source": "Instagram · hi_sseulgi · 发布于 2026.09.16，拍摄时间未提供",
   "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
-  "collection": "九月"
+  "collection": "2026年9月16日",
+  "sortDate": "2026-09-16"
  },
  {
   "id": "ig-260916-04",
@@ -234,7 +237,8 @@ const PUBLIC_ALBUM_PHOTOS=[
   "title": "路过的街道",
   "source": "Instagram · hi_sseulgi · 发布于 2026.09.16，拍摄时间未提供",
   "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
-  "collection": "九月"
+  "collection": "2026年9月16日",
+  "sortDate": "2026-09-16"
  },
  {
   "id": "ig-260916-05",
@@ -244,7 +248,8 @@ const PUBLIC_ALBUM_PHOTOS=[
   "title": "散步途中",
   "source": "Instagram · hi_sseulgi · 发布于 2026.09.16，拍摄时间未提供",
   "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
-  "collection": "九月"
+  "collection": "2026年9月16日",
+  "sortDate": "2026-09-16"
  },
  {
   "id": "ig-260916-06",
@@ -254,7 +259,8 @@ const PUBLIC_ALBUM_PHOTOS=[
   "title": "路边随拍",
   "source": "Instagram · hi_sseulgi · 发布于 2026.09.16，拍摄时间未提供",
   "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
-  "collection": "九月"
+  "collection": "2026年9月16日",
+  "sortDate": "2026-09-16"
  },
  {
   "id": "ig-260916-07",
@@ -264,7 +270,8 @@ const PUBLIC_ALBUM_PHOTOS=[
   "title": "阳光下的自拍",
   "source": "Instagram · hi_sseulgi · 发布于 2026.09.16，拍摄时间未提供",
   "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
-  "collection": "九月"
+  "collection": "2026年9月16日",
+  "sortDate": "2026-09-16"
  },
  {
   "id": "ig-260916-08",
@@ -274,7 +281,8 @@ const PUBLIC_ALBUM_PHOTOS=[
   "title": "午后街角",
   "source": "Instagram · hi_sseulgi · 发布于 2026.09.16，拍摄时间未提供",
   "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
-  "collection": "九月"
+  "collection": "2026年9月16日",
+  "sortDate": "2026-09-16"
  },
  {
   "id": "ig-260916-09",
@@ -284,7 +292,8 @@ const PUBLIC_ALBUM_PHOTOS=[
   "title": "桌上的饭团",
   "source": "Instagram · hi_sseulgi · 发布于 2026.09.16，拍摄时间未提供",
   "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
-  "collection": "九月"
+  "collection": "2026年9月16日",
+  "sortDate": "2026-09-16"
  },
  {
   "id": "ig-260916-10",
@@ -294,7 +303,8 @@ const PUBLIC_ALBUM_PHOTOS=[
   "title": "树影",
   "source": "Instagram · hi_sseulgi · 发布于 2026.09.16，拍摄时间未提供",
   "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
-  "collection": "九月"
+  "collection": "2026年9月16日",
+  "sortDate": "2026-09-16"
  },
  {
   "id": "ig-260916-11",
@@ -304,7 +314,8 @@ const PUBLIC_ALBUM_PHOTOS=[
   "title": "同一天的几张",
   "source": "Instagram · hi_sseulgi · 发布于 2026.09.16，拍摄时间未提供",
   "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
-  "collection": "九月"
+  "collection": "2026年9月16日",
+  "sortDate": "2026-09-16"
  },
  {
   "id": "ig-260916-12",
@@ -314,7 +325,8 @@ const PUBLIC_ALBUM_PHOTOS=[
   "title": "镜子前",
   "source": "Instagram · hi_sseulgi · 发布于 2026.09.16，拍摄时间未提供",
   "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
-  "collection": "九月"
+  "collection": "2026年9月16日",
+  "sortDate": "2026-09-16"
  },
  {
   "id": "ig-260916-13",
@@ -324,67 +336,8 @@ const PUBLIC_ALBUM_PHOTOS=[
   "title": "一餐",
   "source": "Instagram · hi_sseulgi · 发布于 2026.09.16，拍摄时间未提供",
   "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
-  "collection": "九月"
- },
- {
-  "id": "life-s-0",
-  "src": "assets/life/seulgi-peace.jpg",
-  "date": "已存照片",
-  "time": "",
-  "title": "涩琪 · 比耶自拍",
-  "source": "Pinterest · 公开自拍收藏，拍摄日期未确认",
-  "sourceUrl": "https://www.pinterest.com/pin/seulgi-bubble-update--605734218643072146/",
-  "collection": "已存照片"
- },
- {
-  "id": "life-s-1",
-  "src": "assets/life/seulgi-knit.jpg",
-  "date": "已存照片",
-  "time": "",
-  "title": "涩琪 · 白色针织衫",
-  "source": "Pinterest · 公开自拍收藏，拍摄日期未确认",
-  "sourceUrl": "https://br.pinterest.com/pin/707417053997961915/",
-  "collection": "已存照片"
- },
- {
-  "id": "life-s-2",
-  "src": "assets/life/irene-selfie.jpg",
-  "date": "已存照片",
-  "time": "",
-  "title": "珠泫 · 笑着的自拍",
-  "source": "Pinterest · 公开自拍收藏，拍摄日期未确认",
-  "sourceUrl": "https://www.pinterest.com/pin/820007044646587742/",
-  "collection": "已存照片"
- },
- {
-  "id": "life-s-3",
-  "src": "assets/life/irene-glasses.jpg",
-  "date": "已存照片",
-  "time": "",
-  "title": "珠泫 · 戴眼镜的镜子自拍",
-  "source": "Pinterest · 公开自拍收藏，拍摄日期未确认",
-  "sourceUrl": "https://www.pinterest.com/pin/irenes-record--708472585123537905/",
-  "collection": "已存照片"
- },
- {
-  "id": "life-s-4",
-  "src": "assets/life/irene-white-tee.jpg",
-  "date": "已存照片",
-  "time": "",
-  "title": "珠泫 · 白色 T 恤",
-  "source": "Pinterest · 公开自拍收藏，拍摄日期未确认",
-  "sourceUrl": "https://www.pinterest.com/pinkbaerry/irenered-velvet/",
-  "collection": "已存照片"
- },
- {
-  "id": "ig-260823-01",
-  "src": "https://aka.doubaocdn.com/s/hpUrGaZxj1",
-  "date": "2026年8月23日",
-  "time": "",
-  "title": "珠泫 · 粉色蝴蝶结自拍",
-  "source": "Instagram · renebaebae · 时隔5个月回归",
-  "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
-  "collection": "八月"
+  "collection": "2026年9月16日",
+  "sortDate": "2026-09-16"
  },
  {
   "id": "ig-260905-01",
@@ -394,137 +347,8 @@ const PUBLIC_ALBUM_PHOTOS=[
   "title": "涩琪 · 普拉提室自拍",
   "source": "Instagram · hi_sseulgi",
   "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
-  "collection": "九月"
- },
- {
-  "id": "ig-260815-01",
-  "src": "https://aka.doubaocdn.com/s/DXlvQaVKFM",
-  "date": "2026年8月15日",
-  "time": "",
-  "title": "by.sseulgi · 江边夜景",
-  "source": "Instagram · by.sseulgi",
-  "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
-  "collection": "八月"
- },
- {
-  "id": "seulgi-selfie-01",
-  "src": "https://aka.doubaocdn.com/s/u4UYfyUcNL",
-  "date": "已存照片",
-  "time": "",
-  "title": "涩琪 · 齐刘海自拍",
-  "source": "Pinterest · 公开自拍收藏",
-  "sourceUrl": "https://www.pinterest.com/",
-  "collection": "已存照片"
- },
- {
-  "id": "seulgi-selfie-02",
-  "src": "https://aka.doubaocdn.com/s/MMVwSh4DcR",
-  "date": "已存照片",
-  "time": "",
-  "title": "涩琪 · 红色背景自拍",
-  "source": "Pinterest · 公开自拍收藏",
-  "sourceUrl": "https://www.pinterest.com/",
-  "collection": "已存照片"
- },
- {
-  "id": "seulgi-selfie-03",
-  "src": "https://aka.doubaocdn.com/s/bV26UGSfuc",
-  "date": "已存照片",
-  "time": "",
-  "title": "涩琪 · 窗边光影自拍",
-  "source": "Pinterest · 公开自拍收藏",
-  "sourceUrl": "https://www.pinterest.com/",
-  "collection": "已存照片"
- },
- {
-  "id": "seulgi-selfie-04",
-  "src": "https://aka.doubaocdn.com/s/ogIdeCIfeb",
-  "date": "已存照片",
-  "time": "",
-  "title": "涩琪 · 练习室对镜拍",
-  "source": "Instagram · hi_sseulgi",
-  "sourceUrl": "https://www.instagram.com/hi_sseulgi/",
-  "collection": "已存照片"
- },
- {
-  "id": "seulgi-selfie-05",
-  "src": "https://aka.doubaocdn.com/s/9w55N9UeEW",
-  "date": "已存照片",
-  "time": "",
-  "title": "涩琪 · 高马尾对镜拍",
-  "source": "Instagram · hi_sseulgi",
-  "sourceUrl": "https://www.instagram.com/hi_sseulgi/",
-  "collection": "已存照片"
- },
- {
-  "id": "couple-01",
-  "src": "https://aka.doubaocdn.com/s/tVWbYiQ7gm",
-  "date": "已存照片",
-  "time": "",
-  "title": "两人 · 玫瑰概念照",
-  "source": "Red Velvet - IRENE & SEULGI 概念照",
-  "sourceUrl": "https://www.redvelvet.com/",
-  "collection": "已存照片"
- },
- {
-  "id": "couple-02",
-  "src": "https://aka.doubaocdn.com/s/5Q8wHRJDSy",
-  "date": "已存照片",
-  "time": "",
-  "title": "两人 · TILT 概念照",
-  "source": "Red Velvet - IRENE & SEULGI 'TILT'",
-  "sourceUrl": "https://www.redvelvet.com/",
-  "collection": "已存照片"
- },
- {
-  "id": "couple-03",
-  "src": "https://aka.doubaocdn.com/s/fXmVr6wLUl",
-  "date": "已存照片",
-  "time": "",
-  "title": "两人 · TILT 侧拍",
-  "source": "Red Velvet - IRENE & SEULGI 'TILT'",
-  "sourceUrl": "https://www.redvelvet.com/",
-  "collection": "已存照片"
- },
- {
-  "id": "couple-04",
-  "src": "https://aka.doubaocdn.com/s/bGZv8MwFmh",
-  "date": "已存照片",
-  "time": "",
-  "title": "两人 · Nylon 杂志",
-  "source": "Nylon Korea 2020年5月刊",
-  "sourceUrl": "https://www.hellokpop.com/",
-  "collection": "已存照片"
- },
- {
-  "id": "couple-05",
-  "src": "https://aka.doubaocdn.com/s/o6PlyIAUse",
-  "date": "已存照片",
-  "time": "",
-  "title": "两人 · 合照比心",
-  "source": "Pinterest · 公开合照收藏",
-  "sourceUrl": "https://www.pinterest.com/",
-  "collection": "已存照片"
- },
- {
-  "id": "couple-06",
-  "src": "https://aka.doubaocdn.com/s/OWwoFuuQ3c",
-  "date": "已存照片",
-  "time": "",
-  "title": "两人 · 开心拥抱",
-  "source": "Pinterest · 公开合照收藏",
-  "sourceUrl": "https://www.pinterest.com/",
-  "collection": "已存照片"
- },
- {
-  "id": "couple-07",
-  "src": "https://aka.doubaocdn.com/s/kOPMHHxW6a",
-  "date": "已存照片",
-  "time": "",
-  "title": "两人 · 红色头发时期",
-  "source": "Monster 活动时期",
-  "sourceUrl": "https://www.redvelvet.com/",
-  "collection": "已存照片"
+  "collection": "2026年9月5日",
+  "sortDate": "2026-09-05"
  },
  {
   "id": "irene-pitch-01",
@@ -534,7 +358,206 @@ const PUBLIC_ALBUM_PHOTOS=[
   "title": "珠泫 · 大邱开球",
   "source": "三星狮开球活动饭拍",
   "sourceUrl": "https://www.instagram.com/",
-  "collection": "八月"
+  "collection": "2026年8月29日",
+  "sortDate": "2026-08-29"
+ },
+ {
+  "id": "ig-260823-01",
+  "src": "https://aka.doubaocdn.com/s/hpUrGaZxj1",
+  "date": "2026年8月23日",
+  "time": "",
+  "title": "珠泫 · 粉色蝴蝶结自拍",
+  "source": "Instagram · renebaebae · 时隔5个月回归",
+  "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
+  "collection": "2026年8月23日",
+  "sortDate": "2026-08-23"
+ },
+ {
+  "id": "ig-260815-01",
+  "src": "https://aka.doubaocdn.com/s/DXlvQaVKFM",
+  "date": "2026年8月15日",
+  "time": "",
+  "title": "by.sseulgi · 江边夜景",
+  "source": "Instagram · by.sseulgi",
+  "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
+  "collection": "2026年8月15日",
+  "sortDate": "2026-08-15"
+ },
+ {
+  "id": "sg-250623-album-1",
+  "src": "instagram/IkXtWv.jpg",
+  "date": "2025年06月23日",
+  "time": "",
+  "title": "后台随拍",
+  "source": "Instagram · hi_sseulgi · 发布于 2025-06-23，拍摄时间未提供",
+  "sourceUrl": "https://www.instagram.com/p/DLPy2DHSF8H/",
+  "collection": "2025年6月23日",
+  "sortDate": "2025-06-23"
+ },
+ {
+  "id": "sg-250623-album-2",
+  "src": "instagram/RnfcmT.jpg",
+  "date": "2025年06月23日",
+  "time": "",
+  "title": "楼梯旁",
+  "source": "Instagram · hi_sseulgi · 发布于 2025-06-23，拍摄时间未提供",
+  "sourceUrl": "https://www.instagram.com/p/DLPy2DHSF8H/",
+  "collection": "2025年6月23日",
+  "sortDate": "2025-06-23"
+ },
+ {
+  "id": "sg-250623-album-9",
+  "src": "instagram/MeHkwb.jpg",
+  "date": "2025年06月23日",
+  "time": "",
+  "title": "镜子前的合影",
+  "source": "Instagram · hi_sseulgi · 发布于 2025-06-23，拍摄时间未提供",
+  "sourceUrl": "https://www.instagram.com/p/DLPy2DHSF8H/",
+  "collection": "2025年6月23日",
+  "sortDate": "2025-06-23"
+ },
+ {
+  "id": "sg-250623-album-13",
+  "src": "instagram/KhzoBd.jpg",
+  "date": "2025年06月23日",
+  "time": "",
+  "title": "气球前的自拍",
+  "source": "Instagram · hi_sseulgi · 发布于 2025-06-23，拍摄时间未提供",
+  "sourceUrl": "https://www.instagram.com/p/DLPy2DHSF8H/",
+  "collection": "2025年6月23日",
+  "sortDate": "2025-06-23"
+ },
+ {
+  "id": "sg-250623-album-14",
+  "src": "instagram/sZKRzE.jpg",
+  "date": "2025年06月23日",
+  "time": "",
+  "title": "另一张自拍",
+  "source": "Instagram · hi_sseulgi · 发布于 2025-06-23，拍摄时间未提供",
+  "sourceUrl": "https://www.instagram.com/p/DLPy2DHSF8H/",
+  "collection": "2025年6月23日",
+  "sortDate": "2025-06-23"
+ },
+ {
+  "id": "sg-250623-album-15",
+  "src": "instagram/DVLWka.jpg",
+  "date": "2025年06月23日",
+  "time": "",
+  "title": "托着脸",
+  "source": "Instagram · hi_sseulgi · 发布于 2025-06-23，拍摄时间未提供",
+  "sourceUrl": "https://www.instagram.com/p/DLPy2DHSF8H/",
+  "collection": "2025年6月23日",
+  "sortDate": "2025-06-23"
+ },
+ {
+  "id": "sg-250623-album-16",
+  "src": "instagram/WEIybX.jpg",
+  "date": "2025年06月23日",
+  "time": "",
+  "title": "躺着拍的一张",
+  "source": "Instagram · hi_sseulgi · 发布于 2025-06-23，拍摄时间未提供",
+  "sourceUrl": "https://www.instagram.com/p/DLPy2DHSF8H/",
+  "collection": "2025年6月23日",
+  "sortDate": "2025-06-23"
+ },
+ {
+  "id": "sg-250623-album-18",
+  "src": "instagram/SjNctI.jpg",
+  "date": "2025年06月23日",
+  "time": "",
+  "title": "场馆外的午后",
+  "source": "Instagram · hi_sseulgi · 发布于 2025-06-23，拍摄时间未提供",
+  "sourceUrl": "https://www.instagram.com/p/DLPy2DHSF8H/",
+  "collection": "2025年6月23日",
+  "sortDate": "2025-06-23"
+ },
+ {
+  "id": "sg-250623-album-19",
+  "src": "instagram/UdYeRD.jpg",
+  "date": "2025年06月23日",
+  "time": "",
+  "title": "两个人与舞台",
+  "source": "Instagram · hi_sseulgi · 发布于 2025-06-23，拍摄时间未提供",
+  "sourceUrl": "https://www.instagram.com/p/DLPy2DHSF8H/",
+  "collection": "2025年6月23日",
+  "sortDate": "2025-06-23"
+ },
+ {
+  "id": "sg-250612-album-1",
+  "src": "instagram/uUpPIR.jpg",
+  "date": "2025年06月12日",
+  "time": "",
+  "title": "试发型",
+  "source": "Instagram · hi_sseulgi · 发布于 2025-06-12，拍摄时间未提供",
+  "sourceUrl": "https://www.instagram.com/p/DKxDskkySs8/",
+  "collection": "2025年6月12日",
+  "sortDate": "2025-06-12"
+ },
+ {
+  "id": "sg-250612-album-5",
+  "src": "instagram/OsUHzf.jpg",
+  "date": "2025年06月12日",
+  "time": "",
+  "title": "红色沙发旁的两个人",
+  "source": "Instagram · hi_sseulgi · 发布于 2025-06-12，拍摄时间未提供",
+  "sourceUrl": "https://www.instagram.com/p/DKxDskkySs8/",
+  "collection": "2025年6月12日",
+  "sortDate": "2025-06-12"
+ },
+ {
+  "id": "sg-250612-album-11",
+  "src": "instagram/nIJEEn.jpg",
+  "date": "2025年06月12日",
+  "time": "",
+  "title": "练习间隙",
+  "source": "Instagram · hi_sseulgi · 发布于 2025-06-12，拍摄时间未提供",
+  "sourceUrl": "https://www.instagram.com/p/DKxDskkySs8/",
+  "collection": "2025年6月12日",
+  "sortDate": "2025-06-12"
+ },
+ {
+  "id": "sg-250612-album-12",
+  "src": "instagram/dcFLup.jpg",
+  "date": "2025年06月12日",
+  "time": "",
+  "title": "靠着沙发",
+  "source": "Instagram · hi_sseulgi · 发布于 2025-06-12，拍摄时间未提供",
+  "sourceUrl": "https://www.instagram.com/p/DKxDskkySs8/",
+  "collection": "2025年6月12日",
+  "sortDate": "2025-06-12"
+ },
+ {
+  "id": "sg-250612-album-13",
+  "src": "instagram/IGRaAW.jpg",
+  "date": "2025年06月12日",
+  "time": "",
+  "title": "房间里的随拍",
+  "source": "Instagram · hi_sseulgi · 发布于 2025-06-12，拍摄时间未提供",
+  "sourceUrl": "https://www.instagram.com/p/DKxDskkySs8/",
+  "collection": "2025年6月12日",
+  "sortDate": "2025-06-12"
+ },
+ {
+  "id": "sg-250612-album-14",
+  "src": "instagram/EJmPLt.jpg",
+  "date": "2025年06月12日",
+  "time": "",
+  "title": "走廊里",
+  "source": "Instagram · hi_sseulgi · 发布于 2025-06-12，拍摄时间未提供",
+  "sourceUrl": "https://www.instagram.com/p/DKxDskkySs8/",
+  "collection": "2025年6月12日",
+  "sortDate": "2025-06-12"
+ },
+ {
+  "id": "sg-250612-album-17",
+  "src": "instagram/SYvynD.jpg",
+  "date": "2025年06月12日",
+  "time": "",
+  "title": "相机里的自己",
+  "source": "Instagram · hi_sseulgi · 发布于 2025-06-12，拍摄时间未提供",
+  "sourceUrl": "https://www.instagram.com/p/DKxDskkySs8/",
+  "collection": "2025年6月12日",
+  "sortDate": "2025-06-12"
  },
  {
   "id": "jeju-irene-01",
@@ -544,7 +567,8 @@ const PUBLIC_ALBUM_PHOTOS=[
   "title": "珠泫 · 济州岛油菜花田",
   "source": "Instagram · renebaebae · 济州岛旅行",
   "sourceUrl": "https://www.instagram.com/renebaebae/",
-  "collection": "济州岛"
+  "collection": "济州岛 · 2020",
+  "sortDate": "2020-00-00"
  },
  {
   "id": "jeju-01",
@@ -554,7 +578,8 @@ const PUBLIC_ALBUM_PHOTOS=[
   "title": "风很大的那天 · 纸风车",
   "source": "济州岛旅行 · 2020",
   "sourceUrl": "https://www.douban.com/group/topic/272613023/",
-  "collection": "济州岛"
+  "collection": "济州岛 · 2020",
+  "sortDate": "2020-00-00"
  },
  {
   "id": "jeju-02",
@@ -564,7 +589,8 @@ const PUBLIC_ALBUM_PHOTOS=[
   "title": "吃零食的晚上",
   "source": "济州岛旅行 · 2020",
   "sourceUrl": "https://www.douban.com/group/topic/272613023/",
-  "collection": "济州岛"
+  "collection": "济州岛 · 2020",
+  "sortDate": "2020-00-00"
  },
  {
   "id": "jeju-03",
@@ -574,7 +600,8 @@ const PUBLIC_ALBUM_PHOTOS=[
   "title": "木格窗前",
   "source": "济州岛旅行 · 2020",
   "sourceUrl": "https://www.douban.com/group/topic/272613023/",
-  "collection": "济州岛"
+  "collection": "济州岛 · 2020",
+  "sortDate": "2020-00-00"
  },
  {
   "id": "jeju-04",
@@ -584,7 +611,8 @@ const PUBLIC_ALBUM_PHOTOS=[
   "title": "镜子前",
   "source": "济州岛旅行 · 2020",
   "sourceUrl": "https://www.douban.com/group/topic/272613023/",
-  "collection": "济州岛"
+  "collection": "济州岛 · 2020",
+  "sortDate": "2020-00-00"
  },
  {
   "id": "jeju-05",
@@ -594,7 +622,338 @@ const PUBLIC_ALBUM_PHOTOS=[
   "title": "对着小圆镜子",
   "source": "济州岛旅行 · 2020",
   "sourceUrl": "https://www.douban.com/group/topic/272613023/",
-  "collection": "济州岛"
+  "collection": "济州岛 · 2020",
+  "sortDate": "2020-00-00"
+ },
+ {
+  "id": "life-s-0",
+  "src": "assets/life/seulgi-peace.jpg",
+  "date": "已存照片",
+  "time": "",
+  "title": "涩琪 · 比耶自拍",
+  "source": "Pinterest · 公开自拍收藏，拍摄日期未确认",
+  "sourceUrl": "https://www.pinterest.com/pin/seulgi-bubble-update--605734218643072146/",
+  "collection": "日期未确认",
+  "sortDate": ""
+ },
+ {
+  "id": "life-s-1",
+  "src": "assets/life/seulgi-knit.jpg",
+  "date": "已存照片",
+  "time": "",
+  "title": "涩琪 · 白色针织衫",
+  "source": "Pinterest · 公开自拍收藏，拍摄日期未确认",
+  "sourceUrl": "https://br.pinterest.com/pin/707417053997961915/",
+  "collection": "日期未确认",
+  "sortDate": ""
+ },
+ {
+  "id": "life-s-2",
+  "src": "assets/life/irene-selfie.jpg",
+  "date": "已存照片",
+  "time": "",
+  "title": "珠泫 · 笑着的自拍",
+  "source": "Pinterest · 公开自拍收藏，拍摄日期未确认",
+  "sourceUrl": "https://www.pinterest.com/pin/820007044646587742/",
+  "collection": "日期未确认",
+  "sortDate": ""
+ },
+ {
+  "id": "life-s-3",
+  "src": "assets/life/irene-glasses.jpg",
+  "date": "已存照片",
+  "time": "",
+  "title": "珠泫 · 戴眼镜的镜子自拍",
+  "source": "Pinterest · 公开自拍收藏，拍摄日期未确认",
+  "sourceUrl": "https://www.pinterest.com/pin/irenes-record--708472585123537905/",
+  "collection": "日期未确认",
+  "sortDate": ""
+ },
+ {
+  "id": "life-s-4",
+  "src": "assets/life/irene-white-tee.jpg",
+  "date": "已存照片",
+  "time": "",
+  "title": "珠泫 · 白色 T 恤",
+  "source": "Pinterest · 公开自拍收藏，拍摄日期未确认",
+  "sourceUrl": "https://www.pinterest.com/pinkbaerry/irenered-velvet/",
+  "collection": "日期未确认",
+  "sortDate": ""
+ },
+ {
+  "id": "seulgi-selfie-01",
+  "src": "https://aka.doubaocdn.com/s/u4UYfyUcNL",
+  "date": "已存照片",
+  "time": "",
+  "title": "涩琪 · 齐刘海自拍",
+  "source": "Pinterest · 公开自拍收藏",
+  "sourceUrl": "https://www.pinterest.com/",
+  "collection": "日期未确认",
+  "sortDate": ""
+ },
+ {
+  "id": "seulgi-selfie-02",
+  "src": "https://aka.doubaocdn.com/s/MMVwSh4DcR",
+  "date": "已存照片",
+  "time": "",
+  "title": "涩琪 · 红色背景自拍",
+  "source": "Pinterest · 公开自拍收藏",
+  "sourceUrl": "https://www.pinterest.com/",
+  "collection": "日期未确认",
+  "sortDate": ""
+ },
+ {
+  "id": "seulgi-selfie-03",
+  "src": "https://aka.doubaocdn.com/s/bV26UGSfuc",
+  "date": "已存照片",
+  "time": "",
+  "title": "涩琪 · 窗边光影自拍",
+  "source": "Pinterest · 公开自拍收藏",
+  "sourceUrl": "https://www.pinterest.com/",
+  "collection": "日期未确认",
+  "sortDate": ""
+ },
+ {
+  "id": "seulgi-selfie-04",
+  "src": "https://aka.doubaocdn.com/s/ogIdeCIfeb",
+  "date": "已存照片",
+  "time": "",
+  "title": "涩琪 · 练习室对镜拍",
+  "source": "Instagram · hi_sseulgi",
+  "sourceUrl": "https://www.instagram.com/hi_sseulgi/",
+  "collection": "日期未确认",
+  "sortDate": ""
+ },
+ {
+  "id": "seulgi-selfie-05",
+  "src": "https://aka.doubaocdn.com/s/9w55N9UeEW",
+  "date": "已存照片",
+  "time": "",
+  "title": "涩琪 · 高马尾对镜拍",
+  "source": "Instagram · hi_sseulgi",
+  "sourceUrl": "https://www.instagram.com/hi_sseulgi/",
+  "collection": "日期未确认",
+  "sortDate": ""
+ },
+ {
+  "id": "couple-01",
+  "src": "https://aka.doubaocdn.com/s/tVWbYiQ7gm",
+  "date": "已存照片",
+  "time": "",
+  "title": "两人 · 玫瑰概念照",
+  "source": "Red Velvet - IRENE & SEULGI 概念照",
+  "sourceUrl": "https://www.redvelvet.com/",
+  "collection": "日期未确认",
+  "sortDate": ""
+ },
+ {
+  "id": "couple-02",
+  "src": "https://aka.doubaocdn.com/s/5Q8wHRJDSy",
+  "date": "已存照片",
+  "time": "",
+  "title": "两人 · TILT 概念照",
+  "source": "Red Velvet - IRENE & SEULGI 'TILT'",
+  "sourceUrl": "https://www.redvelvet.com/",
+  "collection": "日期未确认",
+  "sortDate": ""
+ },
+ {
+  "id": "couple-03",
+  "src": "https://aka.doubaocdn.com/s/fXmVr6wLUl",
+  "date": "已存照片",
+  "time": "",
+  "title": "两人 · TILT 侧拍",
+  "source": "Red Velvet - IRENE & SEULGI 'TILT'",
+  "sourceUrl": "https://www.redvelvet.com/",
+  "collection": "日期未确认",
+  "sortDate": ""
+ },
+ {
+  "id": "couple-04",
+  "src": "https://aka.doubaocdn.com/s/bGZv8MwFmh",
+  "date": "已存照片",
+  "time": "",
+  "title": "两人 · Nylon 杂志",
+  "source": "Nylon Korea 2020年5月刊",
+  "sourceUrl": "https://www.hellokpop.com/",
+  "collection": "日期未确认",
+  "sortDate": ""
+ },
+ {
+  "id": "couple-05",
+  "src": "https://aka.doubaocdn.com/s/o6PlyIAUse",
+  "date": "已存照片",
+  "time": "",
+  "title": "两人 · 合照比心",
+  "source": "Pinterest · 公开合照收藏",
+  "sourceUrl": "https://www.pinterest.com/",
+  "collection": "日期未确认",
+  "sortDate": ""
+ },
+ {
+  "id": "couple-06",
+  "src": "https://aka.doubaocdn.com/s/OWwoFuuQ3c",
+  "date": "已存照片",
+  "time": "",
+  "title": "两人 · 开心拥抱",
+  "source": "Pinterest · 公开合照收藏",
+  "sourceUrl": "https://www.pinterest.com/",
+  "collection": "日期未确认",
+  "sortDate": ""
+ },
+ {
+  "id": "couple-07",
+  "src": "https://aka.doubaocdn.com/s/kOPMHHxW6a",
+  "date": "已存照片",
+  "time": "",
+  "title": "两人 · 红色头发时期",
+  "source": "Monster 活动时期",
+  "sourceUrl": "https://www.redvelvet.com/",
+  "collection": "日期未确认",
+  "sortDate": ""
+ },
+ {
+  "id": "life-expanded-expanded-01",
+  "src": "assets/life/expanded-01.jpg",
+  "date": "日期未确认",
+  "time": "",
+  "title": "车窗旁的自拍",
+  "source": "Pinterest · 公开图片收藏，拍摄及原始发布日期未确认",
+  "sourceUrl": "https://www.pinterest.com/pin/red-velvet-car--806144402079229834/",
+  "collection": "日期未确认",
+  "sortDate": ""
+ },
+ {
+  "id": "life-expanded-expanded-06",
+  "src": "assets/life/expanded-06.jpg",
+  "date": "日期未确认",
+  "time": "",
+  "title": "五个人的自拍",
+  "source": "Pinterest · 公开图片收藏，拍摄及原始发布日期未确认",
+  "sourceUrl": "https://www.pinterest.com/pin/551198441901857898/",
+  "collection": "日期未确认",
+  "sortDate": ""
+ },
+ {
+  "id": "life-expanded-expanded-08",
+  "src": "assets/life/expanded-08.jpg",
+  "date": "日期未确认",
+  "time": "",
+  "title": "Cosmic · 团体照片",
+  "source": "Pinterest · 公开图片收藏，拍摄及原始发布日期未确认",
+  "sourceUrl": "https://www.pinterest.com/pin/737253401532417972/",
+  "collection": "日期未确认",
+  "sortDate": ""
+ },
+ {
+  "id": "life-expanded-expanded-09",
+  "src": "assets/life/expanded-09.jpg",
+  "date": "日期未确认",
+  "time": "",
+  "title": "TILT · 两个人",
+  "source": "Pinterest · 公开图片收藏，拍摄及原始发布日期未确认",
+  "sourceUrl": "https://se.pinterest.com/pin/577375614765668022/",
+  "collection": "日期未确认",
+  "sortDate": ""
+ },
+ {
+  "id": "life-expanded-expanded-10",
+  "src": "assets/life/expanded-10.jpg",
+  "date": "日期未确认",
+  "time": "",
+  "title": "成员合照",
+  "source": "Pinterest · 公开图片收藏，拍摄及原始发布日期未确认",
+  "sourceUrl": "https://www.pinterest.com/pin/224054150205394279/",
+  "collection": "日期未确认",
+  "sortDate": ""
+ },
+ {
+  "id": "life-expanded-extra-03",
+  "src": "assets/life/extra-03.jpg",
+  "date": "日期未确认",
+  "time": "",
+  "title": "两个人的比耶自拍",
+  "source": "Pinterest · 公开图片收藏，拍摄及原始发布日期未确认",
+  "sourceUrl": "https://mx.pinterest.com/pin/654218283343511839/",
+  "collection": "日期未确认",
+  "sortDate": ""
+ },
+ {
+  "id": "life-expanded-extra-04",
+  "src": "assets/life/extra-04.jpg",
+  "date": "日期未确认",
+  "time": "",
+  "title": "一起做鬼脸",
+  "source": "Pinterest · 公开图片收藏，拍摄及原始发布日期未确认",
+  "sourceUrl": "https://es.pinterest.com/pin/735846026663123130/",
+  "collection": "日期未确认",
+  "sortDate": ""
+ },
+ {
+  "id": "life-expanded-extra-05",
+  "src": "assets/life/extra-05.jpg",
+  "date": "日期未确认",
+  "time": "",
+  "title": "街边小店",
+  "source": "Pinterest · 公开图片收藏，拍摄及原始发布日期未确认",
+  "sourceUrl": "https://www.pinterest.com/pin/314548355230986215/",
+  "collection": "日期未确认",
+  "sortDate": ""
+ },
+ {
+  "id": "life-expanded-extra-06",
+  "src": "assets/life/extra-06.jpg",
+  "date": "日期未确认",
+  "time": "",
+  "title": "楼梯上的夜晚",
+  "source": "Pinterest · 公开图片收藏，拍摄及原始发布日期未确认",
+  "sourceUrl": "https://es.pinterest.com/pin/288582288642728490/",
+  "collection": "日期未确认",
+  "sortDate": ""
+ },
+ {
+  "id": "life-expanded-extra-07",
+  "src": "assets/life/extra-07.jpg",
+  "date": "日期未确认",
+  "time": "",
+  "title": "路过小店",
+  "source": "Pinterest · 公开图片收藏，拍摄及原始发布日期未确认",
+  "sourceUrl": "https://www.pinterest.com/pin/601512094013842915/",
+  "collection": "日期未确认",
+  "sortDate": ""
+ },
+ {
+  "id": "life-expanded-car-01",
+  "src": "assets/life/car-01.jpg",
+  "date": "日期未确认",
+  "time": "",
+  "title": "车里 · 眼镜与帽子",
+  "source": "Pinterest · 公开图片收藏，拍摄及原始发布日期未确认",
+  "sourceUrl": "https://www.pinterest.com/pin/1139762618215131369/",
+  "collection": "日期未确认",
+  "sortDate": ""
+ },
+ {
+  "id": "life-expanded-car-03",
+  "src": "assets/life/car-03.jpg",
+  "date": "日期未确认",
+  "time": "",
+  "title": "戴耳机的自拍",
+  "source": "Pinterest · 公开图片收藏，拍摄及原始发布日期未确认",
+  "sourceUrl": "https://www.pinterest.com/pin/seulgi-red-velvet-selca--806144402075284297/",
+  "collection": "日期未确认",
+  "sortDate": ""
+ },
+ {
+  "id": "life-expanded-car-05",
+  "src": "assets/life/car-05.jpg",
+  "date": "日期未确认",
+  "time": "",
+  "title": "车里 · 比耶",
+  "source": "Pinterest · 公开图片收藏，拍摄及原始发布日期未确认",
+  "sourceUrl": "https://www.pinterest.com/pin/680113981259300451/",
+  "collection": "日期未确认",
+  "sortDate": ""
  }
 ];
 function albumPhotos(){
@@ -605,8 +964,8 @@ function albumPhotos(){
 }
 function photoGrid(items){return items.map(photo=>`<button class="ios-photo-tile" data-album-photo="${esc(photo.id)}" aria-label="打开${esc(photo.title)}"><img src="${esc(photo.src)}" alt="${esc(photo.title)}" loading="lazy"></button>`).join('');}
 function renderAlbum(){
- const photos=albumPhotos(),local=photos.filter(photo=>photo.localId),september=photos.filter(photo=>!photo.localId&&photo.collection==='九月'),saved=photos.filter(photo=>!photo.localId&&photo.collection==='已存照片');
- screen.innerHTML=`<div class="page ios-photos-page"><header class="ios-photos-header"><button class="ios-photos-home" data-view="phonehome" aria-label="返回主屏幕">‹</button><button class="ios-photos-select">选择</button><button class="ios-photos-add" id="upload-photo" aria-label="添加照片">＋</button></header><div class="ios-photos-scroll"><h1>照片</h1><section class="ios-photo-feature"><img src="instagram/NAToUq.jpg" alt="阳光下的自拍"><div><small>精选回忆</small><strong>日常碎片</strong><span>${september.length} 张照片</span></div></section><section class="ios-photo-month"><div class="ios-photo-month-title"><div><h2>2026年9月</h2><p>散步 · 自拍 · 吃饭</p></div><button data-photo-jump="september">查看全部</button></div><div class="ios-photo-grid">${photoGrid(september)}</div></section><section class="ios-photo-month"><div class="ios-photo-month-title"><div><h2>已存照片</h2><p>涩琪与珠泫</p></div></div><div class="ios-photo-grid">${photoGrid(saved)}</div></section>${local.length?`<section class="ios-photo-month"><div class="ios-photo-month-title"><div><h2>本机添加</h2><p>仅保存在当前浏览器</p></div></div><div class="ios-photo-grid">${photoGrid(local)}</div></section>`:''}</div>${photosBottom('library')}</div>`;
+ const photos=albumPhotos(),local=photos.filter(photo=>photo.localId),groups=[...new Set(photos.filter(photo=>!photo.localId).map(photo=>photo.collection))];
+ screen.innerHTML=`<div class="page ios-photos-page"><header class="ios-photos-header"><button class="ios-photos-home" data-view="phonehome" aria-label="返回主屏幕">‹</button><button class="ios-photos-select">选择</button><button class="ios-photos-add" id="upload-photo" aria-label="添加照片">＋</button></header><div class="ios-photos-scroll"><h1>照片</h1><section class="ios-photo-feature"><img src="instagram/NAToUq.jpg" alt="阳光下的自拍"><div><small>精选回忆</small><strong>日常碎片</strong><span>${photos.length} 张照片</span></div></section>${groups.map(group=>{const rows=photos.filter(photo=>!photo.localId&&photo.collection===group);return `<section class="ios-photo-month"><div class="ios-photo-month-title"><div><h2>${esc(group)}</h2><p>${group.startsWith('2026年9月')?'散步 · 自拍 · 吃饭':group.startsWith('2025年6月')?'后台 · 合照 · 回归的日子':'车内 · 街道 · 自拍 · 合照'}</p></div><span>${rows.length} 张</span></div><div class="ios-photo-grid">${photoGrid(rows)}</div></section>`}).join('')}${local.length?`<section class="ios-photo-month"><div class="ios-photo-month-title"><div><h2>本机添加</h2></div></div><div class="ios-photo-grid">${photoGrid(local)}</div></section>`:''}</div>${photosBottom('library')}</div>`;
  $('#upload-photo').onclick=()=>$('#photo-upload').click();
  screen.querySelector('.ios-photos-select').onclick=()=>toast('选择模式将在相册批量整理时开放。');
  screen.querySelectorAll('[data-photo-tab]').forEach(button=>button.onclick=()=>toast('这一栏会随对应软件页面继续完善。'));
@@ -707,4 +1066,5 @@ $('#photo-upload').onchange=async e=>{const files=[...e.target.files];for(const 
 $('#home').onclick=()=>render('phonehome');$('#enter-chat').onclick=()=>render('lock');$('#customize').onclick=()=>{customApp=true;render('profile');};$('.wordmark').onclick=e=>{e.preventDefault();render('phonehome');};$('#about').onclick=()=>showModal('<h3>Pocket Story · the same blank</h3><p>本作是虚构同人故事。公开素材标注来源；私人对话与人物关系均为创作内容。</p><p>LYSN 聊天及本机添加的数据只保存在当前浏览器。</p>');$('#close-modal').onclick=()=>$('#modal').close();$('#modal').onclick=e=>{if(e.target===$('#modal'))$('#modal').close();};
 function tick(){const date=new Date(),now=time(date);$('#status-time').textContent=now;const clock=$('#home-clock');if(clock)clock.textContent=now;const lockDate=screen.querySelector('.ios-lock-date');if(lockDate)lockDate.textContent=date.toLocaleDateString('zh-CN',{month:'long',day:'numeric',weekday:'long'});}render('lock');tick();setInterval(tick,1000);
 }
+
 
