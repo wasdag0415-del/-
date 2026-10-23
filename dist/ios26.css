@@ -1,0 +1,87 @@
+/* iOS 26-inspired system shell. Content stays readable; navigation and controls form the glass layer. */
+:root{
+  --ios26-glass:rgba(247,249,252,.52);
+  --ios26-glass-strong:rgba(250,251,253,.72);
+  --ios26-line:rgba(255,255,255,.48);
+  --ios26-shadow:0 10px 30px rgba(24,31,44,.18),inset 0 1px 0 rgba(255,255,255,.72),inset 0 -1px 0 rgba(86,103,128,.12);
+  --ios26-blue:#087cff;
+}
+.phone-screen{background:#e9edf3;isolation:isolate}
+.phone-screen:after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;box-shadow:inset 0 0 0 .5px rgba(255,255,255,.45);z-index:50}
+.status-bar{background:transparent!important;z-index:40;text-shadow:0 1px 8px rgba(255,255,255,.65)}
+.island{background:rgba(6,8,12,.94);box-shadow:0 1px 0 rgba(255,255,255,.14),0 4px 14px rgba(0,0,0,.22)}
+.home-indicator{background:rgba(20,22,28,.82);box-shadow:0 0 0 .5px rgba(255,255,255,.26)}
+
+/* Lock screen */
+.ios-lock-depth:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.12),transparent 33%,rgba(4,8,20,.1));pointer-events:none}
+.ios-lock-time{font-weight:520;letter-spacing:-5px;color:rgba(255,255,255,.9);text-shadow:0 2px 22px rgba(12,28,55,.28),inset 0 1px 0 #fff}
+.ios-lock-date{color:rgba(255,255,255,.9);text-shadow:0 1px 12px rgba(0,0,0,.22)}
+.ios-lock-note,.ios-lock-notification,.notification{
+  background:linear-gradient(145deg,rgba(255,255,255,.7),rgba(230,237,248,.38))!important;
+  border:1px solid var(--ios26-line)!important;
+  box-shadow:var(--ios26-shadow)!important;
+  backdrop-filter:blur(24px) saturate(165%);-webkit-backdrop-filter:blur(24px) saturate(165%);
+}
+.ios-lock-tools button{background:rgba(235,241,248,.42)!important;border:1px solid rgba(255,255,255,.52);box-shadow:var(--ios26-shadow);backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%)}
+
+/* Home screen */
+.ios-home-content{position:relative}
+.ios-home-content:before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 20% 10%,rgba(255,255,255,.18),transparent 35%),linear-gradient(180deg,transparent 68%,rgba(15,25,45,.08))}
+.ios-widget-calendar,.ios-widget-pann,.ios-date-widget,.ios-clue-widget{
+  background:linear-gradient(145deg,rgba(250,252,255,.68),rgba(222,232,246,.38))!important;
+  border:1px solid rgba(255,255,255,.58)!important;
+  box-shadow:var(--ios26-shadow)!important;
+  backdrop-filter:blur(24px) saturate(165%);-webkit-backdrop-filter:blur(24px) saturate(165%);
+}
+.ios-dock{
+  background:linear-gradient(145deg,rgba(250,252,255,.52),rgba(220,230,244,.28))!important;
+  border:1px solid rgba(255,255,255,.55)!important;
+  box-shadow:0 16px 38px rgba(16,27,48,.22),inset 0 1px 0 rgba(255,255,255,.72)!important;
+  backdrop-filter:blur(28px) saturate(180%);-webkit-backdrop-filter:blur(28px) saturate(180%);
+}
+.ios-app-icon{
+  overflow:hidden;border-radius:15px!important;border:1px solid rgba(255,255,255,.48)!important;
+  box-shadow:0 8px 18px rgba(10,18,35,.22),inset 0 1px 0 rgba(255,255,255,.6),inset 0 -1px 0 rgba(0,0,0,.12)!important;
+  transform:translateZ(0);transition:transform .16s ease,filter .16s ease;
+}
+.ios-app-icon:before{content:"";position:absolute;inset:-25% -10% 45%;border-radius:50%;background:linear-gradient(120deg,rgba(255,255,255,.72),rgba(255,255,255,.05));filter:blur(1px);pointer-events:none}
+.ios-app-icon:after{background:linear-gradient(145deg,rgba(255,255,255,.42),transparent 43%,rgba(255,255,255,.1))!important}
+.ios-app-button:active .ios-app-icon{transform:scale(.9);filter:brightness(.94)}
+.ios-page-dots{background:rgba(235,241,250,.3);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:999px;padding:4px 7px;width:max-content;margin-left:auto;margin-right:auto}
+
+/* System navigation layer */
+.ios-app-header,.nf-extra-head,.ios-safari-toolbar,.ios-phone-detail>header{
+  background:linear-gradient(180deg,rgba(250,252,255,.76),rgba(239,243,249,.5))!important;
+  border-bottom:0!important;box-shadow:0 10px 24px rgba(80,95,118,.08),inset 0 -1px 0 rgba(255,255,255,.36);
+  backdrop-filter:blur(26px) saturate(165%);-webkit-backdrop-filter:blur(26px) saturate(165%);
+}
+.ios-app-header button,.nf-extra-head button,.ios-phone-detail>header button{background:rgba(255,255,255,.48)!important;border:1px solid rgba(255,255,255,.7);box-shadow:0 4px 12px rgba(30,55,85,.1),inset 0 1px 0 #fff;border-radius:999px;min-width:31px;min-height:31px;color:var(--ios26-blue)!important}
+.ios-phone-tabs{background:rgba(210,216,226,.42)!important;border:1px solid rgba(255,255,255,.42);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.ios-phone-tabs .active{background:rgba(255,255,255,.78)!important;box-shadow:0 3px 10px rgba(35,55,80,.12),inset 0 1px 0 #fff!important}
+.ios-phone-bottom,.ios-safari-bottom{
+  margin:0 9px 8px;border:1px solid rgba(255,255,255,.66)!important;border-radius:24px;
+  background:linear-gradient(145deg,rgba(250,252,255,.75),rgba(226,234,246,.48))!important;
+  box-shadow:var(--ios26-shadow);backdrop-filter:blur(28px) saturate(170%);-webkit-backdrop-filter:blur(28px) saturate(170%);
+}
+.ios-app-scroll{scrollbar-width:none}
+.ios-app-scroll::-webkit-scrollbar{display:none}
+
+/* System cards and dialogs */
+.ios-call-list,.ios-day-events,.ios-calendar-agenda,.ios-calendar-story,.ios-phone-detail-card,.nf-prelude-calendar,.nf-prelude-native{
+  border-color:rgba(255,255,255,.46)!important;
+}
+.ios-call-list{background:rgba(255,255,255,.7)!important;box-shadow:0 8px 24px rgba(55,70,95,.08)}
+.ios-call-list>button{background:transparent!important}
+.ios-call-avatar{box-shadow:inset 0 1px 0 rgba(255,255,255,.72),0 3px 9px rgba(32,50,70,.1)}
+dialog{background:linear-gradient(145deg,rgba(255,255,255,.84),rgba(230,237,248,.7))!important;border:1px solid rgba(255,255,255,.74)!important;box-shadow:0 26px 80px rgba(10,18,32,.35),inset 0 1px 0 #fff!important;backdrop-filter:blur(34px) saturate(175%);-webkit-backdrop-filter:blur(34px) saturate(175%)}
+dialog::backdrop{background:rgba(10,15,25,.24);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
+.dialog-close{background:rgba(255,255,255,.55)!important;border:1px solid rgba(255,255,255,.72)!important;border-radius:999px!important;box-shadow:0 4px 12px rgba(30,40,60,.12)}
+
+/* Preserve branded content areas while making system-level controls glass. */
+.kt-main .page-head,.chat .page-head{backdrop-filter:blur(22px) saturate(150%);-webkit-backdrop-filter:blur(22px) saturate(150%)}
+.nf-story-chat-tools{background:rgba(245,248,252,.62)!important;backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%)}
+
+@media (prefers-reduced-motion:reduce){.ios-app-icon{transition:none}}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .ios-dock,.ios-widget-calendar,.ios-widget-pann,.ios-app-header,.nf-extra-head,.ios-phone-bottom,.ios-safari-bottom{background:rgba(244,247,251,.94)!important}
+}
