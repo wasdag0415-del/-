@@ -1,0 +1,22 @@
+.kkt-conversation .nf-head{min-height:59px!important;grid-template-columns:38px minmax(0,1fr) 40px;padding:3px 12px!important;background:#bacee0!important}
+.kkt-conversation .nf-head strong{display:flex;align-items:center;gap:9px;min-width:0;text-align:left;font-size:14px;font-weight:650;letter-spacing:0}
+.kkt-chat-avatar{width:31px;height:31px;flex:0 0 31px;display:grid;place-items:center;background:#f3e0a1;color:#39383b;border-radius:12px;font-size:15px;font-weight:600}
+.kkt-chat-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kkt-conversation .nf-head>button{width:36px;display:grid;place-items:center;font-size:24px}
+.kkt-conversation .nf-chat-scroll{background:#bacee0!important;padding:14px 15px 34px!important;scrollbar-width:none}
+.kkt-conversation .nf-chat-scroll::-webkit-scrollbar{width:0}
+.kkt-conversation .nf-chat-date{background:rgba(95,116,135,.25)!important;color:#fff!important;font-size:10px!important;font-weight:500;line-height:1.35;padding:6px 11px;margin:7px auto 22px;border-radius:15px}
+.kkt-conversation .nf-chat-message{display:grid;grid-template-columns:minmax(0,max-content) auto;align-items:end;justify-content:start;column-gap:5px;margin:0 0 12px!important;max-width:100%}
+.kkt-conversation .nf-chat-message.me{grid-template-columns:auto minmax(0,max-content);justify-content:end}
+.kkt-conversation .nf-chat-message.kkt-consecutive{margin-top:-7px!important}
+.kkt-conversation .nf-chat-message p{grid-column:1;grid-row:2;margin:0!important;max-width:min(258px,69vw)!important;width:fit-content;box-sizing:border-box;padding:8px 11px!important;background:#fff!important;color:#24262b!important;border-radius:4px 13px 13px 13px!important;font-size:13px!important;line-height:1.45!important;overflow-wrap:anywhere;box-shadow:0 1px 1px #8397a220}
+.kkt-conversation .nf-chat-message.me p{grid-column:2;background:#fee65a!important;border-radius:13px 4px 13px 13px!important}
+.kkt-conversation .nf-chat-message .kkt-message-time{grid-column:2;grid-row:2;align-self:end;margin:0 0 1px!important;color:#556575!important;font-size:9px!important;line-height:1.2;white-space:nowrap}
+.kkt-conversation .nf-chat-message.me .kkt-message-time{grid-column:1;text-align:right}
+.kkt-conversation .nf-chat-message .kkt-message-sender{grid-column:1/-1;grid-row:1;font-size:11px;color:#263849;margin-bottom:4px}
+.kkt-conversation .nf-chat-message .nf-unread-one{grid-column:2;grid-row:2;align-self:start;color:#524700;font-size:9px}
+.kkt-conversation .nf-chat-message.me .nf-unread-one{grid-column:1}
+.kkt-conversation .nf-story-chat-tools{grid-template-columns:38px minmax(0,1fr) 38px;gap:9px;height:64px!important;min-height:64px!important;padding:7px 12px 12px!important;background:#fff!important;border:0}
+.kkt-conversation .nf-story-chat-tools button:first-child{font-size:29px;font-weight:300;color:#74767b}
+.kkt-conversation .kkt-composer-placeholder{display:flex;align-items:center;height:36px;min-width:0;padding:0 12px;box-sizing:border-box;border:1px solid #e1e2e6;border-radius:18px;background:#f8f8f9;color:#aaaab0;text-align:left;font-size:12px;letter-spacing:0}
+.kkt-conversation .nf-story-chat-tools button:last-child{color:#74767b}
