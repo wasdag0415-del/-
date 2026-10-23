@@ -561,3 +561,176 @@ body {
 .phone-screen .nf-pann-topnav button.active small {
   color: #ff3b30;
 }
+
+/* ============================================================
+   iOS 26 — Liquid Glass 电话 & 短信界面
+   ============================================================ */
+
+/* ---------- 电话 App ---------- */
+.phone-screen .ios-phone-app {
+  background: linear-gradient(180deg, #f5f5f7 0%, #e8e8ed 100%);
+}
+
+/* 顶部大标题 — iOS 26 风格 */
+.phone-screen .ios-phone-title {
+  padding: 40px 20px 12px;
+}
+.phone-screen .ios-phone-title h1 {
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #000;
+}
+.phone-screen .ios-phone-title span {
+  font-size: 17px;
+  color: #007aff;
+  font-weight: 400;
+}
+
+/* 电话筛选标签 — 圆角胶囊形 */
+.phone-screen .ios-phone-tabs {
+  background: rgba(118, 118, 128, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 100px;
+  padding: 4px;
+  margin: 0 20px 16px;
+}
+.phone-screen .ios-phone-tabs button {
+  border-radius: 100px;
+  padding: 8px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+.phone-screen .ios-phone-tabs button.active {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+}
+
+/* 通话记录列表 — Liquid Glass 卡片 */
+.phone-screen .ios-call-list {
+  margin: 0 16px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border-radius: 20px;
+  overflow: hidden;
+}
+.phone-screen .ios-call-list > button {
+  padding: 14px 16px;
+  border-bottom: 0.5px solid rgba(60, 60, 67, 0.1);
+  background: transparent;
+}
+.phone-screen .ios-call-list > button:last-child {
+  border-bottom: none;
+}
+
+/* 通话头像 — 更大更圆 */
+.phone-screen .ios-call-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* 通话记录文字 — 更大 */
+.phone-screen .ios-call-list strong {
+  font-size: 16px;
+  font-weight: 500;
+}
+.phone-screen .ios-call-list small {
+  font-size: 13px;
+  color: #8e8e93;
+  margin-top: 2px;
+}
+.phone-screen .ios-call-list time {
+  font-size: 14px;
+  color: #8e8e93;
+}
+
+/* 电话底部标签栏 — 圆角胶囊 */
+.phone-screen .ios-phone-bottom {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border-top: 0.5px solid rgba(60, 60, 67, 0.1);
+  padding: 10px 20px 20px;
+}
+.phone-screen .ios-phone-bottom span {
+  font-size: 11px;
+  gap: 4px;
+}
+
+/* ---------- 短信 App ---------- */
+.phone-screen .nf-extra {
+  background: linear-gradient(180deg, #f5f5f7 0%, #e8e8ed 100%);
+}
+
+/* 短信顶部栏 — Liquid Glass */
+.phone-screen .nf-extra-head {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border-bottom: 0.5px solid rgba(60, 60, 67, 0.1);
+  padding: 50px 16px 12px;
+}
+.phone-screen .nf-extra-head button,
+.phone-screen .nf-extra-head span {
+  font-size: 17px;
+  color: #007aff;
+}
+.phone-screen .nf-extra-head strong {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+/* 短信列表行 — 更大更圆润 */
+.phone-screen .nf-sms-row {
+  padding: 14px 16px;
+  background: transparent;
+}
+.phone-screen .nf-sms-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 18px;
+  font-weight: 600;
+}
+.phone-screen .nf-sms-row strong {
+  font-size: 16px;
+  font-weight: 500;
+}
+.phone-screen .nf-sms-row small {
+  font-size: 14px;
+  color: #8e8e93;
+  margin-top: 2px;
+}
+.phone-screen .nf-sms-row time {
+  font-size: 14px;
+  color: #8e8e93;
+}
+
+/* 短信气泡 — iOS 26 更圆润 */
+.phone-screen .nf-sms-bubble {
+  border-radius: 22px;
+  padding: 12px 16px;
+  font-size: 15px;
+  line-height: 1.4;
+}
+.phone-screen .nf-sms-bubble.mine {
+  background: linear-gradient(135deg, #0a84ff 0%, #0066cc 100%);
+  color: white;
+}
+.phone-screen .nf-sms-date {
+  font-size: 12px;
+  color: #8e8e93;
+  font-weight: 500;
+}
+
+/* 短信对话区域背景 */
+.phone-screen .nf-sms-conversation {
+  background: linear-gradient(180deg, #f5f5f7 0%, #e8e8ed 100%);
+}
