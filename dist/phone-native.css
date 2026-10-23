@@ -1,0 +1,28 @@
+.ios-phone-title{display:flex;align-items:end;justify-content:space-between;padding:8px 18px 2px}
+.ios-phone-title h1{font-size:28px;letter-spacing:-1px}
+.ios-phone-title>span{color:#007aff;font-size:11px}
+.ios-call-date{padding:14px 0 5px;font-size:11px;font-weight:700;color:#1c1c1e;border-bottom:1px solid #e6e6e9}
+.ios-call-list{margin-top:2px}
+.ios-call-avatar.tone-0{background:#e8e2f5;color:#715d9c}
+.ios-call-avatar.tone-1{background:#dcebf5;color:#46728e}
+.ios-call-avatar.tone-2{background:#f3e5d8;color:#9b6b42}
+.ios-call-avatar.tone-3{background:#dfeee3;color:#4f7c5c}
+.ios-phone-empty{padding:42px 18px;text-align:center;color:#8e8e93;font-size:11px}
+.ios-phone-detail{background:#f2f2f7}
+.ios-phone-detail>header{display:flex;justify-content:space-between;padding:13px 16px;color:#007aff;font-size:11px}
+.ios-phone-detail>header button{background:transparent;color:#007aff;font-size:11px}
+.ios-phone-person{text-align:center;padding:20px 18px 16px}
+.ios-phone-person>.ios-call-avatar{width:78px;height:78px;margin:auto;font-size:28px;background:#dcebf5;color:#46728e}
+.ios-phone-person h2{font-size:23px;margin:10px 0 2px}
+.ios-phone-person>small{font-size:9px;color:#8e8e93}
+.ios-phone-person>div{display:flex;justify-content:center;gap:10px;margin-top:18px}
+.ios-phone-person>div button{width:68px;padding:9px 4px;border-radius:12px;background:white;color:#007aff;display:grid;gap:4px}
+.ios-phone-person>div button:disabled{opacity:.45}
+.ios-phone-person>div i{font-style:normal;font-size:17px}
+.ios-phone-person>div small{font-size:8px}
+.ios-phone-detail-card{margin:0 16px;padding:13px 15px;background:white;border-radius:13px}
+.ios-phone-detail-card>small{font-size:9px;color:#8e8e93}
+.ios-phone-detail-card>div{display:flex;justify-content:space-between;align-items:center;margin-top:9px}
+.ios-phone-detail-card strong,.ios-phone-detail-card span small{display:block}
+.ios-phone-detail-card strong{font-size:12px}
+.ios-phone-detail-card span small,.ios-phone-detail-card time{font-size:9px;color:#8e8e93;margin-top:3px}
