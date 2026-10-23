@@ -536,6 +536,54 @@ window.InstagramArchiveData={
       ],
       "imageNote": "查看同框图片存档",
       "images": []
+    },
+    {
+      "id": "ir-250823",
+      "owner": "irene",
+      "account": "renebaebae",
+      "date": "2025-08-23",
+      "time": "22:14",
+      "kind": "时隔5个月回归",
+      "title": "欧尼终于发ins了",
+      "caption": "오랜만이에요 여러분💌",
+      "translation": "大家，好久不见💌",
+      "summary": "Irene时隔5个月突然回归ins，一口气发了好多照片。粉丝们都很惊喜。",
+      "url": "https://www.instagram.com/renebaebae/",
+      "archive": "https://www.koreaboo.com/news/red-velvet-irene-shocks-new-instagram-post-after-5-month-long-hiatus/",
+      "related": [
+        "irene"
+      ],
+      "images": [
+        {
+          "src": "assets/instagram/ir-250823-01.jpg",
+          "source": "https://aka.doubaocdn.com/s/hpUrGaZxj1",
+          "alt": "Irene 8月23日ins回归自拍"
+        }
+      ]
+    },
+    {
+      "id": "sg-250905",
+      "owner": "seulgi",
+      "account": "hi_sseulgi",
+      "date": "2025-09-05",
+      "time": "18:32",
+      "kind": "日常管理",
+      "title": "Nothing special, but special",
+      "caption": "별거 아닌데 별거인🤍",
+      "translation": "没什么特别的，却又很特别🤍",
+      "summary": "涩琪发了普拉提自拍，说最近在做身材管理。配文很简短，没有提到任何人。",
+      "url": "https://www.instagram.com/hi_sseulgi/",
+      "archive": "https://kstationtv.com/2025/09/06/red-velvet-seulgi-maintains-her-figure/",
+      "related": [
+        "seulgi"
+      ],
+      "images": [
+        {
+          "src": "assets/instagram/sg-250905-01.jpg",
+          "source": "https://aka.doubaocdn.com/s/MDLuzb9ro6",
+          "alt": "涩琪 9月5日普拉提自拍"
+        }
+      ]
     }
   ]
 };
