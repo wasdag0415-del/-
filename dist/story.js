@@ -48,6 +48,7 @@
   let youtubeChannel = 'feed';
   let youtubeVideo = '';
   let kktThread = 'wendy';
+  let coupleChatStep = 0;
   let kktTab = 'chats';
   let memoFolder = 'folders', memoId = '', memoQuery = '';
   let personalMemos = [];
@@ -184,7 +185,53 @@
   }
 
   function couplechat() {
-    return wrap(`${head('组长老师', 'ktstory')}<div class='nf-scroll nf-chat-scroll nf-couple-chat'>
+    // 互动步骤：0=刚开始，1=第一条回复后，2=第二条回复后，3=全部结束
+    const steps = [
+      // Step 0: 到组长老师问"你这两天是不是在躲我？"
+      {
+        prompt: '没有啊，最近一直在做皮肤管理和身材管理',
+        nextMessages: [
+          ['me', '23:11', '没有啊，最近一直在做皮肤管理和身材管理'],
+          ['them', '23:12', '那你怎么回消息这么慢？']
+        ]
+      },
+      // Step 1: 回复"最近太忙了..."
+      {
+        prompt: '最近太忙了，昨天还去看了个电影',
+        nextMessages: [
+          ['me', '23:13', '最近太忙了，昨天还去看了个电影'],
+          ['them', '23:13', '哦'],
+          ['them', '23:14', '那你早点休息']
+        ]
+      },
+      // Step 2: 回复"欧尼，你不问问我为什么忙吗"
+      {
+        prompt: '欧尼，你不问问我为什么忙吗',
+        nextMessages: [
+          ['me', '23:16', '欧尼，你不问问我为什么忙吗'],
+          ['them', '23:16', '啊？你为什么忙？'],
+          ['me', '23:17', '……没什么'],
+          ['them', '23:17', '涩琪，你最近有点奇怪'],
+          ['me', '23:18', '我哪里奇怪了'],
+          ['them', '23:18', '你以前不会这样'],
+          ['me', '23:19', '我哪样了'],
+          ['them', '23:20', '就是……你好像在躲什么'],
+          ['me', '23:21', '我没有'],
+          ['them', '23:21', '好，你说没有就没有'],
+          ['them', '23:22', '那你早点睡吧'],
+          ['me', '23:23', '……'],
+          ['me', '23:24', '欧尼你已经撑了够久了'],
+          ['them', '23:24', '嗯？什么？'],
+          ['me', '23:25', '没什么。晚安']
+        ]
+      }
+    ];
+
+    const step = coupleChatStep;
+    const currentStep = steps[step];
+    
+    // 前面的聊天记录（到9月7日）
+    const beforeMessages = `
 <div class='nf-chat-date'>8月1日 · Fan-Con第一天</div>
 <div class='nf-chat-message them'><small>组长老师 · 22:30</small><p>今天演出结束了，辛苦了</p></div>
 <div class='nf-chat-message me'><small>你 · 22:33</small><p>欧尼也辛苦了</p></div>
@@ -270,28 +317,18 @@
 
 <div class='nf-chat-date'>9月10日 · 矛盾爆发</div>
 <div class='nf-chat-message them'><small>组长老师 · 23:06</small><p>你这两天是不是在躲我？</p></div>
-<div class='nf-chat-message me'><small>你 · 23:11</small><p>没有啊，最近一直在做皮肤管理和身材管理</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 23:12</small><p>那你怎么回消息这么慢？</p></div>
-<div class='nf-chat-message me'><small>你 · 23:13</small><p>最近太忙了，昨天还去看了个电影</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 23:13</small><p>哦</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 23:14</small><p>那你早点休息</p></div>
-<div class='nf-chat-message me'><small>你 · 23:15</small><p>……</p></div>
-<div class='nf-chat-message me'><small>你 · 23:16</small><p>欧尼，你不问问我为什么忙吗</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 23:16</small><p>啊？你为什么忙？</p></div>
-<div class='nf-chat-message me'><small>你 · 23:17</small><p>……没什么</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 23:17</small><p>涩琪，你最近有点奇怪</p></div>
-<div class='nf-chat-message me'><small>你 · 23:18</small><p>我哪里奇怪了</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 23:18</small><p>你以前不会这样</p></div>
-<div class='nf-chat-message me'><small>你 · 23:19</small><p>我哪样了</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 23:20</small><p>就是……你好像在躲什么</p></div>
-<div class='nf-chat-message me'><small>你 · 23:21</small><p>我没有</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 23:21</small><p>好，你说没有就没有</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 23:22</small><p>那你早点睡吧</p></div>
-<div class='nf-chat-message me'><small>你 · 23:23</small><p>……</p></div>
-<div class='nf-chat-message me'><small>你 · 23:24</small><p>欧尼你已经撑了够久了</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 23:24</small><p>嗯？什么？</p></div>
-<div class='nf-chat-message me'><small>你 · 23:25</small><p>没什么。晚安</p></div>
+`;
 
+    // 当前步骤已经显示的消息
+    let shownMessages = '';
+    for (let i = 0; i < step; i++) {
+      shownMessages += steps[i].nextMessages.map(([type, time, text]) => 
+        `<div class='nf-chat-message ${type==='me'?'me':'them'}'><small>${type==='me'?'你':'组长老师'} · ${time}</small><p>${text}</p></div>`
+      ).join('');
+    }
+
+    // 后面的聊天记录（如果互动结束了）
+    const afterMessages = step >= steps.length ? `
 <div class='nf-chat-date'>9月12日 · 冷战第二天</div>
 <div class='nf-chat-message them'><small>组长老师 · 08:12</small><p>早餐吃了吗？</p></div>
 <div class='nf-chat-message me'><small>你 · 08:16</small><p>嗯</p></div>
@@ -324,7 +361,14 @@
 <div class='nf-chat-message me'><small>你 · 21:26</small><p>你已经回房间了吗？</p></div>
 <div class='nf-chat-message them'><small>组长老师 · 21:26</small><p>嗯。</p></div>
 <div class='nf-chat-message me'><small>你 · 21:27</small><p>门别锁。</p></div>
-</div><div class='nf-story-chat-tools'><button data-route='ktstory'>消息列表</button><button data-route='feed'>论坛</button></div>`, 'nf-story-chat');
+` : '';
+
+    // 输入框
+    const inputBar = currentStep 
+      ? `<div class='nf-chat-input-bar'><div class='nf-chat-input-preset'>${currentStep.prompt}</div><button class='nf-chat-send' data-couple-send>发送</button></div>`
+      : '';
+
+    return wrap(`${head('组长老师', 'ktstory')}<div class='nf-scroll nf-chat-scroll nf-couple-chat'>${beforeMessages}${shownMessages}${afterMessages}</div>${inputBar}<div class='nf-story-chat-tools'><button data-route='ktstory'>消息列表</button><button data-route='feed'>论坛</button></div>`, 'nf-story-chat');
   }
 
   function groupchat() {
@@ -602,6 +646,10 @@
       });
     }
     screen.querySelectorAll('[data-route]').forEach((button) => button.onclick = () => go(button.dataset.route));
+    screen.querySelectorAll('[data-couple-send]').forEach((button) => button.onclick = () => {
+      coupleChatStep++;
+      render();
+    });
     screen.querySelectorAll('[data-kkt-thread]').forEach((button) => button.onclick = () => { kktThread = button.dataset.kktThread; go('sidechat'); });
     screen.querySelectorAll('[data-nav]').forEach((button) => button.onclick = () => context.navigate(button.dataset.nav));
     screen.querySelectorAll('[data-yt-channel]').forEach((button) => button.onclick = () => {
