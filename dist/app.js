@@ -82,11 +82,22 @@ function iosApp(view,label,kind,mark,badge=''){return `<button class="ios-app-bu
 function storyContext(){return {screen,toast,navigate:render,confirm:confirmDialog};}
 function renderLockScreen(){const storyNow=JapanStory.storyTime();screen.innerHTML=`<div class="ios-lock ios-lost-lock"><div class="ios-lock-depth"></div><div class="ios-lock-content"><div class="ios-lock-date">9月19日 星期六</div><div class="ios-lock-time" id="home-clock">${storyNow}</div><div class="ios-lock-owner">S 的 iPhone · 遗失模式</div><div class="ios-lost-card"><span class="ios-lost-icon">⌖</span><div><small>遗失模式</small><strong>S 的 iPhone</strong><p>此 iPhone 已丢失。请保持设备开机，机主会通过此设备联系你。</p></div></div><div class="ios-lock-notifications"><div class="ios-lock-note ios-system-note"><span class="mini-app findmy">⌖</span><span><strong>查找</strong><small>现在</small><b>机主已将这台 iPhone 标记为丢失。</b></span><time>${storyNow}</time></div><button class="ios-lock-note" data-view="passcode" aria-label="解锁查看Pann热帖"><span class="mini-app">판</span><span><strong>Pann</strong><small>现在</small><b>为什么没有一起飞？福冈首场讨论正在升温</b></span></button></div><button class="ios-unlock" data-view="passcode"><span>⌃</span>打开手机</button></div><div class="ios-lock-tools"><button aria-label="紧急呼叫">SOS</button><button aria-label="相机">◎</button></div></div>`;bindShared();}
 function renderPasscode(){const dots=Array.from({length:6},(_,index)=>`<i class="${index<passcodeInput.length?'filled':''}"></i>`).join('');screen.innerHTML=`<div class="ios-passcode"><div class="ios-lock-depth"></div><div class="ios-passcode-panel"><button class="ios-passcode-cancel" data-view="lock">取消</button><div class="ios-passcode-lock">⌑</div><h2>输入密码</h2><p>姜涩琪的 iPhone</p><div class="ios-passcode-dots" aria-label="已输入 ${passcodeInput.length} 位密码">${dots}</div><div class="ios-passcode-error">${passcodeError||'请输入 6 位密码'}</div><div class="ios-keypad">${['1','2','3','4','5','6','7','8','9','','0','delete'].map(key=>key==='delete'?'<button data-passcode-delete aria-label="删除">⌫</button>':key?`<button data-passcode-digit="${key}"><b>${key}</b><small>${{2:'ABC',3:'DEF',4:'GHI',5:'JKL',6:'MNO',7:'PQRS',8:'TUV',9:'WXYZ'}[key]||''}</small></button>`:'<span></span>').join('')}</div></div></div>`;bindShared();screen.querySelectorAll('[data-passcode-digit]').forEach(button=>button.onclick=()=>{if(passcodeInput.length>=6)return;passcodeInput+=button.dataset.passcodeDigit;passcodeError='';if(passcodeInput.length===6){if(passcodeInput==='910329'){passcodeInput='';render('forum');}else{passcodeInput='';passcodeError='密码错误，请重试';renderPasscode();}}else renderPasscode();});screen.querySelector('[data-passcode-delete]').onclick=()=>{passcodeInput=passcodeInput.slice(0,-1);passcodeError='';renderPasscode();};}
-function renderPhoneHome(){screen.innerHTML=`<div class="ios-home"><div class="ios-wallpaper"></div><div class="ios-home-content"><div class="ios-home-top"><button class="ios-date-widget" data-view="calendar"><small>FUKUOKA · 09.19</small><strong>首场结束以后</strong><span>点按日历回放已发现的剧情</span></button><button class="ios-clue-widget" data-view="forum"><span>Pann ↗</span><strong>大家都在看。</strong><small>正在讨论：她们是不是冷战了</small></button></div><div class="ios-app-grid">${iosApp('forum','Pann','forum','판',JapanStory.badge())}${iosApp('ktstory','KakaoTalk','kakao','<span class="kt-bubble">TALK</span>',JapanStory.badge())}${iosApp('instagram','Instagram','instagram','<span class="ig-camera"></span>')}${iosApp('youtube','YouTube','youtube','<span class="yt-play">▶</span>')}${iosApp('lysn','LYSN','lysn','L')}${iosApp('weverse','Weverse','weverse','W')}${iosApp('calendar','日历','calendar','<span class="ios-calendar-mark"><small>9月</small><b>19</b></span>')}${iosApp('timeline','时间线','timeline','<span class="ios-timeline-mark"><i></i><i></i><i></i></span>')}${iosApp('album','照片','photos','<span class="photo-flower">✿</span>')}${iosApp('notebook','备忘录','notebook','<span class="ios-book-mark">▤</span>')}${iosApp('settings','设置','ios-settings','<span class="ios-gear-mark">⚙</span>')}</div><div class="ios-page-dots" aria-hidden="true"><i></i><i></i></div><div class="ios-dock">${iosApp('phone','电话','phone','<svg class="ios-phone-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 4c-2 1-3 3-2 6 3 9 9 15 18 18 3 1 5 0 6-2l-4-5c-1-1-2-1-3 0l-2 2c-4-2-7-5-10-10l2-2c1-1 1-2 0-3Z" fill="currentColor"/></svg>')}${iosApp('browser','Safari','safari','<span class="ios-safari-mark"><i></i></span>')}${iosApp('sms','信息','messages','<span class="ios-message-mark"></span>')}${iosApp('music','音乐','music','<span class="ios-music-mark">♫</span>')}</div></div></div>`;bindShared();}
+function renderPhoneHome(){const storyState=JapanStory.getState();const pannBadge=!storyState.introRead||(storyState.read.includes('coldwar')&&!storyState.read.includes('stage-counter'));const igBadge=storyState.read.includes('coldwar')&&!storyState.igSaved.includes('sg-260916');const kktBadge=storyState.igSaved.includes('sg-260916')&&!storyState.read.includes('couplechat');screen.innerHTML=`<div class="ios-home"><div class="ios-wallpaper"></div><div class="ios-home-content"><div class="ios-home-top"><button class="ios-date-widget" data-view="calendar"><small>FUKUOKA · 09.19</small><strong>首场结束以后</strong><span>点按日历回放已发现的剧情</span></button><button class="ios-clue-widget" data-view="notebook"><span>备忘录 ↗</span><strong>只记录能确认的事。</strong><small>已整理 3 条线索</small></button></div><div class="ios-app-grid">${iosApp('forum','Pann','forum','판',pannBadge?'1':'')}${iosApp('ktstory','KakaoTalk','kakao','<span class="kt-bubble">TALK</span>',kktBadge?'1':'')}${iosApp('instagram','Instagram','instagram','<span class="ig-camera"></span>',igBadge?'1':'')}${iosApp('youtube','YouTube','youtube','<span class="yt-play">▶</span>')}${iosApp('lysn','LYSN','lysn','L')}${iosApp('weverse','Weverse','weverse','W')}${iosApp('calendar','日历','calendar','<span class="ios-calendar-mark"><small>9月</small><b>19</b></span>')}${iosApp('timeline','时间线','timeline','<span class="ios-timeline-mark"><i></i><i></i><i></i></span>')}${iosApp('album','照片','photos','<span class="photo-flower">✿</span>')}${iosApp('notebook','备忘录','notebook','<span class="ios-book-mark">▤</span>')}${iosApp('settings','设置','ios-settings','<span class="ios-gear-mark">⚙</span>')}</div><div class="ios-page-dots" aria-hidden="true"><i></i><i></i></div><div class="ios-dock">${iosApp('phone','电话','phone','<svg class="ios-phone-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 4c-2 1-3 3-2 6 3 9 9 15 18 18 3 1 5 0 6-2l-4-5c-1-1-2-1-3 0l-2 2c-4-2-7-5-10-10l2-2c1-1 1-2 0-3Z" fill="currentColor"/></svg>')}${iosApp('browser','Safari','safari','<span class="ios-safari-mark"><i></i></span>')}${iosApp('sms','信息','messages','<span class="ios-message-mark"></span>')}${iosApp('music','音乐','music','<span class="ios-music-mark">♫</span>')}</div></div></div>`;bindShared();}
 let chapterAudio;
 function musicAudio(){if(!chapterAudio){chapterAudio=new Audio('assets/chapter1/after-first-show.wav');chapterAudio.loop=true;chapterAudio.volume=.48;chapterAudio.addEventListener('play',updateMusic);chapterAudio.addEventListener('pause',updateMusic);}return chapterAudio;}
 function updateMusic(){const button=screen.querySelector('[data-music-toggle]');if(button){button.textContent=chapterAudio&&!chapterAudio.paused?'Ⅱ 暂停':'▶ 播放';button.setAttribute('aria-label',chapterAudio&&!chapterAudio.paused?'暂停音乐':'播放音乐');}}
-function renderMusic(){screen.innerHTML=`<div class="ios-native-app nf-extra"><header class="nf-extra-head"><button data-view="phonehome" aria-label="返回桌面">‹</button><strong>音乐</strong><span>♬</span></header><div class="nf-extra-scroll"><small class="nf-extra-kicker">POCKET STORY · PLAYER</small><div class="nf-record-art"><span>09.19</span><b>首场<br>以后</b><i>the same blank</i></div><div class="nf-track-title"><h2>首场以后</h2><p>原创氛围曲 · 00:24 循环播放</p></div><button class="nf-play" data-music-toggle aria-label="播放音乐">▶ 播放</button><p class="nf-extra-hint">点播放后可以返回桌面继续听。音乐不会触发或改变剧情。</p></div></div>`;bindShared();const button=screen.querySelector('[data-music-toggle]');button.onclick=async()=>{const audio=musicAudio();if(audio.paused){try{await audio.play();}catch{toast('浏览器暂时无法播放，请再点一次。');}}else audio.pause();updateMusic();};updateMusic();}
+function renderMusic(){const playlist=[
+  {title:'28 Reasons',artist:'SEULGI',duration:'3:09',playing:true},
+  {title:'Anywhere But Home',artist:'SEULGI',duration:'3:23'},
+  {title:'Bad Boy, Sad Girl (feat. BE\u2019O)',artist:'SEULGI',duration:'3:09'},
+  {title:'Hello Tutorial (feat. SEULGI)',artist:'Zion.T',duration:'3:16'},
+  {title:'아무 노래 (Any Song)',artist:'Zico',duration:'3:47'},
+  {title:'비도 오고 그래서 (Letter',artist:'Heize',duration:'4:02'},
+  {title:'Fine',artist:'太妍',duration:'3:41'},
+  {title:'사건의 지평선 (Event Horizon)',artist:'Younha',duration:'4:46'},
+  {title:'Byebyemob blue',artist:'白艺潾',duration:'3:35'},
+  {title:'한강 (Han River)',artist:'적재',duration:'3:52'}
+];screen.innerHTML=`<div class="ios-native-app nf-extra"><header class="nf-extra-head"><button data-view="phonehome" aria-label="返回桌面">‹</button><strong>音乐</strong><span>♬</span></header><div class="nf-extra-scroll"><small class="nf-extra-kicker">내가 요즘 듣는 노래</small><div class="nf-record-art"><span>09.19</span><b>最近<br>常听</b><i>the same blank</i></div><div class="nf-track-title"><h2>最近常听</h2><p>10 首歌 · 27 分钟</p></div><div class="nf-playlist">${playlist.map((song,index)=>`<div class="nf-playlist-row ${song.playing?'playing':''}"><span class="nf-playlist-num">${index+1}</span><div><strong>${esc(song.title)}</strong><small>${esc(song.artist)}</small></div><span class="nf-playlist-dur">${song.duration}</span></div>`).join('')}</div><p class="nf-extra-hint">歌单是她最近循环的歌。点哪首都不会真的播放。</p></div></div>`;bindShared();}
 function renderCalendar(){const progress=JapanStory.getState(),done=progress.chapterComplete;screen.innerHTML=`<div class="ios-native-app ios-calendar-app">${iosBack('日历')}<div class="ios-app-scroll"><div class="ios-calendar-title"><span>2026年</span><strong>9月</strong><button data-view="opening">回放本章</button></div><div class="ios-weekdays">${['日','一','二','三','四','五','六'].map(day=>`<span>${day}</span>`).join('')}</div><div class="ios-month-grid">${Array.from({length:30},(_,index)=>{const day=index+1,marked=[14,16,19].includes(day);return `<button class="${day===19?'today ':''}${marked?'marked':''}" ${marked?`data-calendar-day="${day}"`:''}><span>${day}</span>${marked?'<i></i>':''}</button>`;}).join('')}</div><section class="ios-day-events"><small>9月19日 · 星期六</small><h3>福冈首场结束以后</h3><button data-view="forum"><time>20:43</time><span><strong>Pann 热帖</strong><small>有人觉得舞台上的气氛变了</small></span><b>›</b></button><button data-view="ktstory"><time>20:52</time><span><strong>KakaoTalk</strong><small>私人聊天与工作消息</small></span><b>›</b></button><button data-view="${done?'chapterend':'notebook'}"><time>21:22</time><span><strong>${done?'章节记录':'尚未完成'}</strong><small>${done?'回看第一章的结论':'继续寻找关键节点'}</small></span><b>›</b></button></section></div></div>`;bindShared();screen.querySelectorAll('[data-calendar-day]').forEach(button=>button.onclick=()=>{const day=button.dataset.calendarDay;if(day==='14')render('forum');else if(day==='16')render('instagram');else screen.querySelector('.ios-day-events')?.scrollIntoView({behavior:'smooth'});});}
 function renderTimeline(){const progress=JapanStory.getState(),items=[['09.14','机场公开图','只能确认涩琪独自出现在照片中',progress.seen.includes('airport-seulgi-0914'),'forum'],['09.16','Instagram 更新','公开内容围绕专辑与练习',progress.igSaved.includes('sg-260916'),'instagram'],['09.19 · 20:43','论坛出现疑问','不同座位的人留下相反的现场感受',progress.read.includes('coldwar'),'forum'],['09.19 · 21:15','官方照片发布','照片确认同台，无法解释台下沉默',progress.officialUnlocked,'official'],['09.19 · 21:22','第一章记录','已知事实和无法确认的部分被分开保存',progress.chapterComplete,'chapterend']];screen.innerHTML=`<div class="ios-native-app ios-timeline-app">${iosBack('关键时间线')}<div class="ios-app-scroll"><header><small>POCKET STORY · EVIDENCE LOG</small><h2>时间不会替任何人解释，<br>但它会留下顺序。</h2><p>只有玩家已经看过的节点会完整显示。</p></header><div class="ios-timeline-list">${items.map(([date,title,copy,open,route],index)=>`<button class="${open?'unlocked':'locked'}" ${open?`data-view="${route}"`:''}><span class="ios-timeline-dot">${open?'✓':index+1}</span><time>${date}</time><strong>${open?title:'尚未发现'}</strong><small>${open?copy:'继续探索其他应用来解锁'}</small></button>`).join('')}</div></div></div>`;bindShared();}
 function renderBrowser(){const results=[{test:/机场|14/,title:'14号机场图到底能说明什么？',copy:'Pann · 公开资料核对',view:'forum'},{test:/巡演|冷战|不一样|舞台/,title:'只有我觉得这次日本巡演有点不一样吗？',copy:'Pann · 热门讨论',view:'forum'},{test:/照片|ins|instagram|16/,title:'9月16日公开 Instagram 存档',copy:'Instagram · 已保存页面',view:'instagram'},{test:/时间|节点|记录/,title:'Pocket Story 关键时间线',copy:'本机记录 · 已发现证据',view:'timeline'}],matches=browserQuery?results.filter(item=>item.test.test(browserQuery)):[];screen.innerHTML=`<div class="ios-native-app ios-safari-app"><div class="ios-safari-toolbar"><span>ᴀA</span><form id="ios-search-form"><i>⌕</i><input id="ios-search-input" value="${esc(browserQuery)}" placeholder="搜索网页或输入关键词" aria-label="搜索网页"><button aria-label="搜索">前往</button></form><button data-view="phonehome" aria-label="返回主屏幕">完成</button></div><div class="ios-app-scroll">${browserQuery?`<section class="ios-search-results"><small>本机搜索结果</small><h2>${matches.length} 个相关结果</h2>${matches.map(item=>`<button data-view="${item.view}"><span class="ios-search-favicon">PS</span><span><strong>${item.title}</strong><small>${item.copy}</small></span><b>›</b></button>`).join('')||'<p>没有找到相关记录。试试“机场”“巡演”“照片”或“时间”。</p>'}</section>`:`<section class="ios-browser-start"><div class="ios-browser-compass"><i></i></div><h2>Safari</h2><p>搜索记录会把玩家带回已经出现过的公开线索，不会连接真实账号。</p><div class="ios-browser-suggestions"><button data-search="机场">机场</button><button data-search="日本巡演">日本巡演</button><button data-search="照片">照片</button><button data-search="时间节点">时间节点</button></div></section>`}</div><nav class="ios-safari-bottom"><button>‹</button><button>›</button><button>□</button><button>▱</button></nav></div>`;bindShared();screen.querySelector('#ios-search-form').onsubmit=e=>{e.preventDefault();browserQuery=screen.querySelector('#ios-search-input').value.trim();renderBrowser();};screen.querySelectorAll('[data-search]').forEach(button=>button.onclick=()=>{browserQuery=button.dataset.search;renderBrowser();});}
@@ -196,186 +207,22 @@ function renderSettings(){screen.innerHTML=`<div class="page">${head('设置','�
 function renderNotes(){screen.innerHTML=`<div class="page">${head('便签','存下那些还没来得及说的话',`<button class="icon-button" id="add-note" aria-label="新建便签">＋</button>`)}<div class="page-body"><div class="section-label">THINGS I WANT TO TELL YOU</div>${state.notes.length?state.notes.map(n=>`<button class="note-card" data-note="${n.id}"><h3>${esc(n.title)}</h3><p>${esc(n.body.slice(0,120))}</p><small>${new Date(n.at).toLocaleDateString('zh-CN')} · 点击编辑</small></button>`).join(''):'<div class="empty-note"><span class="empty-icon">✎</span>先记下来，等你想说的时候再说。</div>'}</div></div>`;$('#add-note').onclick=()=>editNote();screen.querySelectorAll('[data-note]').forEach(b=>b.onclick=()=>editNote(b.dataset.note));}
 function editNote(id){const n=state.notes.find(n=>n.id===id);showModal(`<h3>${n?'编辑便签':'新建便签'}</h3><form id="note-form"><label class="field"><span>标题</span><input name="title" maxlength="60" value="${esc(n?.title||'')}" required placeholder="今天想记下什么"></label><label class="field"><span>内容</span><textarea name="body" maxlength="4000" rows="7" placeholder="慢慢写，不用急。">${esc(n?.body||'')}</textarea></label><button class="primary wide">保存便签</button></form>${n?'<button class="danger" id="delete-note">删除这条便签</button>':''}`);$('#note-form').onsubmit=e=>{e.preventDefault();const f=new FormData(e.target),title=String(f.get('title')).trim();if(!title)return;const item={id:id||uid(),title,body:String(f.get('body')).trim(),at:Date.now()};state.notes=n?state.notes.map(x=>x.id===id?item:x):[item,...state.notes];persist();$('#modal').close();render('notes');toast('已保存便签');};if(n)$('#delete-note').onclick=()=>{state.notes=state.notes.filter(x=>x.id!==id);persist();$('#modal').close();render('notes');};}
 const PUBLIC_ALBUM_PHOTOS=[
- {
-  "id": "ig-260916-01",
-  "src": "instagram/xhuUrL.jpg",
-  "date": "2026年9月16日",
-  "time": "",
-  "title": "街边的绿墙",
-  "source": "Instagram · hi_sseulgi · 发布于 2026.09.16，拍摄时间未提供",
-  "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
-  "collection": "九月"
- },
- {
-  "id": "ig-260916-02",
-  "src": "instagram/uKWRKO.jpg",
-  "date": "2026年9月16日",
-  "time": "",
-  "title": "自行车旁",
-  "source": "Instagram · hi_sseulgi · 发布于 2026.09.16，拍摄时间未提供",
-  "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
-  "collection": "九月"
- },
- {
-  "id": "ig-260916-03",
-  "src": "instagram/mluoJH.jpg",
-  "date": "2026年9月16日",
-  "time": "",
-  "title": "树荫下",
-  "source": "Instagram · hi_sseulgi · 发布于 2026.09.16，拍摄时间未提供",
-  "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
-  "collection": "九月"
- },
- {
-  "id": "ig-260916-04",
-  "src": "instagram/jowAZb.jpg",
-  "date": "2026年9月16日",
-  "time": "",
-  "title": "路过的街道",
-  "source": "Instagram · hi_sseulgi · 发布于 2026.09.16，拍摄时间未提供",
-  "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
-  "collection": "九月"
- },
- {
-  "id": "ig-260916-05",
-  "src": "instagram/EwgFzf.jpg",
-  "date": "2026年9月16日",
-  "time": "",
-  "title": "散步途中",
-  "source": "Instagram · hi_sseulgi · 发布于 2026.09.16，拍摄时间未提供",
-  "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
-  "collection": "九月"
- },
- {
-  "id": "ig-260916-06",
-  "src": "instagram/GRLwAb.jpg",
-  "date": "2026年9月16日",
-  "time": "",
-  "title": "路边随拍",
-  "source": "Instagram · hi_sseulgi · 发布于 2026.09.16，拍摄时间未提供",
-  "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
-  "collection": "九月"
- },
- {
-  "id": "ig-260916-07",
-  "src": "instagram/NAToUq.jpg",
-  "date": "2026年9月16日",
-  "time": "",
-  "title": "阳光下的自拍",
-  "source": "Instagram · hi_sseulgi · 发布于 2026.09.16，拍摄时间未提供",
-  "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
-  "collection": "九月"
- },
- {
-  "id": "ig-260916-08",
-  "src": "instagram/aZpRKR.jpg",
-  "date": "2026年9月16日",
-  "time": "",
-  "title": "午后街角",
-  "source": "Instagram · hi_sseulgi · 发布于 2026.09.16，拍摄时间未提供",
-  "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
-  "collection": "九月"
- },
- {
-  "id": "ig-260916-09",
-  "src": "instagram/chqnhv.jpg",
-  "date": "2026年9月16日",
-  "time": "",
-  "title": "桌上的饭团",
-  "source": "Instagram · hi_sseulgi · 发布于 2026.09.16，拍摄时间未提供",
-  "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
-  "collection": "九月"
- },
- {
-  "id": "ig-260916-10",
-  "src": "instagram/qtGUBG.jpg",
-  "date": "2026年9月16日",
-  "time": "",
-  "title": "树影",
-  "source": "Instagram · hi_sseulgi · 发布于 2026.09.16，拍摄时间未提供",
-  "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
-  "collection": "九月"
- },
- {
-  "id": "ig-260916-11",
-  "src": "instagram/IlVlWc.jpg",
-  "date": "2026年9月16日",
-  "time": "",
-  "title": "同一天的几张",
-  "source": "Instagram · hi_sseulgi · 发布于 2026.09.16，拍摄时间未提供",
-  "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
-  "collection": "九月"
- },
- {
-  "id": "ig-260916-12",
-  "src": "instagram/NxkHPX.jpg",
-  "date": "2026年9月16日",
-  "time": "",
-  "title": "镜子前",
-  "source": "Instagram · hi_sseulgi · 发布于 2026.09.16，拍摄时间未提供",
-  "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
-  "collection": "九月"
- },
- {
-  "id": "ig-260916-13",
-  "src": "instagram/KvELTp.jpg",
-  "date": "2026年9月16日",
-  "time": "",
-  "title": "一餐",
-  "source": "Instagram · hi_sseulgi · 发布于 2026.09.16，拍摄时间未提供",
-  "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
-  "collection": "九月"
- },
- {
-  "id": "life-s-0",
-  "src": "assets/life/seulgi-peace.jpg",
-  "date": "已存照片",
-  "time": "",
-  "title": "涩琪 · 比耶自拍",
-  "source": "Pinterest · 公开自拍收藏，拍摄日期未确认",
-  "sourceUrl": "https://www.pinterest.com/pin/seulgi-bubble-update--605734218643072146/",
-  "collection": "已存照片"
- },
- {
-  "id": "life-s-1",
-  "src": "assets/life/seulgi-knit.jpg",
-  "date": "已存照片",
-  "time": "",
-  "title": "涩琪 · 白色针织衫",
-  "source": "Pinterest · 公开自拍收藏，拍摄日期未确认",
-  "sourceUrl": "https://br.pinterest.com/pin/707417053997961915/",
-  "collection": "已存照片"
- },
- {
-  "id": "life-s-2",
-  "src": "assets/life/irene-selfie.jpg",
-  "date": "已存照片",
-  "time": "",
-  "title": "珠泫 · 笑着的自拍",
-  "source": "Pinterest · 公开自拍收藏，拍摄日期未确认",
-  "sourceUrl": "https://www.pinterest.com/pin/820007044646587742/",
-  "collection": "已存照片"
- },
- {
-  "id": "life-s-3",
-  "src": "assets/life/irene-glasses.jpg",
-  "date": "已存照片",
-  "time": "",
-  "title": "珠泫 · 戴眼镜的镜子自拍",
-  "source": "Pinterest · 公开自拍收藏，拍摄日期未确认",
-  "sourceUrl": "https://www.pinterest.com/pin/irenes-record--708472585123537905/",
-  "collection": "已存照片"
- },
- {
-  "id": "life-s-4",
-  "src": "assets/life/irene-white-tee.jpg",
-  "date": "已存照片",
-  "time": "",
-  "title": "珠泫 · 白色 T 恤",
-  "source": "Pinterest · 公开自拍收藏，拍摄日期未确认",
-  "sourceUrl": "https://www.pinterest.com/pinkbaerry/irenered-velvet/",
-  "collection": "已存照片"
- }
+ {id:'ig-260916-01',src:'assets/instagram/sg-260916-01.jpg',date:'2026年9月16日',time:'18:42',title:'日本行程前的公开 INS',source:'公开素材存档 · Instagram'},
+ {id:'ig-260916-02',src:'assets/instagram/sg-260916-02.jpg',date:'2026年9月16日',time:'18:42',title:'公开 INS 图集 2',source:'公开素材存档 · Instagram'},
+ {id:'ig-260916-03',src:'assets/instagram/sg-260916-03.jpg',date:'2026年9月16日',time:'18:42',title:'公开 INS 图集 3',source:'公开素材存档 · Instagram'},
+ {id:'ig-260916-04',src:'assets/instagram/sg-260916-04.jpg',date:'2026年9月16日',time:'18:42',title:'公开 INS 图集 4',source:'公开素材存档 · Instagram'},
+ {id:'ig-260916-05',src:'assets/instagram/sg-260916-05.jpg',date:'2026年9月16日',time:'18:42',title:'公开 INS 图集 5',source:'公开素材存档 · Instagram'},
+ {id:'ig-260916-06',src:'assets/instagram/sg-260916-06.jpg',date:'2026年9月16日',time:'18:42',title:'公开 INS 图集 6',source:'公开素材存档 · Instagram'},
+ {id:'ig-260916-07',src:'assets/instagram/sg-260916-07.jpg',date:'2026年9月16日',time:'18:42',title:'公开 INS 图集 7',source:'公开素材存档 · Instagram'},
+ {id:'ig-260916-08',src:'assets/instagram/sg-260916-08.jpg',date:'2026年9月16日',time:'18:42',title:'公开 INS 图集 8',source:'公开素材存档 · Instagram'},
+ {id:'ig-260916-09',src:'assets/instagram/sg-260916-09.jpg',date:'2026年9月16日',time:'18:42',title:'公开 INS 图集 9',source:'公开素材存档 · Instagram'},
+ {id:'ig-260916-10',src:'assets/instagram/sg-260916-10.jpg',date:'2026年9月16日',time:'18:42',title:'公开 INS 图集 10',source:'公开素材存档 · Instagram'},
+ {id:'ig-260916-11',src:'assets/instagram/sg-260916-11.jpg',date:'2026年9月16日',time:'18:42',title:'公开 INS 图集 11',source:'公开素材存档 · Instagram'},
+ {id:'ig-260916-12',src:'assets/instagram/sg-260916-12.jpg',date:'2026年9月16日',time:'18:42',title:'公开 INS 图集 12',source:'公开素材存档 · Instagram'},
+ {id:'ig-260916-13',src:'assets/instagram/sg-260916-13.jpg',date:'2026年9月16日',time:'18:42',title:'公开 INS 图集 13',source:'公开素材存档 · Instagram'},
+ {id:'airport-0914',src:'assets/chapter1/seulgi-airport-20260914.jpg',date:'2026年9月14日',time:'机场公开行程',title:'出发机场公开图',source:'公开素材存档 · 机场新闻图'},
+ {id:'irene-daegu',src:'assets/forum/irene-daegu-pitch.png',date:'2026年8月29日',time:'公开活动',title:'大邱开球公开画面',source:'公开素材存档 · 活动画面'},
+ {id:'irene-program',src:'assets/forum/irene-something-nothing.png',date:'2026年8月19日',time:'节目公开',title:'节目公开画面',source:'公开素材存档 · 节目画面'}
 ];
 function albumPhotos(){
  const publicItems=PUBLIC_ALBUM_PHOTOS;
@@ -385,8 +232,8 @@ function albumPhotos(){
 }
 function photoGrid(items){return items.map(photo=>`<button class="ios-photo-tile" data-album-photo="${esc(photo.id)}" aria-label="打开${esc(photo.title)}"><img src="${esc(photo.src)}" alt="${esc(photo.title)}" loading="lazy"></button>`).join('');}
 function renderAlbum(){
- const photos=albumPhotos(),local=photos.filter(photo=>photo.localId),september=photos.filter(photo=>!photo.localId&&photo.collection==='九月'),saved=photos.filter(photo=>!photo.localId&&photo.collection==='已存照片');
- screen.innerHTML=`<div class="page ios-photos-page"><header class="ios-photos-header"><button class="ios-photos-home" data-view="phonehome" aria-label="返回主屏幕">‹</button><button class="ios-photos-select">选择</button><button class="ios-photos-add" id="upload-photo" aria-label="添加照片">＋</button></header><div class="ios-photos-scroll"><h1>照片</h1><section class="ios-photo-feature"><img src="instagram/NAToUq.jpg" alt="阳光下的自拍"><div><small>精选回忆</small><strong>日常碎片</strong><span>${september.length} 张照片</span></div></section><section class="ios-photo-month"><div class="ios-photo-month-title"><div><h2>2026年9月</h2><p>散步 · 自拍 · 吃饭</p></div><button data-photo-jump="september">查看全部</button></div><div class="ios-photo-grid">${photoGrid(september)}</div></section><section class="ios-photo-month"><div class="ios-photo-month-title"><div><h2>已存照片</h2><p>涩琪与珠泫</p></div></div><div class="ios-photo-grid">${photoGrid(saved)}</div></section>${local.length?`<section class="ios-photo-month"><div class="ios-photo-month-title"><div><h2>本机添加</h2><p>仅保存在当前浏览器</p></div></div><div class="ios-photo-grid">${photoGrid(local)}</div></section>`:''}</div>${photosBottom('library')}</div>`;
+ const photos=albumPhotos(),local=photos.filter(photo=>photo.localId),september=photos.filter(photo=>!photo.localId&&photo.date.includes('9月')),august=photos.filter(photo=>!photo.localId&&photo.date.includes('8月'));
+ screen.innerHTML=`<div class="page ios-photos-page"><header class="ios-photos-header"><button class="ios-photos-home" data-view="phonehome" aria-label="返回主屏幕">‹</button><button class="ios-photos-select">选择</button><button class="ios-photos-add" id="upload-photo" aria-label="添加照片">＋</button></header><div class="ios-photos-scroll"><h1>照片</h1><section class="ios-photo-feature"><img src="assets/instagram/sg-260916-01.jpg" alt="公开图片精选"><div><small>精选回忆</small><strong>九月的公开记录</strong><span>${september.length} 张照片</span></div></section><section class="ios-photo-month"><div class="ios-photo-month-title"><div><h2>2026年9月</h2><p>日本活动前 · 公开资料</p></div><button data-photo-jump="september">查看全部</button></div><div class="ios-photo-grid">${photoGrid(september)}</div></section><section class="ios-photo-month"><div class="ios-photo-month-title"><div><h2>2026年8月</h2><p>公开活动记录</p></div></div><div class="ios-photo-grid">${photoGrid(august)}</div></section>${local.length?`<section class="ios-photo-month"><div class="ios-photo-month-title"><div><h2>本机添加</h2><p>仅保存在当前浏览器</p></div></div><div class="ios-photo-grid">${photoGrid(local)}</div></section>`:''}</div>${photosBottom('library')}</div>`;
  $('#upload-photo').onclick=()=>$('#photo-upload').click();
  screen.querySelector('.ios-photos-select').onclick=()=>toast('选择模式将在相册批量整理时开放。');
  screen.querySelectorAll('[data-photo-tab]').forEach(button=>button.onclick=()=>toast('这一栏会随对应软件页面继续完善。'));
@@ -396,11 +243,11 @@ function renderAlbum(){
 function photosBottom(active){return `<nav class="ios-photos-bottom"><button class="${active==='library'?'active':''}" data-view="album"><span>▦</span><small>图库</small></button><button data-photo-tab="collections"><span>◆</span><small>精选</small></button><button data-photo-tab="albums"><span>▣</span><small>相簿</small></button><button data-photo-tab="search"><span>⌕</span><small>搜索</small></button></nav>`;}
 function renderAlbumDetail(){
  const photos=albumPhotos(),photo=photos.find(item=>item.id===albumPhotoId)||photos[0];if(!photo){render('album');return;}
- screen.innerHTML=`<div class="page ios-photo-detail"><header><button data-view="album" aria-label="返回照片">‹</button><div><strong>${esc(photo.date)}</strong><small>${esc(photo.time)}</small></div><button data-photo-more aria-label="更多">•••</button></header><div class="ios-photo-stage"><img src="${esc(photo.src)}" alt="${esc(photo.title)}"></div><div class="ios-photo-caption"><strong>${esc(photo.title)}</strong></div><div class="ios-photo-filmstrip">${photos.map(item=>`<button class="${item.id===photo.id?'active':''}" data-album-photo="${esc(item.id)}"><img src="${esc(item.src)}" alt=""></button>`).join('')}</div><nav class="ios-photo-toolbar"><button aria-label="分享">⇧</button><button aria-label="收藏">♡</button><button data-photo-info aria-label="照片信息">ⓘ</button>${photo.localId?'<button data-delete-photo aria-label="删除照片">♲</button>':'<button data-photo-source aria-label="来源说明">···</button>'}</nav></div>`;
+ screen.innerHTML=`<div class="page ios-photo-detail"><header><button data-view="album" aria-label="返回照片">‹</button><div><strong>${esc(photo.date)}</strong><small>${esc(photo.time)}</small></div><button data-photo-more aria-label="更多">•••</button></header><div class="ios-photo-stage"><img src="${esc(photo.src)}" alt="${esc(photo.title)}"></div><div class="ios-photo-caption"><strong>${esc(photo.title)}</strong><span>${esc(photo.source)}</span></div><div class="ios-photo-filmstrip">${photos.slice(0,12).map(item=>`<button class="${item.id===photo.id?'active':''}" data-album-photo="${esc(item.id)}"><img src="${esc(item.src)}" alt=""></button>`).join('')}</div><nav class="ios-photo-toolbar"><button aria-label="分享">⇧</button><button aria-label="收藏">♡</button><button data-photo-info aria-label="照片信息">ⓘ</button>${photo.localId?'<button data-delete-photo aria-label="删除照片">♲</button>':'<button data-photo-source aria-label="来源说明">···</button>'}</nav></div>`;
  bindShared();screen.querySelectorAll('[data-album-photo]').forEach(button=>button.onclick=()=>{albumPhotoId=button.dataset.albumPhoto;renderAlbumDetail();});
  screen.querySelector('[data-photo-more]').onclick=()=>toast(photo.source);
- screen.querySelector('[data-photo-info]').onclick=()=>showModal(`<h3>${esc(photo.title)}</h3><p>${esc(photo.date)}${photo.time?' · '+esc(photo.time):''}</p><p>${esc(photo.source)}</p>${photo.sourceUrl?`<a href="${esc(photo.sourceUrl)}" target="_blank" rel="noopener noreferrer">查看来源 ↗</a>`:''}`);
- const source=screen.querySelector('[data-photo-source]');if(source)source.onclick=()=>screen.querySelector('[data-photo-info]').click();
+ screen.querySelector('[data-photo-info]').onclick=()=>showModal(`<h3>${esc(photo.title)}</h3><p>${esc(photo.date)} · ${esc(photo.time)}</p><p>${esc(photo.source)}</p>`);
+ const source=screen.querySelector('[data-photo-source]');if(source)source.onclick=()=>toast('这是公开素材存档，不代表私人相册内容。');
  const remove=screen.querySelector('[data-delete-photo]');if(remove)remove.onclick=()=>confirmDialog('删除这张照片？','只会从当前浏览器的本机相册中删除。',()=>{state.photos=state.photos.filter(item=>item.id!==photo.localId);persist();albumPhotoId='';render('album');});
 }
 function isGroup(p=profile()){return !!p.isGroup;}
@@ -487,4 +334,3 @@ $('#photo-upload').onchange=async e=>{const files=[...e.target.files];for(const 
 $('#home').onclick=()=>render('phonehome');$('#enter-chat').onclick=()=>render('lock');$('#customize').onclick=()=>{customApp=true;render('profile');};$('.wordmark').onclick=e=>{e.preventDefault();render('phonehome');};$('#about').onclick=()=>showModal('<h3>Pocket Story · the same blank</h3><p>本作是虚构同人故事。公开素材标注来源；私人对话与人物关系均为创作内容。</p><p>LYSN 聊天及本机添加的数据只保存在当前浏览器。</p>');$('#close-modal').onclick=()=>$('#modal').close();$('#modal').onclick=e=>{if(e.target===$('#modal'))$('#modal').close();};
 function tick(){const date=new Date(),now=time(date);$('#status-time').textContent=now;const clock=$('#home-clock');if(clock)clock.textContent=now;const lockDate=screen.querySelector('.ios-lock-date');if(lockDate)lockDate.textContent=date.toLocaleDateString('zh-CN',{month:'long',day:'numeric',weekday:'long'});}render('lock');tick();setInterval(tick,1000);
 }
-
