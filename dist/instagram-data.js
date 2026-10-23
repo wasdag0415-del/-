@@ -584,6 +584,30 @@ window.InstagramArchiveData={
           "alt": "涩琪 9月5日普拉提自拍"
         }
       ]
+    },
+    {
+      "id": "by-250815",
+      "owner": "seulgi",
+      "account": "by.sseulgi",
+      "date": "2025-08-15",
+      "time": "21:47",
+      "kind": "摄影小号",
+      "title": "夜晚的江边",
+      "caption": "밤이 좋아🌙",
+      "translation": "喜欢夜晚🌙",
+      "summary": "涩琪在摄影小号发了一张江边夜景照片。照片里是她自己裹着围巾坐在长椅上，背景是城市的灯光。",
+      "url": "https://www.instagram.com/by.sseulgi/",
+      "archive": null,
+      "related": [
+        "seulgi"
+      ],
+      "images": [
+        {
+          "src": "assets/instagram/by-250815-01.jpg",
+          "source": "https://aka.doubaocdn.com/s/DXlvQaVKFM",
+          "alt": "by.sseulgi 8月15日夜拍"
+        }
+      ]
     }
   ]
 };
