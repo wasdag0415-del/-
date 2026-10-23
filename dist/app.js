@@ -535,6 +535,36 @@ const PUBLIC_ALBUM_PHOTOS=[
   "source": "三星狮开球活动饭拍",
   "sourceUrl": "https://www.instagram.com/",
   "collection": "八月"
+ },
+ {
+  "id": "jeju-irene-01",
+  "src": "https://aka.doubaocdn.com/s/IxdEjtd779",
+  "date": "济州岛",
+  "time": "",
+  "title": "珠泫 · 济州岛油菜花田",
+  "source": "Instagram · renebaebae · 济州岛旅行",
+  "sourceUrl": "https://www.instagram.com/renebaebae/",
+  "collection": "济州岛"
+ },
+ {
+  "id": "jeju-01",
+  "src": "https://aka.doubaocdn.com/s/0T8zOkvJNW",
+  "date": "济州岛",
+  "time": "",
+  "title": "风很大的那天 · 纸风车",
+  "source": "济州岛旅行 · 2020",
+  "sourceUrl": "https://www.douban.com/group/topic/272613023/",
+  "collection": "济州岛"
+ },
+ {
+  "id": "jeju-02",
+  "src": "https://aka.doubaocdn.com/s/QKxYCpXxkp",
+  "date": "济州岛",
+  "time": "",
+  "title": "吃零食的晚上",
+  "source": "济州岛旅行 · 2020",
+  "sourceUrl": "https://www.douban.com/group/topic/272613023/",
+  "collection": "济州岛"
  }
 ];
 function albumPhotos(){
