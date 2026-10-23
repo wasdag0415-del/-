@@ -48,6 +48,7 @@
   let youtubeChannel = 'feed';
   let youtubeVideo = '';
   let kktThread = 'wendy';
+  let kktTab = 'chats';
   let memoFolder = 'folders', memoId = '', memoQuery = '';
   let personalMemos = [];
   try { const data=JSON.parse(root.localStorage.getItem('pocket-story-personal-memos-v1')); if(Array.isArray(data))personalMemos=data.filter(item=>item&&typeof item.id==='string'&&typeof item.body==='string'); } catch {}
@@ -122,9 +123,23 @@
     const views = {
       opening, feed, post: thread, airportphoto: airportPhoto, official: officialPost,
       chapterend: chapterEnd, notebook: enrichedNotebook, ktstory, storychat: enrichedManagerChat, instagram,
-      youtube, weverse, callhistory, memoarchive: notebook, couplechat: enrichedCoupleChat, groupchat: enrichedGroupChat, sidechat
+      youtube, weverse, callhistory, kktmore, memoarchive: notebook, couplechat: enrichedCoupleChat, groupchat: enrichedGroupChat, sidechat
     };
     context.screen.innerHTML = (views[route] || feed)();
+    if(route==='ktstory'){
+      const app=context.screen.querySelector('.nf-kkt-app');
+      if(app){
+        const icons={friends:'<circle cx="12" cy="7" r="4"/><path d="M4 22v-3a8 8 0 0 1 16 0v3"/>',chats:'<path d="M21 11a9 8 0 1 0-14 7l-1 4 5-3c6 1 10-3 10-8Z"/>',calls:'<path d="m6 3 4 5-2 3c2 3 3 4 6 5l3-2 4 4c-2 6-7 3-11 0S1 7 6 3Z"/>',more:'<circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/>'};
+        const labels={friends:'친구',chats:'채팅',calls:'통화',more:'더보기'};
+        app.querySelector('.nf-kkt-head strong').textContent=labels[kktTab];
+        if(kktTab==='friends')app.classList.add('kkt-friends-tab');
+        app.insertAdjacentHTML('beforeend',`<nav class="kkt-native-tabs" aria-label="KakaoTalk导航">${['friends','chats','calls','more'].map(tab=>`<button data-kkt-tab="${tab}" class="${kktTab===tab?'selected':''}" aria-label="${labels[tab]}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${icons[tab]}</svg><small>${labels[tab]}</small></button>`).join('')}</nav>`);
+      }
+    }
+    if(['couplechat','storychat','groupchat','sidechat'].includes(route)){
+      const tools=context.screen.querySelector('.nf-story-chat-tools');
+      if(tools)tools.innerHTML=`<button data-route="ktstory" aria-label="返回聊天列表"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m14 5-7 7 7 7"/></svg></button><span>채팅 기록</span>${route==='couplechat'?'<button data-route="callhistory" aria-label="查看通话记录">☎</button>':'<button data-route="notebook" aria-label="打开备忘录">▤</button>'}`;
+    }
     const statusTime = root.document?.querySelector('#status-time');
     if (statusTime) statusTime.textContent = new Date().toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit',hour12:false});
     bind();
@@ -308,6 +323,10 @@
   function callhistory() {
     const calls=(root.PreludeData?.calls||[]).filter(item=>item[1]==='组长老师');
     return wrap(`${head('通话记录', 'couplechat')}<div class="nf-scroll">${calls.map(([date,name,type,time,kind,detail])=>`<button class="nf-kkt-row" data-call-record="${esc(date)}|${esc(time)}"><span class="nf-kkt-avatar">${type==='视频通话'?'▣':'☎'}</span><span><strong>${type==='视频通话'?'FaceTalk':'VoiceTalk'} · ${esc(type)}</strong><p>${esc(detail)}</p></span><time>${esc(date)}<br>${esc(time)}</time></button>`).join('')}</div>`);
+  }
+
+  function kktmore() {
+    return wrap(`${head('더보기', 'ktstory')}<div class="nf-scroll"><button class="nf-kkt-row" data-route="notebook"><span class="nf-kkt-avatar">▤</span><span><strong>메모 · 备忘录</strong><p>查看工作与日常记录</p></span><b>›</b></button><button class="nf-kkt-row" data-nav="phone"><span class="nf-kkt-avatar">☎</span><span><strong>통화 기록 · 通话记录</strong></span><b>›</b></button><button class="nf-kkt-row" data-nav="settings"><span class="nf-kkt-avatar">⚙</span><span><strong>설정 · 设置</strong></span><b>›</b></button></div>`, 'nf-kkt-app');
   }
 
   function enrichedGroupChat() {
@@ -532,6 +551,12 @@
 
   function bind() {
     const screen = context.screen;
+    screen.querySelectorAll('[data-kkt-tab]').forEach(button=>button.onclick=()=>{
+      const tab=button.dataset.kktTab;
+      if(tab==='calls'){go('callhistory');return;}
+      if(tab==='more'){go('kktmore');return;}
+      kktTab=tab;go('ktstory');
+    });
     const persistMemos=()=>{try{root.localStorage.setItem('pocket-story-personal-memos-v1',JSON.stringify(personalMemos));return true;}catch{context.toast('存储空间不足，笔记未保存');return false;}};
     screen.querySelectorAll('[data-memo-folder]').forEach(button=>button.onclick=()=>{memoFolder=button.dataset.memoFolder;memoId='';memoQuery='';go('notebook');});
     screen.querySelectorAll('[data-memo-id]').forEach(button=>button.onclick=()=>{memoId=button.dataset.memoId;go('notebook');});
