@@ -734,3 +734,19 @@ body {
 .phone-screen .nf-sms-conversation {
   background: linear-gradient(180deg, #f5f5f7 0%, #e8e8ed 100%);
 }
+
+/* ---------- 锁屏通知图标 ---------- */
+.phone-screen[data-view="lock"] .ios-lock-note .mini-app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* Pann 通知图标 — 红色背景 */
+.phone-screen[data-view="lock"] .ios-lock-note .mini-app:not(.findmy) {
+  background: linear-gradient(145deg, #ff4757, #e63946);
+  color: white;
+}
