@@ -555,7 +555,7 @@ window.InstagramArchiveData={
       ],
       "images": [
         {
-          "src": "assets/instagram/ir-250823-01.jpg",
+          "src": "assets/instagram/ir-250823-comeback.jpg",
           "source": "https://aka.doubaocdn.com/s/hpUrGaZxj1",
           "alt": "Irene 8月23日ins回归自拍"
         }
@@ -579,7 +579,7 @@ window.InstagramArchiveData={
       ],
       "images": [
         {
-          "src": "assets/instagram/sg-250905-01.jpg",
+          "src": "assets/instagram/sg-250905-pilates.jpg",
           "source": "https://aka.doubaocdn.com/s/MDLuzb9ro6",
           "alt": "涩琪 9月5日普拉提自拍"
         }
@@ -603,7 +603,7 @@ window.InstagramArchiveData={
       ],
       "images": [
         {
-          "src": "assets/instagram/by-250815-01.jpg",
+          "src": "assets/instagram/by-250815-night.jpg",
           "source": "https://aka.doubaocdn.com/s/DXlvQaVKFM",
           "alt": "by.sseulgi 8月15日夜拍"
         }
