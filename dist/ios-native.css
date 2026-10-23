@@ -210,6 +210,33 @@
   text-shadow: 0 1px 8px rgba(0,0,0,.4);
 }
 
+/* 上滑解锁 */
+.phone-screen[data-view="lock"] .ios-lock {
+  touch-action: none;
+  cursor: grab;
+}
+.phone-screen[data-view="lock"] .ios-lock.dragging {
+  cursor: grabbing;
+}
+.phone-screen[data-view="lock"] .ios-lock-content {
+  transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.35s ease;
+  will-change: transform;
+}
+.phone-screen[data-view="lock"] .ios-swipe-hint {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 15px;
+  color: rgba(255,255,255,.7);
+  text-shadow: 0 1px 8px rgba(0,0,0,.3);
+  animation: swipe-hint 2s ease-in-out infinite;
+}
+@keyframes swipe-hint {
+  0%, 100% { transform: translateX(-50%) translateY(0); opacity: .7; }
+  50% { transform: translateX(-50%) translateY(-8px); opacity: 1; }
+}
+
 /* 锁屏左下 SOS / 右下相机：换成原生圆形图标按钮 */
 .phone-screen[data-view="lock"] .ios-lock-tools {
   bottom: 28px;
@@ -788,4 +815,174 @@ body {
 .phone-screen .ios-app-icon.photos {
   background: #ffffff;
   border-radius: 14px;
+}
+
+/* ===== 苹果原生音乐app样式 ===== */
+.ios-music-scroll {
+  padding: 12px 16px 100px;
+  background: #f2f2f7;
+  min-height: 100%;
+}
+
+.ios-music-now-playing {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 24px;
+}
+
+.ios-music-art {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.ios-music-info {
+  flex: 1;
+}
+
+.ios-music-info strong {
+  display: block;
+  font-size: 15px;
+  color: #000000;
+  font-weight: 600;
+}
+
+.ios-music-info small {
+  display: block;
+  font-size: 13px;
+  color: #8e8e93;
+}
+
+.ios-music-play-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #007aff;
+  color: white;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.ios-music-section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 4px 8px;
+}
+
+.ios-music-section-title h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.ios-music-section-title button {
+  background: none;
+  border: none;
+  color: #007aff;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.ios-music-library {
+  background: #ffffff;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.ios-music-lib-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 0.5px solid #e5e5ea;
+}
+
+.ios-music-lib-row:last-child {
+  border-bottom: none;
+}
+
+.ios-music-lib-row > span:first-child {
+  font-size: 18px;
+}
+
+.ios-music-lib-row strong {
+  flex: 1;
+  font-size: 16px;
+  color: #000000;
+  font-weight: 400;
+}
+
+.ios-music-lib-row small {
+  font-size: 15px;
+  color: #8e8e93;
+}
+
+.ios-music-playlist {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.ios-music-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border-bottom: 0.5px solid #e5e5ea;
+}
+
+.ios-music-row:last-child {
+  border-bottom: none;
+}
+
+.ios-music-row-num {
+  width: 24px;
+  text-align: center;
+  font-size: 15px;
+  color: #8e8e93;
+  font-weight: 500;
+}
+
+.ios-music-row.playing .ios-music-row-num {
+  color: #fc3c44;
+}
+
+.ios-music-row-info {
+  flex: 1;
+}
+
+.ios-music-row-info strong {
+  display: block;
+  font-size: 16px;
+  color: #000000;
+  font-weight: 400;
+}
+
+.ios-music-row.playing .ios-music-row-info strong {
+  color: #fc3c44;
+}
+
+.ios-music-row-info small {
+  display: block;
+  font-size: 13px;
+  color: #8e8e93;
+}
+
+.ios-music-row-dur {
+  font-size: 15px;
+  color: #8e8e93;
 }
