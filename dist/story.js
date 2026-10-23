@@ -106,6 +106,7 @@
       filter = '追星';
       query = '';
       state.started = true;
+      state.introRead = true;
       save();
     } else {
       route = next;
@@ -118,7 +119,7 @@
     const views = {
       opening, feed, post: thread, airportphoto: airportPhoto, official: officialPost,
       chapterend: chapterEnd, notebook: enrichedNotebook, ktstory, storychat: enrichedManagerChat, instagram,
-      youtube, weverse, couplechat: enrichedCoupleChat, groupchat: enrichedGroupChat, sidechat
+      youtube, weverse, callhistory, couplechat: enrichedCoupleChat, groupchat: enrichedGroupChat, sidechat
     };
     context.screen.innerHTML = (views[route] || feed)();
     const statusTime = root.document?.querySelector('#status-time');
@@ -129,22 +130,11 @@
   }
 
   function opening() {
-    return wrap(`<div class="nf-opening"><div class="nf-open-logo">POCKET STORY<span>the same blank</span></div><div class="nf-night-card"><span>FUKUOKA · 2026.09.19</span><div class="nf-moon"></div><i class="nf-window"></i></div><h1>大家都在看，<br>却没有人看见全部。</h1><p>你捡到一部处于遗失模式的手机。<br>Manager 发来的消息，把你带进一篇正在升温的论坛讨论。</p><button class="nf-primary" data-route="storychat">查看 Manager 的新消息 <span>↗</span></button><button class="nf-text-button" data-nav="phonehome">回到手机桌面</button>${notice}<p class="nf-autosave">进度自动保存在当前浏览器</p></div>`);
+    return wrap(`<div class="nf-opening"><div class="nf-open-logo">POCKET STORY<span>the same blank</span></div><div class="nf-night-card"><span>FUKUOKA · 2026.09.19</span><div class="nf-moon"></div><i class="nf-window"></i></div><h1>大家都在看，<br>却没有人看见全部。</h1><p>你捡到一部处于遗失模式的手机。<br>屏幕上留着一条 Pann 热帖通知。</p><button class="nf-primary" data-route="feed">查看 Pann 热帖 <span>↗</span></button><button class="nf-text-button" data-nav="phonehome">回到手机桌面</button>${notice}<p class="nf-autosave">进度自动保存在当前浏览器</p></div>`);
   }
 
   function ktstory() {
     return wrap(`<header class='nf-head nf-kkt-head'><button data-nav='phonehome' aria-label='返回手机'>‹</button><strong>KakaoTalk</strong><button data-route='notebook' aria-label='打开备忘录'>▤</button></header><div class='nf-scroll nf-kkt-list'><button class='nf-kkt-row' data-route='storychat'><span class='nf-kkt-avatar'>M</span><span><strong>Manager</strong><p>明天集合提前十五分钟。</p></span><time>20:50</time>${badge() ? '<i>1</i>' : ''}</button><button class='nf-kkt-row' data-route='couplechat'><span class='nf-kkt-avatar pair'>I</span><span><strong>组长老师</strong><p>门别锁。</p></span><time>21:27</time></button><button class='nf-kkt-row' data-route='groupchat'><span class='nf-kkt-avatar'>💖</span><span><strong>💖🧡💙💚💜</strong><p>Yeri：合照发群里！</p></span><time>21:17</time></button><button class='nf-kkt-row' data-kkt-thread='wendy'><span class='nf-kkt-avatar'>W</span><span><strong>Wendy</strong><p>到酒店以后跟我说一声</p></span><time>18:09</time></button><button class='nf-kkt-row' data-kkt-thread='japan'><span class='nf-kkt-avatar'>JP</span><span><strong>日本运营</strong><p>首场照片会在确认后上传。</p></span><time>20:46</time></button><button class='nf-kkt-row' data-kkt-thread='styling'><span class='nf-kkt-avatar'>S</span><span><strong>造型室</strong><p>明天先试第二套耳饰。</p></span><time>17:38</time></button><button class='nf-kkt-row' data-kkt-thread='joy'><span class='nf-kkt-avatar'>J</span><span><strong>Joy</strong><p>不是说好要拍给我看吗ㅋㅋ</p></span><time>9月18日</time></button></div>`, 'nf-kkt-app');
-  }
-
-  function judgmentMarkup() {
-    const choices = {
-      changed: ['她们看起来确实变了。', '我懂。我也会因为少了熟悉的东西而慌。不过“变了”到底指舞台状态还是她们之间，我们还分不清。'],
-      tired: ['可能只是都太累了。', '可能。可是“只是太累”也会让担心的人没地方放情绪。楼主未必是在要一个结论，她可能就是想有人听见。'],
-      unknown: ['我现在说不准。', '这个答案很难发在热帖里，但我觉得最诚实。刚才我又刷到隔壁版一条求助，看得心里有点堵。']
-    };
-    if (!state.judgment) return `<div class="nf-chat-choices"><button data-judgment="changed">她们看起来确实变了</button><button data-judgment="tired">可能只是都太累了</button><button data-judgment="unknown">我现在说不准</button></div>`;
-    const [mine, reply] = choices[state.judgment];
-    return `<div class="nf-chat-message me"><small>你 · 21:14</small><p>${mine}</p></div><div class="nf-chat-message them"><small>A</small><p>${reply}</p><p>我在恋爱版刷到一个求助标题，写着“年长的姐姐”。里面那句“她看过来，我会假装在看别处”让我停了好久。发帖人是谁我不知道，你要不要自己找来读读？</p><button class="nf-inline" data-category="恋爱解答">去恋爱版找那条帖 →</button><button class="nf-inline" data-judgment="reset">换个想法再聊 ↻</button></div>`;
   }
 
   function storychat() {
@@ -309,7 +299,12 @@
 
   function enrichedCoupleChat() {
     const later = `<div class='nf-chat-date'>9月14日 · 你先出发</div><div class='nf-chat-message them'><small>组长老师 · 09:03</small><p>你已经出发了吗？</p></div><div class='nf-chat-message me'><small>你 · 09:08</small><p>嗯</p></div><div class='nf-chat-message them'><small>组长老师 · 09:09</small><p>怎么没告诉我？</p></div><div class='nf-chat-message me'><small>你 · 09:14</small><p>Manager知道</p></div><div class='nf-chat-message them'><small>组长老师 · 09:15</small><p>我问的不是工作安排</p></div><div class='nf-chat-message me'><small>你 · 09:21</small><p>到了再说吧</p></div><div class='nf-chat-message them'><small>组长老师 · 09:22</small><p>落地以后把外套穿上。那边下雨</p></div><div class='nf-chat-message me'><small>你 · 09:24</small><p>好</p></div><div class='nf-chat-date'>9月19日 · 福冈首场结束后</div><div class='nf-chat-message me'><small>你 · 21:20</small><p>你到了为什么没告诉我？</p></div><div class='nf-chat-message them'><small>组长老师 · 21:21</small><p>Manager不是告诉你了吗？</p></div><div class='nf-chat-message me'><small>你 · 21:21</small><p>说了。</p></div><div class='nf-chat-message them'><small>组长老师 · 21:22</small><p>那你知道了。</p></div><div class='nf-chat-message me'><small>你 · 21:22</small><p>我想听你告诉我。</p></div><div class='nf-chat-message them'><small>组长老师 · 21:23</small><p>你走的时候也没有告诉我。</p></div><div class='nf-chat-message me'><small>你 · 21:23</small><p>……</p></div><div class='nf-chat-message them'><small>组长老师 · 21:24</small><p>今天台上你一直在躲我。</p></div><div class='nf-chat-message me'><small>你 · 21:24</small><p>没有。</p></div><div class='nf-chat-message them'><small>组长老师 · 21:25</small><p>那你看着我说。</p></div><div class='nf-chat-message me'><small>你 · 21:26</small><p>你已经回房间了吗？</p></div><div class='nf-chat-message them'><small>组长老师 · 21:26</small><p>嗯。</p></div><div class='nf-chat-message me'><small>你 · 21:27</small><p>门别锁。</p></div>`;
-    return wrap(`${head('组长老师', 'ktstory')}<div class='nf-scroll nf-chat-scroll nf-couple-chat'>${root.PreludeData?.chatHtml('couple') || ''}${later}</div><div class='nf-story-chat-tools'><button data-route='ktstory'>消息列表</button><button data-route='feed'>论坛</button></div>`, 'nf-story-chat');
+    return wrap(`${head('组长老师', 'ktstory', '<button data-route="callhistory" aria-label="通话记录">☎</button>')}<div class='nf-scroll nf-chat-scroll nf-couple-chat'>${root.PreludeData?.chatHtml('couple') || ''}${later}</div><div class='nf-story-chat-tools'><button data-route='ktstory'>消息列表</button><button data-route='feed'>论坛</button></div>`, 'nf-story-chat');
+  }
+
+  function callhistory() {
+    const calls=(root.PreludeData?.calls||[]).filter(item=>item[1]==='组长老师');
+    return wrap(`${head('通话记录', 'couplechat')}<div class="nf-scroll">${calls.map(([date,name,type,time,kind,detail])=>`<button class="nf-kkt-row" data-call-record="${esc(date)}|${esc(time)}"><span class="nf-kkt-avatar">${type==='视频通话'?'▣':'☎'}</span><span><strong>${type==='视频通话'?'FaceTalk':'VoiceTalk'} · ${esc(type)}</strong><p>${esc(detail)}</p></span><time>${esc(date)}<br>${esc(time)}</time></button>`).join('')}</div>`);
   }
 
   function enrichedGroupChat() {
@@ -404,7 +399,7 @@
       ['third', '20:31 · 热榜里的说法', '“她还没去日本，所以两个人分开走。”', '一句没根据的推测又长出一个原因。']
     ];
     const complete = state.rumorSeen.length === 3;
-    return `<section class="nf-rumor-chain"><small>论坛旧楼归档 · 虚构帖子</small><h2>一句话，传成了三句话</h2><p>逐条打开原句，看看哪一步开始多出了确定的结论。</p>${fragments.map(([id, label, quote, note]) => `<button data-rumor-fragment="${id}" class="${state.rumorSeen.includes(id) ? 'opened' : ''}"><span>${label}</span><strong>${state.rumorSeen.includes(id) ? quote : '点开查看当时写了什么 ↗'}</strong>${state.rumorSeen.includes(id) ? `<em>${note}</em>` : ''}</button>`).join('')}${complete ? '<div class="nf-rumor-reveal"><b>你找到了最初那句话。</b><p>“没刷到”经过两次转述，变成“她还没去”，又被接上“所以两人分开走”。今晚的同台推翻了传言的一部分，但并没有解释舞台上的紧张。</p><button data-route="storychat">把发现告诉 A →</button></div>' : `<p class="nf-rumor-count">已对照 ${state.rumorSeen.length}/3 条</p>`}</section>`;
+    return `<section class="nf-rumor-chain"><small>论坛旧楼归档 · 虚构帖子</small><h2>一句话，传成了三句话</h2><p>逐条打开原句，看看哪一步开始多出了确定的结论。</p>${fragments.map(([id, label, quote, note]) => `<button data-rumor-fragment="${id}" class="${state.rumorSeen.includes(id) ? 'opened' : ''}"><span>${label}</span><strong>${state.rumorSeen.includes(id) ? quote : '点开查看当时写了什么 ↗'}</strong>${state.rumorSeen.includes(id) ? `<em>${note}</em>` : ''}</button>`).join('')}${complete ? '<div class="nf-rumor-reveal"><b>你找到了最初那句话。</b><p>“没刷到”经过两次转述，变成“她还没去”，又被接上“所以两人分开走”。今晚的同台推翻了传言的一部分，但并没有解释舞台上的紧张。</p><button data-route="notebook">查看已保存的记录 →</button></div>' : `<p class="nf-rumor-count">已对照 ${state.rumorSeen.length}/3 条</p>`}</section>`;
   }
 
   function progressCard() {
@@ -522,6 +517,7 @@
 
   function bind() {
     const screen = context.screen;
+    screen.querySelectorAll('[data-call-record]').forEach(button=>button.onclick=()=>context.toast('历史通话记录 · 没有保存录音或视频'));
     if (route === 'instagram') {
       root.InstagramArchive.bind({
         screen,
