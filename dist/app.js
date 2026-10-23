@@ -565,6 +565,36 @@ const PUBLIC_ALBUM_PHOTOS=[
   "source": "济州岛旅行 · 2020",
   "sourceUrl": "https://www.douban.com/group/topic/272613023/",
   "collection": "济州岛"
+ },
+ {
+  "id": "jeju-03",
+  "src": "https://aka.doubaocdn.com/s/VqqKn7wAn6",
+  "date": "济州岛",
+  "time": "",
+  "title": "木格窗前",
+  "source": "济州岛旅行 · 2020",
+  "sourceUrl": "https://www.douban.com/group/topic/272613023/",
+  "collection": "济州岛"
+ },
+ {
+  "id": "jeju-04",
+  "src": "https://aka.doubaocdn.com/s/R0qgUL7FVM",
+  "date": "济州岛",
+  "time": "",
+  "title": "镜子前",
+  "source": "济州岛旅行 · 2020",
+  "sourceUrl": "https://www.douban.com/group/topic/272613023/",
+  "collection": "济州岛"
+ },
+ {
+  "id": "jeju-05",
+  "src": "https://aka.doubaocdn.com/s/srMBPjAUxc",
+  "date": "济州岛",
+  "time": "",
+  "title": "对着小圆镜子",
+  "source": "济州岛旅行 · 2020",
+  "sourceUrl": "https://www.douban.com/group/topic/272613023/",
+  "collection": "济州岛"
  }
 ];
 function albumPhotos(){
