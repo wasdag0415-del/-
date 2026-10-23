@@ -1,0 +1,74 @@
+.ig2-app{background:#fff;color:#151515}
+.ig2-app button{background:none;border:0;color:inherit}
+.ig2-header{height:52px;flex:0 0 52px;display:grid;grid-template-columns:42px 1fr 42px;align-items:center;padding:0 9px;border-bottom:1px solid #eee;background:#fff}
+.ig2-header strong{text-align:center;font-size:16px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ig2-header button{font-size:25px;height:42px}
+.ig2-scroll{padding:0!important;background:#fff;scrollbar-width:none}
+.ig2-scroll::-webkit-scrollbar{width:0}
+.ig2-avatar{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--ig-color,#ddd);overflow:hidden;color:#fff;font-size:14px}
+.ig2-avatar img{width:100%;height:100%;object-fit:cover}
+.ig2-profile{padding:17px 17px 13px}
+.ig2-profile-top{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.ig2-profile-top>.ig2-avatar{width:76px;height:76px;flex:0 0 76px;border:2px solid #f4f4f4}
+.ig2-stat{display:grid;text-align:center;min-width:65px;gap:2px}
+.ig2-stat strong{font-size:16px;line-height:1.1}
+.ig2-stat span{font-size:10px}
+.ig2-name{display:block;margin-top:14px;font-size:13px}
+.ig2-profile p{font-size:11px;color:#666;margin:3px 0 12px}
+.ig2-profile-actions{display:flex;gap:7px}
+.ig2-profile-actions>*{flex:1;display:grid;place-items:center;min-height:32px;border-radius:8px;background:#efefef!important;color:#202020!important;text-decoration:none;font-size:11px;font-weight:600}
+.ig2-account-bar{display:flex;gap:15px;overflow-x:auto;padding:10px 17px 15px;scrollbar-width:none}
+.ig2-account-bar button{display:grid;justify-items:center;gap:5px;min-width:62px;max-width:100px;padding:0}
+.ig2-account-bar .ig2-avatar{width:55px;height:55px;border:2px solid #ddd;box-sizing:border-box}
+.ig2-account-bar button.active .ig2-avatar{border-color:#cd6684}
+.ig2-account-bar span:last-child{font-size:9px;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.ig2-grid-head{height:38px;display:flex;align-items:center;justify-content:center;gap:6px;border-top:1px solid #eee;color:#333;font-size:18px}
+.ig2-grid-head small{font-size:10px}
+.ig2-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px}
+.ig2-tile{aspect-ratio:1;padding:0;position:relative;overflow:hidden;background:#eee;min-height:0!important}
+.ig2-tile img{width:100%;height:100%;object-fit:cover;display:block}
+.ig2-tile b{position:absolute;right:7px;top:5px;color:#fff;text-shadow:0 1px 3px #333;font-size:15px}
+.ig2-text-tile{display:grid;place-items:center;background:linear-gradient(125deg,#bea5a4,#e4d3cf);padding:9px;text-align:center;font-size:10px;line-height:1.45}
+.ig2-bottom{flex:0 0 57px;height:57px;display:flex;align-items:center;justify-content:space-around;border-top:1px solid #eee;background:#fff;padding-bottom:8px;box-sizing:border-box}
+.ig2-bottom button{height:40px;width:52px;display:grid;place-items:center}
+.ig2-bottom svg{width:25px;height:25px}
+.ig2-bottom .ig2-avatar{width:25px;height:25px}
+.ig2-bottom .selected .ig2-avatar{outline:2px solid #222;outline-offset:2px}
+.ig2-feed-card{border-bottom:7px solid #f3f3f3}
+.ig2-feed-card>header,.ig2-post-author{display:flex;align-items:center;gap:9px;padding:9px 12px}
+.ig2-feed-card>header button,.ig2-post-author button{padding:0;text-align:left}
+.ig2-feed-card>header button:nth-child(2),.ig2-post-author button:nth-child(2){display:grid;gap:2px;flex:1}
+.ig2-feed-card>header strong,.ig2-post-author strong{font-size:12px}
+.ig2-feed-card>header small,.ig2-post-author small{font-size:9px;color:#858585}
+.ig2-feed-card>header>span{font-size:13px;margin-left:auto}
+.ig2-feed-media{position:relative;display:block;width:100%;padding:0;min-height:0!important;aspect-ratio:1;background:#eee;overflow:hidden}
+.ig2-feed-media img{display:block;width:100%;height:100%;object-fit:cover}
+.ig2-feed-media.text{display:grid;place-items:center;padding:28px;background:linear-gradient(125deg,#c8a9b2,#efe1e2);font-size:20px;text-align:center;line-height:1.5}
+.ig2-feed-media i{position:absolute;right:12px;top:12px;padding:4px 8px;border-radius:14px;background:#2229;color:white;font-size:10px;font-style:normal}
+.ig2-feed-actions{display:flex;gap:9px;padding:6px 10px 0}
+.ig2-feed-actions button{font-size:24px;min-height:32px!important;padding:0 3px}
+.ig2-feed-actions .bookmark{margin-left:auto}
+.ig2-feed-copy{padding:4px 13px 0;font-size:12px;line-height:1.5;white-space:pre-wrap}
+.ig2-feed-copy small{display:block;margin-top:3px;color:#777;font-size:10px}
+.ig2-open-post{padding:8px 13px 16px!important;color:#858585!important;font-size:10px}
+.ig2-post .ig2-stage{position:relative;background:#f4f4f4;min-height:180px;display:grid;place-items:center;touch-action:pan-y}
+.ig2-post .ig2-stage img{width:100%;height:auto;max-height:550px;object-fit:contain;display:block}
+.ig2-stage>span:last-child:not(:first-child){position:absolute;right:12px;top:12px;background:#2229;color:white;padding:4px 8px;border-radius:12px;font-size:10px}
+.ig2-no-photo{background:linear-gradient(125deg,#c8a9b2,#efe1e2)!important;aspect-ratio:1;padding:25px;box-sizing:border-box;text-align:center;font-size:20px;line-height:1.5}
+.ig2-pager{display:flex;align-items:center;justify-content:space-between;height:42px;padding:0 11px}
+.ig2-pager button{font-size:27px;width:40px;height:40px}
+.ig2-pager button:disabled{opacity:.2}
+.ig2-pager>div{display:flex;gap:3px;max-width:225px;overflow:hidden}
+.ig2-pager i{width:4px;height:4px;background:#ddd;border-radius:50%;flex:0 0 4px}
+.ig2-pager i.active{background:#3897f0}
+.ig2-post-body{padding:5px 13px 28px;font-size:12px;line-height:1.6}
+.ig2-post-actions{display:flex;justify-content:space-between}
+.ig2-post-actions button{font-size:25px;height:36px;padding:0}
+.ig2-post-actions .saved{color:#ed4956}
+.ig2-post-body p{margin:5px 0;white-space:pre-wrap}
+.ig2-translation,.ig2-comment small{color:#777;font-size:11px}
+.ig2-comment{padding:7px 0;border-top:1px solid #eee;margin-top:12px}
+.ig2-comment small{display:block;margin-top:3px}
+.ig2-post-body time{display:block;color:#999;font-size:10px;margin:13px 0}
+.ig2-source{border-top:1px solid #eee;padding-top:10px;color:#777;font-size:10px}
+.ig2-source a{display:block;padding:5px 0;color:#35618a}
