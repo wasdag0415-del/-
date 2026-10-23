@@ -48,6 +48,9 @@
   let youtubeChannel = 'feed';
   let youtubeVideo = '';
   let kktThread = 'wendy';
+  let memoFolder = 'folders', memoId = '', memoQuery = '';
+  let personalMemos = [];
+  try { const data=JSON.parse(root.localStorage.getItem('pocket-story-personal-memos-v1')); if(Array.isArray(data))personalMemos=data.filter(item=>item&&typeof item.id==='string'&&typeof item.body==='string'); } catch {}
 
   const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
@@ -119,7 +122,7 @@
     const views = {
       opening, feed, post: thread, airportphoto: airportPhoto, official: officialPost,
       chapterend: chapterEnd, notebook: enrichedNotebook, ktstory, storychat: enrichedManagerChat, instagram,
-      youtube, weverse, callhistory, couplechat: enrichedCoupleChat, groupchat: enrichedGroupChat, sidechat
+      youtube, weverse, callhistory, memoarchive: notebook, couplechat: enrichedCoupleChat, groupchat: enrichedGroupChat, sidechat
     };
     context.screen.innerHTML = (views[route] || feed)();
     const statusTime = root.document?.querySelector('#status-time');
@@ -313,9 +316,18 @@
   }
 
   function enrichedNotebook() {
-    const html = notebook();
-    const marker = '<div class="nf-timeline-notes">';
-    return html.replace(marker, `${root.PreludeData?.memoHtml() || ''}${marker}`);
+    const originals=(root.PreludeData?.memos||[]).map(([title,body],index)=>({id:'original-'+index,title,body,folder:/日本|日语|行李|唱片/.test(title)?'日本':/练习|声乐|录制/.test(title)?'工作':'日常'}));
+    const all=[...originals,...personalMemos.map(item=>({...item,folder:'我的记录',editable:true}))];
+    const folders=['所有备忘录','工作','日常','日本','我的记录'];
+    const note=all.find(item=>item.id===memoId);
+    const title=note?'备忘录':memoFolder==='folders'?'文件夹':memoFolder;
+    const back=note?'list':'folders';
+    const header=`<header class="apple-memo-head"><button ${memoFolder==='folders'&&!note?'data-nav="phonehome"':`data-memo-back="${back}"`}>‹ ${memoFolder==='folders'&&!note?'主屏幕':note?memoFolder:'文件夹'}</button>${note?.editable?'<button data-memo-save>完成</button>':'<span>메모</span>'}</header>`;
+    let body='';
+    if(note){body=`<div class="apple-memo-date">${note.editable?'本机笔记 · 仅当前浏览器':'手机原有记录'}</div>${note.editable?`<input class="apple-memo-title-input" id="memo-title" maxlength="60" aria-label="标题" value="${esc(note.title)}"><textarea id="memo-body" aria-label="备忘录正文" maxlength="6000">${esc(note.body)}</textarea>`:`<h1>${esc(note.title)}</h1><div class="apple-memo-body">${esc(note.body)}</div>`}`;}
+    else if(memoFolder==='folders'){body=`<h1>${title}</h1><h3>我的 iPhone</h3><div class="apple-memo-card">${folders.map(folder=>`<button data-memo-folder="${folder}"><i>▱</i><strong>${folder}</strong><small>${folder==='所有备忘录'?all.length:all.filter(item=>item.folder===folder).length}</small><b>›</b></button>`).join('')}</div><h3>Pocket Story</h3><div class="apple-memo-card"><button data-route="memoarchive"><i>▤</i><strong>探索记录与剧情存档</strong><b>›</b></button></div>`;}
+    else {const filtered=all.filter(item=>(memoFolder==='所有备忘录'||item.folder===memoFolder)&&(!memoQuery||(item.title+' '+item.body).toLowerCase().includes(memoQuery.toLowerCase())));body=`<h1>${esc(title)}</h1><form id="memo-search"><input aria-label="搜索备忘录" placeholder="搜索" value="${esc(memoQuery)}"><button>搜索</button></form><div class="apple-memo-card">${filtered.map(item=>`<button class="apple-memo-row" data-memo-id="${esc(item.id)}"><strong>${esc(item.title)}</strong><small>${esc(item.body.split('\n')[0])}</small><span>${esc(item.folder)}</span></button>`).join('')||'<p class="apple-memo-empty">没有备忘录</p>'}</div>`;}
+    return wrap(`${header}<div class="nf-scroll apple-memo-scroll">${body}</div><footer class="apple-memo-footer"><span>${note?'':all.length+' 条备忘录'}</span><button data-memo-new aria-label="新建备忘录">▧</button></footer>`, 'apple-memos');
   }
 
   function sidechat() {
@@ -517,6 +529,15 @@
 
   function bind() {
     const screen = context.screen;
+    const persistMemos=()=>{try{root.localStorage.setItem('pocket-story-personal-memos-v1',JSON.stringify(personalMemos));return true;}catch{context.toast('存储空间不足，笔记未保存');return false;}};
+    screen.querySelectorAll('[data-memo-folder]').forEach(button=>button.onclick=()=>{memoFolder=button.dataset.memoFolder;memoId='';memoQuery='';go('notebook');});
+    screen.querySelectorAll('[data-memo-id]').forEach(button=>button.onclick=()=>{memoId=button.dataset.memoId;go('notebook');});
+    const saveDraft=()=>{const input=screen.querySelector('#memo-body');if(!input)return true;const item=personalMemos.find(item=>item.id===memoId);if(!item)return true;const previous={...item};item.title=screen.querySelector('#memo-title').value.trim()||'新建备忘录';item.body=input.value;if(!persistMemos()){Object.assign(item,previous);return false;}return true;};
+    screen.querySelectorAll('[data-memo-back]').forEach(button=>button.onclick=()=>{if(!saveDraft())return;if(button.dataset.memoBack==='folders')memoFolder='folders';memoId='';go('notebook');});
+    screen.querySelectorAll('[data-memo-save]').forEach(button=>button.onclick=()=>{if(saveDraft()){memoId='';go('notebook');context.toast('已保存');}});
+    screen.querySelectorAll('[data-memo-new]').forEach(button=>button.onclick=()=>{if(!saveDraft())return;const item={id:'memo-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2),title:'新建备忘录',body:''};personalMemos.unshift(item);if(!persistMemos()){personalMemos.shift();return;}memoFolder='我的记录';memoId=item.id;go('notebook');});
+    const memoSearch=screen.querySelector('#memo-search');if(memoSearch)memoSearch.onsubmit=event=>{event.preventDefault();memoQuery=memoSearch.querySelector('input').value.trim();go('notebook');};
+    screen.querySelectorAll('#memo-title,#memo-body').forEach(input=>input.oninput=saveDraft);
     screen.querySelectorAll('[data-call-record]').forEach(button=>button.onclick=()=>context.toast('历史通话记录 · 没有保存录音或视频'));
     if (route === 'instagram') {
       root.InstagramArchive.bind({
