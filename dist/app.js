@@ -375,6 +375,166 @@ const PUBLIC_ALBUM_PHOTOS=[
   "source": "Pinterest · 公开自拍收藏，拍摄日期未确认",
   "sourceUrl": "https://www.pinterest.com/pinkbaerry/irenered-velvet/",
   "collection": "已存照片"
+ },
+ {
+  "id": "ig-260823-01",
+  "src": "https://aka.doubaocdn.com/s/hpUrGaZxj1",
+  "date": "2026年8月23日",
+  "time": "",
+  "title": "珠泫 · 粉色蝴蝶结自拍",
+  "source": "Instagram · renebaebae · 时隔5个月回归",
+  "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
+  "collection": "八月"
+ },
+ {
+  "id": "ig-260905-01",
+  "src": "https://aka.doubaocdn.com/s/MDLuzb9ro6",
+  "date": "2026年9月5日",
+  "time": "",
+  "title": "涩琪 · 普拉提室自拍",
+  "source": "Instagram · hi_sseulgi",
+  "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
+  "collection": "九月"
+ },
+ {
+  "id": "ig-260815-01",
+  "src": "https://aka.doubaocdn.com/s/DXlvQaVKFM",
+  "date": "2026年8月15日",
+  "time": "",
+  "title": "by.sseulgi · 江边夜景",
+  "source": "Instagram · by.sseulgi",
+  "sourceUrl": "https://www.instagram.com/p/DdVmBKuoFN8/",
+  "collection": "八月"
+ },
+ {
+  "id": "seulgi-selfie-01",
+  "src": "https://aka.doubaocdn.com/s/u4UYfyUcNL",
+  "date": "已存照片",
+  "time": "",
+  "title": "涩琪 · 齐刘海自拍",
+  "source": "Pinterest · 公开自拍收藏",
+  "sourceUrl": "https://www.pinterest.com/",
+  "collection": "已存照片"
+ },
+ {
+  "id": "seulgi-selfie-02",
+  "src": "https://aka.doubaocdn.com/s/MMVwSh4DcR",
+  "date": "已存照片",
+  "time": "",
+  "title": "涩琪 · 红色背景自拍",
+  "source": "Pinterest · 公开自拍收藏",
+  "sourceUrl": "https://www.pinterest.com/",
+  "collection": "已存照片"
+ },
+ {
+  "id": "seulgi-selfie-03",
+  "src": "https://aka.doubaocdn.com/s/bV26UGSfuc",
+  "date": "已存照片",
+  "time": "",
+  "title": "涩琪 · 窗边光影自拍",
+  "source": "Pinterest · 公开自拍收藏",
+  "sourceUrl": "https://www.pinterest.com/",
+  "collection": "已存照片"
+ },
+ {
+  "id": "seulgi-selfie-04",
+  "src": "https://aka.doubaocdn.com/s/ogIdeCIfeb",
+  "date": "已存照片",
+  "time": "",
+  "title": "涩琪 · 练习室对镜拍",
+  "source": "Instagram · hi_sseulgi",
+  "sourceUrl": "https://www.instagram.com/hi_sseulgi/",
+  "collection": "已存照片"
+ },
+ {
+  "id": "seulgi-selfie-05",
+  "src": "https://aka.doubaocdn.com/s/9w55N9UeEW",
+  "date": "已存照片",
+  "time": "",
+  "title": "涩琪 · 高马尾对镜拍",
+  "source": "Instagram · hi_sseulgi",
+  "sourceUrl": "https://www.instagram.com/hi_sseulgi/",
+  "collection": "已存照片"
+ },
+ {
+  "id": "couple-01",
+  "src": "https://aka.doubaocdn.com/s/tVWbYiQ7gm",
+  "date": "已存照片",
+  "time": "",
+  "title": "两人 · 玫瑰概念照",
+  "source": "Red Velvet - IRENE & SEULGI 概念照",
+  "sourceUrl": "https://www.redvelvet.com/",
+  "collection": "已存照片"
+ },
+ {
+  "id": "couple-02",
+  "src": "https://aka.doubaocdn.com/s/5Q8wHRJDSy",
+  "date": "已存照片",
+  "time": "",
+  "title": "两人 · TILT 概念照",
+  "source": "Red Velvet - IRENE & SEULGI 'TILT'",
+  "sourceUrl": "https://www.redvelvet.com/",
+  "collection": "已存照片"
+ },
+ {
+  "id": "couple-03",
+  "src": "https://aka.doubaocdn.com/s/fXmVr6wLUl",
+  "date": "已存照片",
+  "time": "",
+  "title": "两人 · TILT 侧拍",
+  "source": "Red Velvet - IRENE & SEULGI 'TILT'",
+  "sourceUrl": "https://www.redvelvet.com/",
+  "collection": "已存照片"
+ },
+ {
+  "id": "couple-04",
+  "src": "https://aka.doubaocdn.com/s/bGZv8MwFmh",
+  "date": "已存照片",
+  "time": "",
+  "title": "两人 · Nylon 杂志",
+  "source": "Nylon Korea 2020年5月刊",
+  "sourceUrl": "https://www.hellokpop.com/",
+  "collection": "已存照片"
+ },
+ {
+  "id": "couple-05",
+  "src": "https://aka.doubaocdn.com/s/o6PlyIAUse",
+  "date": "已存照片",
+  "time": "",
+  "title": "两人 · 合照比心",
+  "source": "Pinterest · 公开合照收藏",
+  "sourceUrl": "https://www.pinterest.com/",
+  "collection": "已存照片"
+ },
+ {
+  "id": "couple-06",
+  "src": "https://aka.doubaocdn.com/s/OWwoFuuQ3c",
+  "date": "已存照片",
+  "time": "",
+  "title": "两人 · 开心拥抱",
+  "source": "Pinterest · 公开合照收藏",
+  "sourceUrl": "https://www.pinterest.com/",
+  "collection": "已存照片"
+ },
+ {
+  "id": "couple-07",
+  "src": "https://aka.doubaocdn.com/s/kOPMHHxW6a",
+  "date": "已存照片",
+  "time": "",
+  "title": "两人 · 红色头发时期",
+  "source": "Monster 活动时期",
+  "sourceUrl": "https://www.redvelvet.com/",
+  "collection": "已存照片"
+ },
+ {
+  "id": "irene-pitch-01",
+  "src": "https://aka.doubaocdn.com/s/ut6UfAt3uI",
+  "date": "2026年8月29日",
+  "time": "",
+  "title": "珠泫 · 大邱开球",
+  "source": "三星狮开球活动饭拍",
+  "sourceUrl": "https://www.instagram.com/",
+  "collection": "八月"
  }
 ];
 function albumPhotos(){
