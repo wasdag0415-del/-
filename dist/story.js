@@ -126,7 +126,7 @@
     };
     context.screen.innerHTML = (views[route] || feed)();
     const statusTime = root.document?.querySelector('#status-time');
-    if (statusTime) statusTime.textContent = storyTime();
+    if (statusTime) statusTime.textContent = new Date().toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit',hour12:false});
     bind();
     const scroll = context.screen.querySelector('.nf-scroll');
     if (scroll) scroll.scrollTop = 0;
@@ -316,7 +316,8 @@
   }
 
   function enrichedNotebook() {
-    const originals=(root.PreludeData?.memos||[]).map(([title,body],index)=>({id:'original-'+index,title,body,folder:/日本|日语|行李|唱片/.test(title)?'日本':/练习|声乐|录制/.test(title)?'工作':'日常'}));
+    const memoDates=['2026-08-21T20:48:00','2026-08-05T15:00:00','2026-08-07T18:20:00','2026-08-22T18:26:00','2026-08-26T17:52:00','2026-08-24T19:42:00','2026-08-24T19:52:00','2026-09-02T19:18:00','2026-09-13T15:30:00','2026-08-20T09:40:00','2026-08-27T18:14:00','2026-08-13T14:00:00','2026-09-13T15:18:00','2026-09-10T23:46:00','2026-09-12T22:07:00'];
+    const originals=(root.PreludeData?.memos||[]).map(([title,body],index)=>({id:'original-'+index,title,body,at:memoDates[index],folder:/日本|日语|行李|唱片/.test(title)?'日本':/练习|声乐|录制/.test(title)?'工作':'日常'}));
     const all=[...originals,...personalMemos.map(item=>({...item,folder:'我的记录',editable:true}))];
     const folders=['所有备忘录','工作','日常','日本','我的记录'];
     const note=all.find(item=>item.id===memoId);
@@ -327,7 +328,9 @@
     if(note){body=`<div class="apple-memo-date">${note.editable?'本机笔记 · 仅当前浏览器':'手机原有记录'}</div>${note.editable?`<input class="apple-memo-title-input" id="memo-title" maxlength="60" aria-label="标题" value="${esc(note.title)}"><textarea id="memo-body" aria-label="备忘录正文" maxlength="6000">${esc(note.body)}</textarea>`:`<h1>${esc(note.title)}</h1><div class="apple-memo-body">${esc(note.body)}</div>`}`;}
     else if(memoFolder==='folders'){body=`<h1>${title}</h1><h3>我的 iPhone</h3><div class="apple-memo-card">${folders.map(folder=>`<button data-memo-folder="${folder}"><i>▱</i><strong>${folder}</strong><small>${folder==='所有备忘录'?all.length:all.filter(item=>item.folder===folder).length}</small><b>›</b></button>`).join('')}</div><h3>Pocket Story</h3><div class="apple-memo-card"><button data-route="memoarchive"><i>▤</i><strong>探索记录与剧情存档</strong><b>›</b></button></div>`;}
     else {const filtered=all.filter(item=>(memoFolder==='所有备忘录'||item.folder===memoFolder)&&(!memoQuery||(item.title+' '+item.body).toLowerCase().includes(memoQuery.toLowerCase())));body=`<h1>${esc(title)}</h1><form id="memo-search"><input aria-label="搜索备忘录" placeholder="搜索" value="${esc(memoQuery)}"><button>搜索</button></form><div class="apple-memo-card">${filtered.map(item=>`<button class="apple-memo-row" data-memo-id="${esc(item.id)}"><strong>${esc(item.title)}</strong><small>${esc(item.body.split('\n')[0])}</small><span>${esc(item.folder)}</span></button>`).join('')||'<p class="apple-memo-empty">没有备忘录</p>'}</div>`;}
-    return wrap(`${header}<div class="nf-scroll apple-memo-scroll">${body}</div><footer class="apple-memo-footer"><span>${note?'':all.length+' 条备忘录'}</span><button data-memo-new aria-label="新建备忘录">▧</button></footer>`, 'apple-memos');
+    if(note)body=body.replace(note.editable?'本机笔记 · 仅当前浏览器':'手机原有记录',note.at?new Date(note.at).toLocaleString('zh-CN',{year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'}):'');
+    const compose='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 5H5v15h15v-9M13 11l7-7 2 2-7 7-4 1z"/></svg>';
+    return wrap(`${header}<div class="nf-scroll apple-memo-scroll">${body}</div><footer class="apple-memo-footer"><button data-memo-back="folders" aria-label="返回文件夹"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7V5h7l2 2h9v13H3z"/></svg></button><span>${note?'':all.length+' 条备忘录'}</span><button data-memo-new aria-label="新建备忘录">${compose}</button></footer>`, 'apple-memos');
   }
 
   function sidechat() {
@@ -537,7 +540,7 @@
     screen.querySelectorAll('[data-memo-save]').forEach(button=>button.onclick=()=>{if(saveDraft()){memoId='';go('notebook');context.toast('已保存');}});
     screen.querySelectorAll('[data-memo-new]').forEach(button=>button.onclick=()=>{if(!saveDraft())return;const item={id:'memo-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2),title:'新建备忘录',body:''};personalMemos.unshift(item);if(!persistMemos()){personalMemos.shift();return;}memoFolder='我的记录';memoId=item.id;go('notebook');});
     const memoSearch=screen.querySelector('#memo-search');if(memoSearch)memoSearch.onsubmit=event=>{event.preventDefault();memoQuery=memoSearch.querySelector('input').value.trim();go('notebook');};
-    screen.querySelectorAll('#memo-title,#memo-body').forEach(input=>input.oninput=saveDraft);
+    screen.querySelectorAll('#memo-title,#memo-body').forEach(input=>input.oninput=()=>{const item=personalMemos.find(item=>item.id===memoId);if(item)item.at=new Date().toISOString();saveDraft();});
     screen.querySelectorAll('[data-call-record]').forEach(button=>button.onclick=()=>context.toast('历史通话记录 · 没有保存录音或视频'));
     if (route === 'instagram') {
       root.InstagramArchive.bind({
