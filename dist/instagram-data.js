@@ -608,6 +608,102 @@ window.InstagramArchiveData={
           "alt": "by.sseulgi 8月15日夜拍"
         }
       ]
+    },
+    {
+      "id": "sg-260820",
+      "owner": "seulgi",
+      "account": "hi_sseulgi",
+      "date": "2026-08-20",
+      "time": "18:22",
+      "kind": "回归期",
+      "title": "练习室",
+      "caption": "연습 끝✨",
+      "translation": "练习结束✨",
+      "summary": "涩琪在练习室的自拍，背景是红色的墙。",
+      "url": "https://www.instagram.com/p/sg260820/",
+      "archive": null,
+      "related": ["seulgi"],
+      "images": [
+        {
+          "src": "https://aka.doubaocdn.com/s/YLFo2Ntf4j",
+          "alt": "涩琪 练习室自拍"
+        }
+      ]
+    },
+    {
+      "id": "sg-260825",
+      "owner": "seulgi",
+      "account": "hi_sseulgi",
+      "date": "2026-08-25",
+      "time": "12:30",
+      "kind": "日常",
+      "title": "车内自拍",
+      "caption": "출근🚗",
+      "translation": "上班🚗",
+      "summary": "涩琪在车里的自拍，丸子头，手托着脸。",
+      "url": "https://www.instagram.com/p/sg260825/",
+      "archive": null,
+      "related": ["seulgi"],
+      "images": [
+        {
+          "src": "https://aka.doubaocdn.com/s/kG2lxZEKBI",
+          "alt": "涩琪 车内自拍"
+        }
+      ]
+    },
+    {
+      "id": "ir-260406",
+      "owner": "irene",
+      "account": "renebaebae",
+      "date": "2026-04-06",
+      "time": "20:15",
+      "kind": "活动",
+      "title": "签售会",
+      "caption": "오늘도 고마워요💜",
+      "translation": "今天也谢谢大家💜",
+      "summary": "Irene在签售会的自拍，穿白色衣服。",
+      "url": "https://www.instagram.com/p/ir260406/",
+      "archive": null,
+      "related": ["irene"],
+      "images": [
+        {
+          "src": "https://aka.doubaocdn.com/s/vRBDg4V0X3",
+          "alt": "Irene 签售会自拍"
+        },
+        {
+          "src": "https://aka.doubaocdn.com/s/Vxw8jGRJo5",
+          "alt": "Irene 签售会现场"
+        }
+      ]
+    },
+    {
+      "id": "by-250314-01",
+      "owner": "seulgi",
+      "account": "by.sseulgi",
+      "date": "2025-03-14",
+      "time": "16:20",
+      "kind": "摄影小号",
+      "title": "咖啡馆",
+      "caption": "☕️",
+      "translation": "☕️",
+      "summary": "涩琪在摄影小号发的咖啡馆胶片照，绿格子衣服。",
+      "url": "https://www.instagram.com/by.sseulgi/",
+      "archive": null,
+      "related": ["seulgi"],
+      "images": [
+        {
+          "src": "https://aka.doubaocdn.com/s/Eyt5rc6DlQ",
+          "alt": "by.sseulgi 咖啡馆胶片"
+        },
+        {
+          "src": "https://aka.doubaocdn.com/s/aF7QycCoMu",
+          "alt": "by.sseulgi 咖啡馆全景"
+        },
+        {
+          "src": "https://aka.doubaocdn.com/s/zAXvVOsnFP",
+          "alt": "by.sseulgi 骷髅杯"
+        }
+      ]
     }
   ]
 };
