@@ -137,8 +137,29 @@
       }
     }
     if(['couplechat','storychat','groupchat','sidechat'].includes(route)){
+      const chat=context.screen.querySelector('.nf-story-chat');
+      const titles={couplechat:'组长老师',storychat:'Manager',groupchat:'💖🧡💙💚💜',sidechat:''};
+      const title=chat?.querySelector('.nf-head strong');
+      if(chat&&title){
+        chat.classList.add('kkt-conversation');
+        const name=title.textContent.trim()||titles[route];
+        title.innerHTML=`<span class="kkt-chat-avatar" aria-hidden="true">${route==='groupchat'?'💖':name==='Manager'?'M':name==='组长老师'?'I':name.charAt(0)}</span><span class="kkt-chat-name">${name}</span>`;
+        chat.querySelectorAll('.nf-chat-message').forEach((message,index,list)=>{
+          const meta=message.querySelector('small');
+          if(!meta)return;
+          const raw=meta.textContent.trim(), split=raw.lastIndexOf(' · ');
+          const sender=split>=0?raw.slice(0,split):'',time=split>=0?raw.slice(split+3):raw;
+          meta.textContent=time;
+          meta.classList.add('kkt-message-time');
+          if(message.classList.contains('them')&&(route==='groupchat'||(index===0||!list[index-1].classList.contains('them')))){
+            const label=document.createElement('span');label.className='kkt-message-sender';label.textContent=sender;
+            message.prepend(label);
+          }
+          if(index&&list[index-1].classList.contains(message.classList.contains('me')?'me':'them'))message.classList.add('kkt-consecutive');
+        });
+      }
       const tools=context.screen.querySelector('.nf-story-chat-tools');
-      if(tools)tools.innerHTML=`<button data-route="ktstory" aria-label="返回聊天列表"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m14 5-7 7 7 7"/></svg></button><span>채팅 기록</span>${route==='couplechat'?'<button data-route="callhistory" aria-label="查看通话记录">☎</button>':'<button data-route="notebook" aria-label="打开备忘录">▤</button>'}`;
+      if(tools)tools.innerHTML=`<button data-nav="photos" aria-label="打开照片">＋</button><span class="kkt-composer-placeholder">메시지 입력</span><button data-route="ktstory" aria-label="返回聊天列表"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m14 5-7 7 7 7"/></svg></button>`;
     }
     const statusTime = root.document?.querySelector('#status-time');
     if (statusTime) statusTime.textContent = new Date().toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit',hour12:false});
