@@ -127,3 +127,5 @@
 .ig2-activity>button img,.ig2-activity-fallback{width:43px;height:43px;object-fit:cover;background:#eee;display:grid;place-items:center}
 .ig2-activity>button span:nth-child(2){min-width:0;flex:1;display:grid}
 .ig2-activity>button strong{font-size:11px}.ig2-activity>button small{font-size:10px;color:#999;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ig2-activity>button b{font-weight:400;color:#aaa}
+.ig2-app .ig2-text-tile{background:linear-gradient(145deg,#cdb6b1,#e7d8d2 58%,#b1a4a2);color:#473e3d;padding:9px;font-size:11px;line-height:1.4}
+.ig2-app .ig2-text-tile:nth-child(3n){background:linear-gradient(145deg,#a5a4a9,#d7d5d6 60%,#aab8b9)}
