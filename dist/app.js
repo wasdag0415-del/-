@@ -115,6 +115,7 @@ const status=item.kind==='missed'?'未接来电':item.kind==='outgoing'?'呼出�
 screen.innerHTML=`<div class="ios-native-app ios-phone-app ios-phone-detail"><header><button id="phone-detail-back">‹ 最近通话</button><span>编辑</span></header><div class="ios-phone-person"><span class="ios-call-avatar">${esc(item.name.slice(0,1))}</span><h2>${esc(item.name)}</h2><small>${item.name==='组长老师'?'手机':'联系人'}</small><div><button data-view="ktstory"><i>💬</i><small>信息</small></button><button disabled><i>☎</i><small>呼叫</small></button><button disabled><i>▣</i><small>视频</small></button></div></div><section class="ios-phone-detail-card"><small>${esc(item.date)}</small><div><span><strong>${esc(status)}</strong><small>${esc(item.detail)}</small></span><time>${esc(item.at)}</time></div></section><p class="ios-phone-note">仅展示剧情记录，不会连接或拨打真实号码。</p></div>`;
 bindShared();
 screen.querySelector('#phone-detail-back').onclick=renderPhone;
+if(item.name==='组长老师')screen.querySelector('[data-view="ktstory"]').onclick=()=>render('couplechat');
 }
 function renderSms(){
 const threads=[
@@ -260,7 +261,6 @@ function voiceDialog(){if(pending.has(state.active)){toast('等本轮模拟回�
 function removeConversationAudio(id){for(const m of state.messages[id]||[]){if(m.audioId&&!state.favorites.some(f=>f.audioId===m.audioId))PocketVoice.remove(m.audioId).catch(()=>{});}}
 function queueReplies(id,text,recording=false){const target=state.groups.find(g=>g.id===id)||state.profiles.find(p=>p.id===id);if(!target)return;const epoch=sessionEpoch;pending.add(id);if(view==='chat'&&state.active===id)render('chat');setTimeout(()=>{if(epoch!==sessionEpoch)return;const current=state.groups.find(g=>g.id===id)||state.profiles.find(p=>p.id===id);if(!current){pending.delete(id);return;}let actors=isGroup(current)?membersOf(current):[current];if(isGroup(current)){const offset=(state.messages[id]||[]).filter(m=>m.role==='user').length%Math.max(actors.length,1);actors=[...actors.slice(offset),...actors.slice(0,offset)].slice(0,2);}for(let i=0;i<actors.length;i++){const actor=actors[i],reply=recording?(i===0?'收到这段语音了。这里暂时还不能识别录音内容，可以把想聊的内容打成文字，我再接着回复。':'你也可以用文字转语音发消息，这样我就能根据文字接着聊。'):simulatedReply(text,actor,(state.messages[id]||[]).filter(m=>m.role==='user'||m.senderId===actor.id||!isGroup(current)),state.nickname).text;const m={id:uid(),role:'assistant',text:reply,at:Date.now()+i,...(isGroup(current)?{senderId:actor.id,senderName:actor.name}:{}),...(state.voiceReplies?{type:'voice',duration:durationFor(reply)}:{})};state.messages[id].push(m);}pending.delete(id);persist();if(state.sound)ping();if(view==='chat'&&state.active===id)render('chat');else if(actors.length)notify(current,state.messages[id].at(-1));},950+Math.random()*700);}
 
-if(item.name==='组长老师')screen.querySelector('[data-view="ktstory"]').onclick=()=>render('couplechat');
 /* Chapter-one phone traces. These are explicitly fictional local records, not claims about real people. */
 function renderBrowser(){const results=[
  {test:/机场|14/,title:'14号机场图到底能说明什么？',copy:'Pann · 公开资料核对',view:'forum',icon:'판'},
