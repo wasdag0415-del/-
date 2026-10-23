@@ -649,6 +649,10 @@
     screen.querySelectorAll('[data-couple-send]').forEach((button) => button.onclick = () => {
       coupleChatStep++;
       render();
+      setTimeout(() => {
+        const chat = screen.querySelector('.nf-chat-scroll');
+        if (chat) chat.scrollTop = chat.scrollHeight;
+      }, 100);
     });
     screen.querySelectorAll('[data-kkt-thread]').forEach((button) => button.onclick = () => { kktThread = button.dataset.kktThread; go('sidechat'); });
     screen.querySelectorAll('[data-nav]').forEach((button) => button.onclick = () => context.navigate(button.dataset.nav));
