@@ -750,3 +750,27 @@ body {
   background: linear-gradient(145deg, #ff4757, #e63946);
   color: white;
 }
+
+/* ============================================================
+   苹果默认 App 图标
+   ============================================================ */
+
+/* 电话图标 — 苹果默认绿色渐变 */
+.phone-screen .ios-app-icon.phone {
+  background: linear-gradient(145deg, #63dc74, #19ab42);
+  color: white;
+}
+
+/* 备忘录图标 — 苹果默认黄色顶部+白色 */
+.phone-screen .ios-app-icon.notes,
+.phone-screen .ios-app-icon.notebook {
+  background: linear-gradient(#ffd60a 0 15%, #ffffff 15%);
+  color: #8e8e93;
+  border-radius: 14px;
+}
+
+/* 照片图标 — 苹果默认白色背景+彩虹花朵 */
+.phone-screen .ios-app-icon.photos {
+  background: #ffffff;
+  border-radius: 14px;
+}
