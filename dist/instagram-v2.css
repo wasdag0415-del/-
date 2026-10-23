@@ -72,3 +72,16 @@
 .ig2-post-body time{display:block;color:#999;font-size:10px;margin:13px 0}
 .ig2-source{border-top:1px solid #eee;padding-top:10px;color:#777;font-size:10px}
 .ig2-source a{display:block;padding:5px 0;color:#35618a}
+.ig2-follow-trigger{padding:0!important;min-height:44px!important}
+.ig2-following{border-top:1px solid #eee;border-bottom:1px solid #eee;background:#fff}
+.ig2-following>header{height:45px;display:grid;grid-template-columns:40px 1fr 30px;align-items:center;padding:0 12px;border-bottom:1px solid #eee}
+.ig2-following>header button{font-size:24px;text-align:left}
+.ig2-following>header strong{font-size:14px}
+.ig2-following>header span{color:#999;font-size:11px}
+.ig2-follow-row{min-height:61px;display:flex;align-items:center;gap:11px;padding:8px 17px!important;text-decoration:none;color:#202020!important;border-bottom:1px solid #f3f3f3!important;width:100%;box-sizing:border-box;text-align:left}
+.ig2-follow-row .ig2-avatar{width:42px;height:42px;flex:0 0 42px}
+.ig2-follow-row>span:nth-child(2){display:grid;gap:2px;flex:1;min-width:0}
+.ig2-follow-row strong{font-size:12px}
+.ig2-follow-row small{font-size:10px;color:#888}
+.ig2-follow-row b{font-size:17px;color:#999;font-weight:400}
+.ig2-initial{background:#c6b2b5}
