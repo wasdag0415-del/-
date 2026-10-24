@@ -704,6 +704,69 @@ window.InstagramArchiveData={
           "alt": "by.sseulgi 骷髅杯"
         }
       ]
+    },
+    {
+      "id": "sg-250805",
+      "owner": "seulgi",
+      "account": "hi_sseulgi",
+      "date": "2025-08-05",
+      "time": "19:22",
+      "kind": "回归期",
+      "title": "绿头发",
+      "caption": "🍀",
+      "translation": "🍀",
+      "summary": "涩琪新发色，绿色挑染。",
+      "url": "https://www.instagram.com/p/sg250805/",
+      "archive": null,
+      "related": ["seulgi"],
+      "images": [
+        {
+          "src": "https://aka.doubaocdn.com/s/48HdEgyKgK",
+          "alt": "涩琪 绿头发"
+        }
+      ]
+    },
+    {
+      "id": "sg-250810",
+      "owner": "seulgi",
+      "account": "hi_sseulgi",
+      "date": "2025-08-10",
+      "time": "12:30",
+      "kind": "日常",
+      "title": "贝果",
+      "caption": "🥯",
+      "translation": "🥯",
+      "summary": "涩琪吃贝果的自拍。",
+      "url": "https://www.instagram.com/p/sg250810/",
+      "archive": null,
+      "related": ["seulgi"],
+      "images": [
+        {
+          "src": "https://aka.doubaocdn.com/s/CThTIJtlWj",
+          "alt": "涩琪 贝果自拍"
+        }
+      ]
+    },
+    {
+      "id": "sg-250815",
+      "owner": "seulgi",
+      "account": "hi_sseulgi",
+      "date": "2025-08-15",
+      "time": "18:45",
+      "kind": "日常",
+      "title": "红墙自拍",
+      "caption": "오늘 뭐해?",
+      "translation": "今天干嘛？",
+      "summary": "涩琪在红墙前面的自拍。",
+      "url": "https://www.instagram.com/p/sg250815/",
+      "archive": null,
+      "related": ["seulgi"],
+      "images": [
+        {
+          "src": "https://aka.doubaocdn.com/s/PUmN4xhpu1",
+          "alt": "涩琪 红墙自拍"
+        }
+      ]
     }
   ]
 };
