@@ -354,7 +354,67 @@ function notify(p,m){const n=$('#notification');n.innerHTML=`<small>模拟消息
 function ping(){try{const audio=new(window.AudioContext||window.webkitAudioContext)(),o=audio.createOscillator(),g=audio.createGain();o.connect(g);g.connect(audio.destination);o.frequency.value=660;g.gain.setValueAtTime(.05,audio.currentTime);g.gain.exponentialRampToValueAtTime(.001,audio.currentTime+.22);o.start();o.stop(audio.currentTime+.23);o.onended=()=>audio.close();}catch{}}
 function renderProfile(){if(isGroup())return renderGroupSettings();const p=profile();screen.innerHTML=`<div class="page">${head('人物设定','创建你的虚拟聊天对象')}<div class="page-body"><div class="profile-header"><button id="change-avatar" style="background:transparent;padding:0" aria-label="更换头像">${avatar(p,'avatar-large')}</button><p>点击更换头像</p><span class="pill">虚构人物设定</span></div><form id="profile-form"><label class="field"><span>喜欢的名字</span><input name="name" maxlength="30" required value="${esc(p.name)}" placeholder="填写你喜欢的明星名字"></label><label class="field"><span>希望 TA 怎么聊天</span><select name="style">${Object.entries(STYLE_NAMES).map(([k,v])=>`<option value="${k}" ${p.style===k?'selected':''}>${v}</option>`).join('')}</select></label><label class="field"><span>人物介绍 / 你的设定</span><textarea name="bio" maxlength="500">${esc(p.bio)}</textarea><small>作为人物卡展示。当前模拟回复依据上方说话风格生成，不会理解这段自由描述。</small></label><label class="field"><span>初次见面的消息</span><textarea name="greeting" maxlength="500">${esc(p.greeting)}</textarea><small>用于新角色的第一条消息；保存不会覆盖已有对话。</small></label><button class="primary wide" type="submit">保存人物设定 ✦</button></form><button class="subtle" id="profile-chat">和 ${esc(p.name)} 聊聊天</button>${state.profiles.length>1?'<button class="danger" id="delete-profile">删除这个角色与其聊天记录</button>':''}</div></div>`;$('#profile-form').onsubmit=e=>{e.preventDefault();const data=new FormData(e.target),name=String(data.get('name')).trim();if(!name){toast('先为这个角色起个名字吧。');return;}Object.assign(p,{name,style:data.get('style'),bio:String(data.get('bio')).trim(),greeting:String(data.get('greeting')).trim()});persist();toast('人物设定已保存');render('profile');};$('#change-avatar').onclick=()=>$('#avatar-upload').click();$('#profile-chat').onclick=()=>render('chat');if($('#delete-profile'))$('#delete-profile').onclick=()=>confirmDialog('删除这个角色？','这个角色的聊天记录会一并删除，心动收藏会保留。',()=>{state.profiles=state.profiles.filter(x=>x.id!==p.id);removeConversationAudio(p.id);delete state.messages[p.id];for(const g of state.groups)g.memberIds=g.memberIds.filter(id=>id!==p.id);pending.delete(p.id);state.active=state.profiles[0].id;persist();render('contacts');});}
 function addProfile(){if(state.profiles.length>=20){toast('最多可以创建 20 位虚拟角色。');return;}const id=uid();state.profiles.push({id,name:'喜欢的明星',style:'gentle',bio:'在这里，写下你心中的人物设定。',avatar:'',greeting:'嗨，很高兴在这个小世界里遇见你。今天想聊点什么？'});state.messages[id]=[{id:uid(),role:'assistant',text:state.profiles.at(-1).greeting,at:Date.now()}];state.active=id;persist();render('profile');}
-function renderSettings(){screen.innerHTML=`<div class="page">${head('设置','让这个小世界更像你')}<div class="page-body"><div class="section-label">WALLPAPER & MOOD</div><div class="theme-picker">${[['sage','经典蓝灰'],['rose','淡粉聊天'],['blue','清透浅蓝']].map(([key,name])=>`<button class="theme-option ${state.theme===key?'selected':''}" data-theme="${key}"><i></i>${name}</button>`).join('')}</div><label class="field"><span>你的昵称</span><input id="nickname" maxlength="20" value="${esc(state.nickname)}" placeholder="希望怎样称呼你"></label><label class="settings-row"><span>消息提示音<small>仅收到模拟回复时播放</small></span><input type="checkbox" class="switch" id="sound" ${state.sound?'checked':''}></label><label class="settings-row"><span>模拟语音回复<small>对方以系统合成语音气泡回复</small></span><input type="checkbox" class="switch" id="voice-replies" ${state.voiceReplies?'checked':''}></label><label class="field"><span>系统语音语言</span><select id="voice-language"><option value="zh-CN" ${state.voiceLanguage==='zh-CN'?'selected':''}>中文</option><option value="ko-KR" ${state.voiceLanguage==='ko-KR'?'selected':''}>韩语（适合韩文内容）</option></select><small>使用设备上可用的系统声音，不会自动翻译。</small></label><button class="settings-row" style="width:100%;text-align:left" data-view="profile"><span>人物设定<small>名字、头像与聊天风格</small></span><span>›</span></button><div class="notice"><strong>关于聊天模式</strong><br>当前为本地情境模拟，按关键词与所选风格生成回复，尚未接入 AI 模型。不会联系明星本人，也不代表 TA 的真实想法。<br><br>所有角色、对话和图片仅保存在当前浏览器。换设备或清除浏览器数据后不会同步。</div><button class="subtle" data-view="notebook">备忘录与剧情存档</button><button class="subtle" id="export-data">导出文字聊天与设定（不含录音）</button><button class="danger" id="reset">清空全部数据，重新开始</button></div></div>`;screen.querySelectorAll('[data-theme]').forEach(b=>b.onclick=()=>{state.theme=b.dataset.theme;persist();render('settings');});$('#nickname').onchange=e=>{state.nickname=e.target.value.trim()||'你';persist();toast('昵称已保存');};$('#voice-replies').onchange=e=>{state.voiceReplies=e.target.checked;persist();};$('#voice-language').onchange=e=>{state.voiceLanguage=e.target.value;persist();};$('#sound').onchange=e=>{state.sound=e.target.checked;persist();if(state.sound)ping();};$('#export-data').onclick=()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='pocket-star-backup.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('已导出当前浏览器里的聊天与设定');};$('#reset').onclick=()=>confirmDialog('重新开始？','将清空所有角色、聊天、照片与便签。建议先导出数据。',()=>{sessionEpoch++;PocketVoice.stop();PocketVoice.clear().catch(()=>{});state=initialState();pending.clear();persist();render('home');toast('你的新小世界，准备好了。');});}
+function renderSettings(){
+  const settings = [
+    {icon: '✈️', label: '飞行模式', value: '未开启', color: '#ff9500'},
+    {icon: '📶', label: 'Wi-Fi', value: 'pocket-story', color: '#007aff'},
+    {icon: '🔵', label: '蓝牙', value: '开启', color: '#007aff'},
+    {icon: '📱', label: '蜂窝网络', value: '', color: '#4cd964'},
+    {icon: '🔔', label: '通知', value: '', color: '#ff3b30'},
+    {icon: '🔊', label: '声音与触感', value: '', color: '#ff3b30'},
+    {icon: '🌙', label: '专注模式', value: '', color: '#5856d6'},
+    {icon: '⏱️', label: '屏幕使用时间', value: '', color: '#5856d6'},
+    {icon: '⚙️', label: '通用', value: '', color: '#8e8e93'},
+    {icon: '🎨', label: '墙纸', value: '', color: '#64d2ff'},
+    {icon: '🔋', label: '电池', value: '', color: '#4cd964'},
+    {icon: '🔒', label: '隐私与安全性', value: '', color: '#8e8e93'}
+  ];
+  screen.innerHTML=`<div class="ios-settings-app">
+    <header class="ios-settings-head">
+      <button data-view="phonehome" aria-label="返回桌面">‹</button>
+      <strong>设置</strong>
+    </header>
+    <div class="ios-settings-body">
+      <div class="ios-settings-profile">
+        <div class="ios-settings-avatar">S</div>
+        <div class="ios-settings-profile-info">
+          <strong>seulgi</strong>
+          <small>Apple 服务、已订阅项目和购买项目</small>
+        </div>
+        <span>›</span>
+      </div>
+      <div class="ios-settings-group">
+        ${settings.slice(0, 5).map(item => `
+          <div class="ios-settings-item">
+            <span class="ios-settings-icon" style="background:${item.color}">${item.icon}</span>
+            <span class="ios-settings-label">${item.label}</span>
+            ${item.value ? `<small class="ios-settings-value">${item.value}</small>` : ''}
+            <span class="ios-settings-arrow">›</span>
+          </div>
+        `).join('')}
+      </div>
+      <div class="ios-settings-group">
+        ${settings.slice(5, 8).map(item => `
+          <div class="ios-settings-item">
+            <span class="ios-settings-icon" style="background:${item.color}">${item.icon}</span>
+            <span class="ios-settings-label">${item.label}</span>
+            <span class="ios-settings-arrow">›</span>
+          </div>
+        `).join('')}
+      </div>
+      <div class="ios-settings-group">
+        ${settings.slice(8).map(item => `
+          <div class="ios-settings-item">
+            <span class="ios-settings-icon" style="background:${item.color}">${item.icon}</span>
+            <span class="ios-settings-label">${item.label}</span>
+            <span class="ios-settings-arrow">›</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  </div>`;
+  bindShared();
+}
 function renderNotes(){screen.innerHTML=`<div class="page">${head('便签','存下那些还没来得及说的话',`<button class="icon-button" id="add-note" aria-label="新建便签">＋</button>`)}<div class="page-body"><div class="section-label">THINGS I WANT TO TELL YOU</div>${state.notes.length?state.notes.map(n=>`<button class="note-card" data-note="${n.id}"><h3>${esc(n.title)}</h3><p>${esc(n.body.slice(0,120))}</p><small>${new Date(n.at).toLocaleDateString('zh-CN')} · 点击编辑</small></button>`).join(''):'<div class="empty-note"><span class="empty-icon">✎</span>先记下来，等你想说的时候再说。</div>'}</div></div>`;$('#add-note').onclick=()=>editNote();screen.querySelectorAll('[data-note]').forEach(b=>b.onclick=()=>editNote(b.dataset.note));}
 function editNote(id){const n=state.notes.find(n=>n.id===id);showModal(`<h3>${n?'编辑便签':'新建便签'}</h3><form id="note-form"><label class="field"><span>标题</span><input name="title" maxlength="60" value="${esc(n?.title||'')}" required placeholder="今天想记下什么"></label><label class="field"><span>内容</span><textarea name="body" maxlength="4000" rows="7" placeholder="慢慢写，不用急。">${esc(n?.body||'')}</textarea></label><button class="primary wide">保存便签</button></form>${n?'<button class="danger" id="delete-note">删除这条便签</button>':''}`);$('#note-form').onsubmit=e=>{e.preventDefault();const f=new FormData(e.target),title=String(f.get('title')).trim();if(!title)return;const item={id:id||uid(),title,body:String(f.get('body')).trim(),at:Date.now()};state.notes=n?state.notes.map(x=>x.id===id?item:x):[item,...state.notes];persist();$('#modal').close();render('notes');toast('已保存便签');};if(n)$('#delete-note').onclick=()=>{state.notes=state.notes.filter(x=>x.id!==id);persist();$('#modal').close();render('notes');};}
 function renderAlbum(){screen.innerHTML=`<div class="page">${head('相册','保存的公开图片会成为剧情记录',`<button class="icon-button" id="upload-photo" aria-label="添加相册图片">＋</button>`)}<div class="page-body">${JapanStory.albumCards()}<div class="section-label">SOME LITTLE BEAUTIFUL THINGS</div><div class="gallery"><button class="gallery-item" data-art="flowers" aria-label="打开小花图案">${scene('flowers')}<span>一点温柔</span></button><button class="gallery-item" data-art="moon" aria-label="打开月亮图案">${scene('moon')}<span>今晚的月亮</span></button>${state.photos.map(p=>`<button class="gallery-item" data-photo="${p.id}" aria-label="打开${esc(p.name)}"><img src="${esc(p.src)}" alt="${esc(p.name)}"></button>`).join('')}</div><div class="notice">剧情图片只在你查看并保存后出现。你自己添加的图片仍只保存在当前浏览器中，不会上传。</div></div></div>`;$('#upload-photo').onclick=()=>$('#photo-upload').click();JapanStory.bindAlbum(screen);screen.querySelectorAll('[data-art]').forEach(b=>b.onclick=()=>showModal(scene(b.dataset.art)));screen.querySelectorAll('[data-photo]').forEach(b=>b.onclick=()=>{const p=state.photos.find(x=>x.id===b.dataset.photo);showModal(`<h3>${esc(p.name)}</h3><img class="preview-image" src="${esc(p.src)}" alt="${esc(p.name)}"><button class="danger" id="delete-photo">从相册中删除</button>`);$('#delete-photo').onclick=()=>{state.photos=state.photos.filter(x=>x.id!==p.id);persist();$('#modal').close();render('album');};});}
