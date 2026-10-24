@@ -298,14 +298,70 @@ function renderLysnHome(){
  bindShared();
  screen.querySelectorAll('[data-lysn-sub]').forEach(b=>b.onclick=()=>{
   const who=b.dataset.lysnSub;
-  customApp=true;view='chat';
-  // 跳转到对应的聊天
-  state.active = who==='seulgi' ? state.profiles.find(p=>p.name==='涩琪')?.id || state.profiles[0].id : state.profiles.find(p=>p.name==='Irene')?.id || state.profiles[0].id;
-  render('chat');
+  renderLysnBubbleChat(who);
  });
  screen.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>render(b.dataset.view));
 }
 function renderLysnChats(){customApp=true;view='home';renderChatList();}
+function renderLysnBubbleChat(who){
+  const isSeulgi = who === 'seulgi';
+  const name = isSeulgi ? '깡스루기 🐻' : '주현이 🐰';
+  const avatar = isSeulgi ? 'https://aka.doubaocdn.com/s/WAFdPSClGb' : 'https://aka.doubaocdn.com/s/PgSnumfXMB';
+  const messages = isSeulgi ? [
+    {type: 'artist', korean: '뚱뚱 생각난다니까', translation: '说常常会想起。', time: '오후 09:09'},
+    {type: 'user', text: '你和珠泫姐姐去日本的时候有什么好玩的吗？', time: '오후 09:10'},
+    {type: 'artist', korean: '나 갈치 뼈 잘 발라내', translation: '我先把带鱼的骨头剔掉。', time: '오후 09:11'},
+    {type: 'artist', korean: '좀 발라줘... 꽤 귀찮아 이거...🥺', translation: '帮我涂一点…… 这个挺麻烦的……🥺', time: '오후 09:11'},
+    {type: 'artist', korean: 'ㅋㅋㅋㅋㅋㅋ다들 다정하네 정말🥺🥺', translation: '哈哈哈大家真是太贴心了🥺🥺', time: '오후 09:12'},
+    {type: 'user', text: '왜 너랑 주현이 일본 갔을 때 분위기가 차가웠어? 둘이 싸웠어?', time: '오후 09:12'}
+  ] : [
+    {type: 'artist', korean: '이거라도....', translation: '至少这个……', time: '오후 04:40'},
+    {type: 'artist', korean: '나에게 첫 승요를 안겨준', translation: '给我带来第一次胜利的', time: '오후 04:41'},
+    {type: 'artist', korean: '할 수 있는 거 다~~~하고 응원했어', translation: '我把能做的都了~~~，为你加油了', time: '오후 04:45'}
+  ];
+  screen.innerHTML=`<div class="bubble-chat">
+    <header class="bubble-header">
+      <button data-view="lysn" aria-label="返回">‹</button>
+      <strong>${name}</strong>
+      <div>
+        <button>🔍</button>
+        <button>⋯</button>
+      </div>
+    </header>
+    <div class="bubble-sub">bubble 💜 + 400</div>
+    <div class="bubble-messages">
+      ${messages.map(msg => msg.type === 'artist' ? `
+        <div class="bubble-msg artist">
+          <div class="bubble-avatar">
+            <img src="${avatar}" alt="">
+            <span class="bubble-artist-tag">ARTIST</span>
+          </div>
+          <div class="bubble-bubble-wrap">
+            <div class="bubble-bubble artist-bubble">
+              <p class="bubble-korean">${msg.korean}</p>
+              <p class="bubble-translation">${msg.translation}</p>
+            </div>
+            <small class="bubble-time">${msg.time}</small>
+          </div>
+        </div>
+      ` : `
+        <div class="bubble-msg user">
+          <div class="bubble-bubble user-bubble">
+            <p>${msg.text}</p>
+          </div>
+          <small class="bubble-time">${msg.time}</small>
+        </div>
+      `).join('')}
+    </div>
+    <div class="bubble-input">
+      <input type="text" placeholder="메시지를 입력하세요">
+      <button>😊</button>
+      <button>➤</button>
+    </div>
+  </div>`;
+  bindShared();
+  screen.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>render(b.dataset.view));
+}
 function renderWeverse(){JapanStory.open('weverse',storyContext());}
 function appHeader(title,subtitle,buttons=''){return `<header class="kt-header"><div><h2>${esc(title)}</h2><small>${esc(subtitle)}</small></div><div class="head-right">${buttons}</div></header>`;}
 function searchButton(){return `<button class="icon-button" id="toggle-search" aria-label="搜索">${uiIcon('search')}</button>`;}
