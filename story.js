@@ -144,24 +144,20 @@
   }
   function currentchat() {
     // 互动式聊天：一步步推进
-    // step 0: 刚开始，只显示第一句
-    // step 1: 玩家发了"嗯，刚按完回来"
-    // step 2: 玩家发了"好"
-    // step 3: 玩家发了"好一点了，没刚才那么紧"
-    // step 4: 玩家发了"好啊"，第一章结束
+    // 福冈当晚开场：按摩后的关心，简短交流
     const step = state.chapter.step || 0;
     const lines = [];
     
     // 按步骤显示对话
     if(step >= 0) lines.push({role:'them',text:'去按了吗？'});
     if(step >= 1) lines.push({role:'me',text:'嗯，刚按完回来'});
-    if(step >= 1) lines.push({role:'them',text:'先休息一下'});
-    if(step >= 2) lines.push({role:'me',text:'好'});
-    if(step >= 2) lines.push({role:'them',text:'按完好点了吗？'});
-    if(step >= 3) lines.push({role:'me',text:'好一点了，没刚才那么紧'});
-    if(step >= 3) lines.push({role:'them',text:'还想出去走走吗？'});
-    if(step >= 3) lines.push({role:'them',text:'就附近，不走远'});
-    if(step >= 4) lines.push({role:'me',text:'好啊'});
+    if(step >= 1) lines.push({role:'them',text:'先休息一下，肩还紧吗？'});
+    if(step >= 2) lines.push({role:'me',text:'好一点了，没刚才那么硬了'});
+    if(step >= 2) lines.push({role:'them',text:'那就好。吃饭了吗？'});
+    if(step >= 3) lines.push({role:'me',text:'还没，不太饿'});
+    if(step >= 3) lines.push({role:'them',text:'等舒服点了再吃一点，别空着肚子睡'});
+    if(step >= 4) lines.push({role:'me',text:'知道了'});
+    if(step >= 4) lines.push({role:'them',text:'附近走走吗？就楼下便利店买点喝的，不走远'});
     
     // 信息框预设回复
     let composer = '';
@@ -173,19 +169,19 @@
     </div>`;
     else if(step === 1) composer = `<div class="kctalk-input-bar">
       <div class="kctalk-input-area">
-        <input type="text" value="好" readonly>
+        <input type="text" value="好一点了，没刚才那么硬了" readonly>
       </div>
       <button class="kctalk-send-btn" data-next-step="2">전송</button>
     </div>`;
     else if(step === 2) composer = `<div class="kctalk-input-bar">
       <div class="kctalk-input-area">
-        <input type="text" value="好一点了，没刚才那么紧" readonly>
+        <input type="text" value="还没，不太饿" readonly>
       </div>
       <button class="kctalk-send-btn" data-next-step="3">전송</button>
     </div>`;
     else if(step === 3) composer = `<div class="kctalk-input-bar">
       <div class="kctalk-input-area">
-        <input type="text" value="好啊" readonly>
+        <input type="text" value="知道了" readonly>
       </div>
       <button class="kctalk-send-btn" data-next-step="4">전송</button>
     </div>`;
@@ -202,7 +198,7 @@
           </div>
           <button class="kctalk-more-btn">≡</button>
         </header>
-        <div class="kctalk-date-divider">9월 19일</div>
+        <div class="kctalk-date-divider">9월 19일 · 福冈首场结束以后</div>
         <div class="kctalk-messages">
           ${lines.map(line => `
             <div class="kctalk-message ${line.role}">
