@@ -195,7 +195,7 @@ const thread=threads[smsThread]||threads.roaming;
 screen.innerHTML=`<div class='ios-native-app nf-extra'><header class='nf-extra-head'><button data-view='sms' aria-label='返回信息列表'>‹</button><strong>${thread.name}</strong><span>···</span></header><div class='nf-extra-scroll nf-sms-conversation'>${thread.body}</div></div>`;
 bindShared();
 }
-function renderYouTube(){JapanStory.open('youtube',storyContext());}
+function renderYouTube(){window.youtubeChannel='feed';window.youtubeVideo='';JapanStory.open('youtube',storyContext());}
 function renderInstagram(){JapanStory.open('instagram',storyContext());}
 function renderLysn(){customApp=true;view='lysn-home';renderLysnHome();}
 function renderLysnHome(){
