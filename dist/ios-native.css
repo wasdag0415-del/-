@@ -1069,3 +1069,31 @@ body {
   font-size: 12px;
   opacity: 0.7;
 }
+
+/* 上滑解锁 */
+.ios-lock {
+  touch-action: none;
+  overflow: hidden;
+}
+.ios-lock-content {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.ios-lock.dragging .ios-lock-content {
+  transition: none;
+}
+.ios-slide-hint {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.8);
+  font-size: 15px;
+  font-weight: 500;
+  animation: slideHint 2s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes slideHint {
+  0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.8; }
+  50% { transform: translateX(-50%) translateY(-10px); opacity: 1; }
+}
