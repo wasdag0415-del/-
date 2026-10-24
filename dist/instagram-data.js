@@ -706,6 +706,27 @@ window.InstagramArchiveData={
       ]
     },
     {
+      "id": "sg-250804",
+      "owner": "seulgi",
+      "account": "hi_sseulgi",
+      "date": "2025-08-04",
+      "time": "22:15",
+      "kind": "日常",
+      "title": "胶片自拍",
+      "caption": "🌙",
+      "translation": "🌙",
+      "summary": "涩琪的胶片风自拍。",
+      "url": "https://www.instagram.com/p/sg250804/",
+      "archive": null,
+      "related": ["seulgi"],
+      "images": [
+        {
+          "src": "https://aka.doubaocdn.com/s/ugrQlpNgK7",
+          "alt": "涩琪 胶片自拍"
+        }
+      ]
+    },
+    {
       "id": "sg-250805",
       "owner": "seulgi",
       "account": "hi_sseulgi",
