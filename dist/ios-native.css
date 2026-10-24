@@ -210,31 +210,60 @@
   text-shadow: 0 1px 8px rgba(0,0,0,.4);
 }
 
-/* 上滑解锁 */
-.phone-screen[data-view="lock"] .ios-lock {
-  touch-action: none;
-  cursor: grab;
-}
-.phone-screen[data-view="lock"] .ios-lock.dragging {
-  cursor: grabbing;
-}
-.phone-screen[data-view="lock"] .ios-lock-content {
-  transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.35s ease;
-  will-change: transform;
-}
-.phone-screen[data-view="lock"] .ios-swipe-hint {
+/* 滑动解锁 */
+.phone-screen[data-view="lock"] .ios-slide-unlock {
   position: absolute;
-  bottom: 100px;
+  bottom: 90px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 15px;
-  color: rgba(255,255,255,.7);
-  text-shadow: 0 1px 8px rgba(0,0,0,.3);
-  animation: swipe-hint 2s ease-in-out infinite;
+  width: 260px;
 }
-@keyframes swipe-hint {
-  0%, 100% { transform: translateX(-50%) translateY(0); opacity: .7; }
-  50% { transform: translateX(-50%) translateY(-8px); opacity: 1; }
+.phone-screen[data-view="lock"] .ios-slide-track {
+  position: relative;
+  height: 52px;
+  border-radius: 26px;
+  background: rgba(255,255,255,.15);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  --slide-progress: 0;
+}
+.phone-screen[data-view="lock"] .ios-slide-track.dragging {
+  background: rgba(255,255,255,.25);
+}
+.phone-screen[data-view="lock"] .ios-slide-text {
+  font-size: 16px;
+  color: rgba(255,255,255,.8);
+  text-shadow: 0 1px 8px rgba(0,0,0,.3);
+  animation: slide-hint 2s ease-in-out infinite;
+  opacity: calc(1 - var(--slide-progress) * 2);
+}
+@keyframes slide-hint {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(8px); }
+}
+.phone-screen[data-view="lock"] .ios-slide-thumb {
+  position: absolute;
+  left: 4px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #333;
+  cursor: grab;
+  transition: transform 0.2s ease;
+  box-shadow: 0 2px 10px rgba(0,0,0,.2);
+  user-select: none;
+}
+.phone-screen[data-view="lock"] .ios-slide-thumb:active {
+  cursor: grabbing;
+  transform: scale(1.05);
 }
 
 /* 锁屏左下 SOS / 右下相机：换成原生圆形图标按钮 */
@@ -817,172 +846,226 @@ body {
   border-radius: 14px;
 }
 
-/* ===== 苹果原生音乐app样式 ===== */
-.ios-music-scroll {
-  padding: 12px 16px 100px;
-  background: #f2f2f7;
-  min-height: 100%;
+/* ========== LYSN 原生风格 ========== */
+.phone-screen[data-product="lysn"] {
+  background: #f8f8f8;
 }
-
-.ios-music-now-playing {
+.lysn-main {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 12px;
-  margin-bottom: 24px;
+  flex-direction: column;
+  height: 100%;
+  background: #f8f8f8;
 }
-
-.ios-music-art {
-  width: 48px;
-  height: 48px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #ff6b6b, #ffd93d);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: 700;
-  font-size: 14px;
-}
-
-.ios-music-info {
-  flex: 1;
-}
-
-.ios-music-info strong {
-  display: block;
-  font-size: 15px;
-  color: #000000;
-  font-weight: 600;
-}
-
-.ios-music-info small {
-  display: block;
-  font-size: 13px;
-  color: #8e8e93;
-}
-
-.ios-music-play-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: #007aff;
-  color: white;
-  border: none;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.ios-music-section-title {
+.lysn-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 4px 8px;
+  padding: 16px 20px;
+  padding-top: 50px;
+  background: #fff;
 }
-
-.ios-music-section-title h2 {
+.lysn-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.lysn-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #666;
+}
+.lysn-profile strong {
+  display: block;
+  font-size: 16px;
+  color: #1a1a1a;
+}
+.lysn-profile small {
+  font-size: 12px;
+  color: #8e8e93;
+}
+.lysn-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+.lysn-greeting {
   font-size: 22px;
   font-weight: 700;
-  color: #000000;
+  color: #1a1a1a;
+  margin: 0 0 20px;
+  line-height: 1.4;
 }
-
-.ios-music-section-title button {
-  background: none;
-  border: none;
-  color: #007aff;
-  font-size: 15px;
-  cursor: pointer;
-}
-
-.ios-music-library {
-  background: #ffffff;
-  border-radius: 12px;
+.lysn-subscriptions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   margin-bottom: 24px;
-  overflow: hidden;
 }
-
-.ios-music-lib-row {
+.lysn-card {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  border-bottom: 0.5px solid #e5e5ea;
+  gap: 14px;
+  padding: 16px;
+  background: #fff;
+  border-radius: 16px;
+  border: none;
+  text-align: left;
+  position: relative;
 }
-
-.ios-music-lib-row:last-child {
-  border-bottom: none;
-}
-
-.ios-music-lib-row > span:first-child {
-  font-size: 18px;
-}
-
-.ios-music-lib-row strong {
-  flex: 1;
-  font-size: 16px;
-  color: #000000;
-  font-weight: 400;
-}
-
-.ios-music-lib-row small {
-  font-size: 15px;
-  color: #8e8e93;
-}
-
-.ios-music-playlist {
-  background: #ffffff;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.ios-music-row {
+.lysn-card-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 10px 16px;
-  border-bottom: 0.5px solid #e5e5ea;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 22px;
+  flex-shrink: 0;
 }
-
-.ios-music-row:last-child {
-  border-bottom: none;
-}
-
-.ios-music-row-num {
-  width: 24px;
-  text-align: center;
-  font-size: 15px;
-  color: #8e8e93;
-  font-weight: 500;
-}
-
-.ios-music-row.playing .ios-music-row-num {
-  color: #fc3c44;
-}
-
-.ios-music-row-info {
+.lysn-card-info {
   flex: 1;
+  min-width: 0;
 }
-
-.ios-music-row-info strong {
+.lysn-card-info strong {
   display: block;
   font-size: 16px;
-  color: #000000;
-  font-weight: 400;
+  color: #1a1a1a;
+  margin-bottom: 2px;
 }
-
-.ios-music-row.playing .ios-music-row-info strong {
-  color: #fc3c44;
-}
-
-.ios-music-row-info small {
+.lysn-card-info small {
+  font-size: 12px;
+  color: #8e8e93;
   display: block;
+  margin-bottom: 4px;
+}
+.lysn-card-info p {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lysn-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background: #ff3b30;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+}
+.lysn-section {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+}
+.lysn-section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.lysn-section-title strong {
+  font-size: 15px;
+  color: #1a1a1a;
+}
+.lysn-section-title button {
   font-size: 13px;
   color: #8e8e93;
+  background: none;
+  border: none;
+}
+.lysn-news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.lysn-news-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.lysn-news-item .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff3b30;
+  flex-shrink: 0;
+}
+.lysn-news-item p {
+  flex: 1;
+  font-size: 14px;
+  color: #1a1a1a;
+  margin: 0;
+}
+.lysn-news-item small {
+  font-size: 12px;
+  color: #8e8e93;
+}
+.lysn-tabs {
+  display: flex;
+  background: #fff;
+  border-top: 1px solid #eee;
+  padding: 8px 0 20px;
+}
+.lysn-tabs button {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  font-size: 11px;
+  color: #8e8e93;
+}
+.lysn-tabs button.active {
+  color: #ff6b6b;
+}
+.lysn-tabs button span {
+  font-size: 20px;
 }
 
-.ios-music-row-dur {
-  font-size: 15px;
-  color: #8e8e93;
+/* 天气小组件 */
+.ios-home-top .ios-weather-widget {
+  display: flex;
+  flex-direction: column;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  text-align: left;
+  width: 48%;
+}
+.ios-home-top .ios-weather-widget small {
+  font-size: 12px;
+  opacity: 0.8;
+  margin-bottom: 4px;
+}
+.ios-home-top .ios-weather-widget strong {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.ios-home-top .ios-weather-widget span {
+  font-size: 12px;
+  opacity: 0.7;
 }
