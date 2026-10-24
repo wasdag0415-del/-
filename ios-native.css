@@ -1,0 +1,1712 @@
+/* ============================================================
+   ios-native.css — 原生 iOS 17/18 视觉覆盖层
+   只做视觉修正，不改 DOM / 不改 JS 剧情逻辑。
+   加载顺序：本文件最后加载，覆盖既有样式。
+   ============================================================ */
+
+/* ---------- 全局字体栈：更贴近 SF Pro ---------- */
+.ios-lock, .ios-home, .ios-native-app,
+.phone-screen {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+               "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ============================================================
+   1. 状态栏：信号 / WiFi / 电池 全部换成原生图形
+   ============================================================ */
+
+/* 蜂窝信号：隐藏字符 ▂▄▆，用 SVG 四格信号 */
+.phone-screen .status-bar .signal {
+  font-size: 0;
+  width: 18px;
+  height: 12px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 18px 12px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 12'><rect x='0' y='8' width='3' height='4' rx='0.6' fill='%23fff'/><rect x='5' y='5.3' width='3' height='6.7' rx='0.6' fill='%23fff'/><rect x='10' y='2.6' width='3' height='9.4' rx='0.6' fill='%23fff'/><rect x='15' y='0' width='3' height='12' rx='0.6' fill='%23fff'/></svg>");
+}
+/* 浅色背景页面里状态栏是深色图标 */
+.phone-screen:not([data-view="lock"]):not([data-view="phonehome"]) .status-bar .signal {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 12'><rect x='0' y='8' width='3' height='4' rx='0.6' fill='%23000'/><rect x='5' y='5.3' width='3' height='6.7' rx='0.6' fill='%23000'/><rect x='10' y='2.6' width='3' height='9.4' rx='0.6' fill='%23000'/><rect x='15' y='0' width='3' height='12' rx='0.6' fill='%23000'/></svg>");
+}
+
+/* 第二个图标原本是 ◔ 字符 → WiFi */
+.phone-screen .status-bar .status-icons > span:nth-child(2) {
+  font-size: 0;
+  width: 16px;
+  height: 12px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 16px 12px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 12'><path d='M8 11.6a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5zM5.4 8.6a3.7 3.7 0 0 1 5.2 0l1.3-1.55a5.6 5.6 0 0 0-7.8 0L5.4 8.6zM2.9 5.9a7.3 7.3 0 0 1 10.2 0l1.3-1.55a9.3 9.3 0 0 0-12.8 0L2.9 5.9z' fill='%23fff'/></svg>");
+}
+.phone-screen:not([data-view="lock"]):not([data-view="phonehome"]) .status-bar .status-icons > span:nth-child(2) {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 12'><path d='M8 11.6a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5zM5.4 8.6a3.7 3.7 0 0 1 5.2 0l1.3-1.55a5.6 5.6 0 0 0-7.8 0L5.4 8.6zM2.9 5.9a7.3 7.3 0 0 1 10.2 0l1.3-1.55a9.3 9.3 0 0 0-12.8 0L2.9 5.9z' fill='%23000'/></svg>");
+}
+
+/* 电池：更薄、更圆、原生描边 */
+.phone-screen .status-bar .battery {
+  width: 22px;
+  height: 11px;
+  border-radius: 3.5px;
+  border: 1px solid rgba(255,255,255,.45);
+  margin-right: 0;
+  padding: 1px;
+}
+.phone-screen .status-bar .battery:after {
+  inset: 1px;
+  border-radius: 1.5px;
+  background: #fff;
+}
+.phone-screen .status-bar .battery:before {
+  right: -3px;
+  top: 3px;
+  width: 2px;
+  height: 4px;
+  border-radius: 0 1px 1px 0;
+  background: rgba(255,255,255,.45);
+}
+.phone-screen:not([data-view="lock"]):not([data-view="phonehome"]) .status-bar .battery {
+  border-color: rgba(0,0,0,.4);
+}
+.phone-screen:not([data-view="lock"]):not([data-view="phonehome"]) .status-bar .battery:after {
+  background: #000;
+}
+.phone-screen:not([data-view="lock"]):not([data-view="phonehome"]) .status-bar .battery:before {
+  background: rgba(0,0,0,.4);
+}
+
+/* 灵动岛：摄像头孔颜色修正（原本偏绿） */
+.phone-screen .island {
+  background: #000;
+}
+.phone-screen .island:after {
+  background: #1a1a1c;
+  box-shadow: inset 0 0 0 1px #0a0a0c;
+}
+
+/* 状态栏时间：原生字重 600，字号略调 */
+.phone-screen .status-bar > #status-time {
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: -.2px;
+}
+
+/* ============================================================
+   2. 锁屏：大时钟 / 日期 / 遗失模式卡片
+   ============================================================ */
+
+/* 锁屏大时钟：原生 iOS 17 是 SF Pro Display 超粗巨大时钟 */
+.phone-screen[data-view="lock"] .ios-lock-time {
+  font-size: 96px;
+  font-weight: 600;
+  letter-spacing: -3px;
+  line-height: 1;
+  margin-top: 2px;
+  color: #fff;
+  text-shadow: 0 2px 24px rgba(0,0,0,.35);
+}
+/* 日期：原生在大时钟上方，白色 semibold */
+.phone-screen[data-view="lock"] .ios-lock-date {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: .2px;
+  margin-top: 4px;
+  color: #fff;
+}
+
+/* 「S 的 iPhone · 遗失模式」胶囊 → 去掉边框/背景，变成原生小字标识 */
+.phone-screen[data-view="lock"] .ios-lock-owner {
+  margin-top: 14px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .3px;
+  color: rgba(255,255,255,.85);
+  background: rgba(0,0,0,.22);
+  border: 0;
+  padding: 6px 14px;
+  border-radius: 14px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* 遗失模式蓝色卡片：更贴近原生通知毛玻璃 */
+.phone-screen[data-view="lock"] .ios-lost-card {
+  margin: 26px 0 10px;
+  padding: 13px 15px;
+  border-radius: 18px;
+  background: rgba(28,28,30,.55);
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+}
+.phone-screen[data-view="lock"] .ios-lost-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: linear-gradient(145deg, #5ac8fa, #0a84ff);
+  box-shadow: none;
+}
+.phone-screen[data-view="lock"] .ios-lost-card small {
+  font-size: 11px;
+  letter-spacing: .2px;
+  text-transform: none;
+  opacity: .55;
+}
+.phone-screen[data-view="lock"] .ios-lost-card strong {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 2px 0 4px;
+}
+.phone-screen[data-view="lock"] .ios-lost-card p {
+  font-size: 12px;
+  line-height: 1.45;
+  opacity: .9;
+}
+
+/* 通知卡片：原生 iOS 17 通知堆叠样式 */
+.phone-screen[data-view="lock"] .ios-lock-notifications {
+  margin-top: 14px;
+  gap: 10px;
+}
+.phone-screen[data-view="lock"] .ios-lock-note {
+  border-radius: 18px;
+  padding: 12px 14px;
+  background: rgba(245,245,247,.72);
+  border: 0;
+  box-shadow: 0 8px 24px rgba(0,0,0,.18);
+  backdrop-filter: blur(28px) saturate(1.5);
+  -webkit-backdrop-filter: blur(28px) saturate(1.5);
+}
+.phone-screen[data-view="lock"] .ios-lock-note .mini-app {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+}
+.phone-screen[data-view="lock"] .ios-lock-note strong {
+  font-size: 13px;
+  font-weight: 600;
+}
+.phone-screen[data-view="lock"] .ios-lock-note b {
+  font-size: 12px;
+  font-weight: 400;
+  color: #3a3a3c;
+  white-space: normal;
+  margin-top: 3px;
+}
+
+/* 「打开手机」按钮：去掉文字，只留原生上滑小箭头提示 */
+.phone-screen[data-view="lock"] .ios-unlock {
+  font-size: 0;
+  gap: 0;
+  margin-bottom: 6px;
+}
+.phone-screen[data-view="lock"] .ios-unlock span {
+  font-size: 18px;
+  color: rgba(255,255,255,.9);
+  text-shadow: 0 1px 8px rgba(0,0,0,.4);
+}
+
+/* 滑动解锁 */
+.phone-screen[data-view="lock"] .ios-slide-unlock {
+  position: absolute;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 260px;
+}
+.phone-screen[data-view="lock"] .ios-slide-track {
+  position: relative;
+  height: 52px;
+  border-radius: 26px;
+  background: rgba(255,255,255,.15);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  --slide-progress: 0;
+}
+.phone-screen[data-view="lock"] .ios-slide-track.dragging {
+  background: rgba(255,255,255,.25);
+}
+.phone-screen[data-view="lock"] .ios-slide-text {
+  font-size: 16px;
+  color: rgba(255,255,255,.8);
+  text-shadow: 0 1px 8px rgba(0,0,0,.3);
+  animation: slide-hint 2s ease-in-out infinite;
+  opacity: calc(1 - var(--slide-progress) * 2);
+}
+@keyframes slide-hint {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(8px); }
+}
+.phone-screen[data-view="lock"] .ios-slide-thumb {
+  position: absolute;
+  left: 4px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #333;
+  cursor: grab;
+  transition: transform 0.2s ease;
+  box-shadow: 0 2px 10px rgba(0,0,0,.2);
+  user-select: none;
+}
+.phone-screen[data-view="lock"] .ios-slide-thumb:active {
+  cursor: grabbing;
+  transform: scale(1.05);
+}
+
+/* 锁屏左下 SOS / 右下相机：换成原生圆形图标按钮 */
+.phone-screen[data-view="lock"] .ios-lock-tools {
+  bottom: 28px;
+  left: 24px;
+  right: 24px;
+}
+.phone-screen[data-view="lock"] .ios-lock-tools button {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(30,30,32,.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  font-size: 0;
+  position: relative;
+  border: 0;
+}
+/* 左：手电筒图标 */
+.phone-screen[data-view="lock"] .ios-lock-tools button:nth-child(1):before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 20px;
+  height: 22px;
+  background: no-repeat center/contain url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7.5 2h9l1.2 3.5H6.3L7.5 2z'/><rect x='9.7' y='5.5' width='4.6' height='13.5' rx='1.8'/><rect x='9.7' y='12' width='4.6' height='3' fill='%23111'/></svg>");
+}
+/* 右：相机图标 */
+.phone-screen[data-view="lock"] .ios-lock-tools button:nth-child(2):before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 22px;
+  height: 20px;
+  background: no-repeat center/contain url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 22' fill='white'><path d='M9 4l-1.2-2.2C7.5 1.2 6.8 1 6 1H5c-1 0-1.8.6-2 1.5L2.5 4H1.5C.7 4 0 4.7 0 5.5v13c0 .8.7 1.5 1.5 1.5h21c.8 0 1.5-.7 1.5-1.5v-13c0-.8-.7-1.5-1.5-1.5H21.5L21 2.5C20.8 1.6 20 1 19 1h-1c-.8 0-1.5.2-1.8.8L15 4H9zm3 12.5a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9zm0-2a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z'/></svg>");
+}
+
+/* ============================================================
+   3. 密码键盘界面
+   ============================================================ */
+
+/* 密码点：原生是实心小圆点（未输入半透明白，输入后纯白） */
+.phone-screen[data-view="passcode"] .ios-passcode-dots {
+  gap: 16px;
+  margin: 22px 0 12px;
+}
+.phone-screen[data-view="passcode"] .ios-passcode-dots i {
+  width: 11px;
+  height: 11px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,.35);
+}
+.phone-screen[data-view="passcode"] .ios-passcode-dots i.filled {
+  background: #fff;
+  box-shadow: 0 0 6px rgba(255,255,255,.4);
+}
+
+/* 数字键：原生按键更透、数字细体 */
+.phone-screen[data-view="passcode"] .ios-keypad button {
+  background: rgba(255,255,255,.12);
+  border: 0;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.phone-screen[data-view="passcode"] .ios-keypad button:active {
+  background: rgba(255,255,255,.32);
+}
+.phone-screen[data-view="passcode"] .ios-keypad button b {
+  font-size: 27px;
+  font-weight: 300;
+  letter-spacing: 0;
+}
+.phone-screen[data-view="passcode"] .ios-keypad button small {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  font-weight: 500;
+  color: rgba(255,255,255,.7);
+}
+
+/* 删除键：原生是 ⌫ 带叉圆圈图标 */
+.phone-screen[data-view="passcode"] .ios-keypad [data-passcode-delete] {
+  background: transparent;
+  font-size: 0;
+}
+.phone-screen[data-view="passcode"] .ios-keypad [data-passcode-delete]:before {
+  content: "";
+  width: 26px;
+  height: 26px;
+  background: no-repeat center/contain url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M15.5 3H7a2 2 0 0 0-1.7 1L1 12l4.3 8c.4.6 1 1 1.7 1h8.5a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-1.3 12.3a1 1 0 1 1-1.4 1.4L11 14.4l-1.8 1.8a1 1 0 1 1-1.4-1.4L9.6 13l-1.8-1.8a1 1 0 1 1 1.4-1.4l1.8 1.8 1.8-1.8a1 1 0 1 1 1.4 1.4L12.4 13l1.8 1.8z'/></svg>");
+}
+
+/* 密码顶部小锁图标：原本是小方块，换成原生锁 */
+.phone-screen[data-view="passcode"] .ios-passcode-lock {
+  font-size: 0;
+  width: 28px;
+  height: 28px;
+  background: no-repeat center/contain url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M17 9V7a5 5 0 0 0-10 0v2H5.5A1.5 1.5 0 0 0 4 10.5v8A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 18.5 9H17zm-7-2a2 2 0 1 1 4 0v2h-4V7z'/></svg>");
+}
+
+/* 「输入密码」标题字重 */
+.phone-screen[data-view="passcode"] .ios-passcode h2 {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: .2px;
+}
+.phone-screen[data-view="passcode"] .ios-passcode p {
+  font-size: 13px;
+  opacity: .6;
+  margin-top: 5px;
+}
+
+/* ============================================================
+   4. 主屏幕
+   ============================================================ */
+
+/* 去掉原生不存在的两条标识：伪元素黑条 + 底部 caption */
+.phone-screen[data-view="phonehome"] .ios-home-content:before {
+  display: none !important;
+}
+.phone-screen .ios-sim-caption {
+  display: none !important;
+}
+
+/* 应用图标圆角更接近 iOS（22% 圆角）+ 投影 + 高光 */
+.phone-screen[data-view="phonehome"] .ios-app-icon {
+  border-radius: 22%;
+  box-shadow: 0 4px 12px rgba(0,0,0,.15), inset 0 1px 1px rgba(255,255,255,.2);
+}
+/* 图标按下效果 */
+.phone-screen[data-view="phonehome"] .ios-app-button:active .ios-app-icon {
+  transform: scale(0.92);
+  transition: transform .1s;
+}
+/* Dock 图标 */
+.phone-screen[data-view="phonehome"] .ios-dock .ios-app-icon {
+  border-radius: 22%;
+  box-shadow: 0 4px 12px rgba(0,0,0,.15), inset 0 1px 1px rgba(255,255,255,.2);
+}
+
+/* Dock 毛玻璃更透 */
+.phone-screen[data-view="phonehome"] .ios-dock {
+  background: rgba(255,255,255,.22);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 28px;
+}
+
+/* 小组件圆角微调 */
+.phone-screen[data-view="phonehome"] .ios-widget-calendar,
+.phone-screen[data-view="phonehome"] .ios-widget-pann {
+  border-radius: 22px;
+}
+
+/* ============================================================
+   6. 壁纸：iOS 原生默认流体渐变
+   ============================================================ */
+
+/* 锁屏壁纸：比心双人照，上方压暗让白色时钟清晰 */
+.phone-screen .ios-lock-depth {
+  background: url("https://aka.doubaocdn.com/s/XjYkOFmMTt") center top / cover no-repeat !important;
+  filter: none;
+}
+.phone-screen .ios-lock-depth:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.15) 25%, transparent 50%, rgba(0,0,0,.2) 100%) !important;
+}
+
+/* 主屏幕壁纸：涩琪镜子自拍 */
+.phone-screen .ios-wallpaper {
+  background: url("https://aka.doubaocdn.com/s/Wxdy2UTrVC") center center / cover no-repeat !important;
+  filter: none;
+}
+
+/* 去掉 story.css 加的竖条纹装饰 */
+.phone-screen .ios-lock-depth:after,
+.phone-screen .ios-wallpaper:after {
+  display: none !important;
+}
+
+/* ============================================================
+   5. Home Indicator：原生细白横条
+   ============================================================ */
+.phone-screen .home-indicator {
+  height: 5px;
+  width: 135px;
+  border-radius: 3px;
+  background: #fff;
+  opacity: .9;
+}
+.phone-screen:not([data-view="lock"]):not([data-view="phonehome"]):not([data-view="passcode"]) .home-indicator {
+  background: rgba(0,0,0,.85);
+}
+
+/* ============================================================
+   7. 学参考站：金属中框 + 状态栏反色 + 切换动画
+   ============================================================ */
+
+/* 手机中框：双层 shadow 模拟金属边框（深灰外框 + 浅灰高光边） */
+@media(min-width:791px){
+  .phone {
+    background: #1c1c1e !important;
+    padding: 3px !important;
+    border: 0 !important;
+    border-radius: 55px !important;
+    box-shadow:
+      0 0 0 2px #3a3a3c,
+      0 0 0 4px #1c1c1e,
+      0 30px 80px -20px rgba(0,0,0,.5) !important;
+  }
+  .phone-screen {
+    border: 0 !important;
+    border-radius: 52px !important;
+  }
+  .phone:before, .phone:after {
+    background: #48484a !important;
+  }
+}
+
+/* 状态栏：在锁屏/主屏幕/密码页用 difference 自动反色 */
+.phone-screen[data-view="lock"] .status-bar,
+.phone-screen[data-view="phonehome"] .status-bar,
+.phone-screen[data-view="passcode"] .status-bar {
+  mix-blend-mode: difference;
+  color: #fff;
+}
+.phone-screen[data-view="lock"] .status-bar *,
+.phone-screen[data-view="phonehome"] .status-bar *,
+.phone-screen[data-view="passcode"] .status-bar * {
+  mix-blend-mode: difference;
+}
+
+/* 屏幕切换动画：去掉，避免卡 opacity */
+/*
+@keyframes native-screen-in {
+  from { opacity: 0; transform: scale(.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.phone-screen .screen > * {
+  animation: native-screen-in .25s ease-out forwards;
+}
+*/
+
+/* 密码键加大到 76px，数字 34px */
+.phone-screen[data-view="passcode"] .ios-keypad button {
+  width: 76px;
+  height: 76px;
+}
+.phone-screen[data-view="passcode"] .ios-keypad button b {
+  font-size: 32px;
+  font-weight: 400;
+}
+.phone-screen[data-view="passcode"] .ios-keypad {
+  grid-template-columns: repeat(3, 76px);
+  gap: 14px 24px;
+}
+
+/* Dock 更饱满：86px 高 + 30px 圆角 */
+.phone-screen[data-view="phonehome"] .ios-dock {
+  height: 86px;
+  border-radius: 30px;
+  align-items: center;
+}
+
+/* 灵动岛更大更圆 */
+.phone-screen .island {
+  width: 110px;
+  height: 32px;
+  border-radius: 16px;
+  top: 11px;
+}
+
+/* ============================================================
+   8. 纯黑沉浸模式：隐藏旁边所有叙事 UI，只留手机
+   ============================================================ */
+body {
+  background: #000 !important;
+}
+.workspace {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 0 !important;
+  gap: 0 !important;
+}
+.editorial,
+.side-note,
+.phone-caption,
+.orbit-label {
+  display: none !important;
+}
+.phone-stage {
+  margin: 0 auto;
+}
+
+/* ============================================================
+   9. 各 app 底部导航独立：切换时不残留
+   ============================================================ */
+.phone-screen .screen > * > .yt-bottom,
+.phone-screen .screen > * > .ia-bottom,
+.phone-screen .screen > * > .pann-bottom,
+.phone-screen .screen > * > .nf-bottom,
+.phone-screen .screen > * > nav:not(.nf-pann-topnav) {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+}
+/* home indicator 永远在最上层 */
+.phone-screen .home-indicator {
+  z-index: 50;
+}
+
+/* 论坛顶部 tab 切换明显化 */
+.phone-screen .nf-pann-topnav {
+  display: flex !important;
+  gap: 0;
+  background: #fff;
+  border-bottom: 1px solid #e5e5ea;
+  padding: 0 16px;
+}
+.phone-screen .nf-pann-topnav button {
+  flex: 1;
+  padding: 12px 8px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  font-size: 15px;
+  font-weight: 600;
+  color: #8e8e93;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.phone-screen .nf-pann-topnav button small {
+  font-size: 11px;
+  font-weight: 400;
+  color: #aeaeb2;
+}
+.phone-screen .nf-pann-topnav button.active {
+  color: #ff3b30;
+  border-bottom-color: #ff3b30;
+}
+.phone-screen .nf-pann-topnav button.active small {
+  color: #ff3b30;
+}
+
+/* ============================================================
+   iOS 26 — Liquid Glass 电话 & 短信界面
+   ============================================================ */
+
+/* ---------- 电话 App ---------- */
+.phone-screen .ios-phone-app {
+  background: linear-gradient(180deg, #f5f5f7 0%, #e8e8ed 100%);
+}
+
+/* 顶部大标题 — iOS 26 风格 */
+.phone-screen .ios-phone-title {
+  padding: 40px 20px 12px;
+}
+.phone-screen .ios-phone-title h1 {
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #000;
+}
+.phone-screen .ios-phone-title span {
+  font-size: 17px;
+  color: #007aff;
+  font-weight: 400;
+}
+
+/* 电话筛选标签 — 圆角胶囊形 */
+.phone-screen .ios-phone-tabs {
+  background: rgba(118, 118, 128, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 100px;
+  padding: 4px;
+  margin: 0 20px 16px;
+}
+.phone-screen .ios-phone-tabs button {
+  border-radius: 100px;
+  padding: 8px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+.phone-screen .ios-phone-tabs button.active {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+}
+
+/* 通话记录列表 — Liquid Glass 卡片 */
+.phone-screen .ios-call-list {
+  margin: 0 16px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border-radius: 20px;
+  overflow: hidden;
+}
+.phone-screen .ios-call-list > button {
+  padding: 14px 16px;
+  border-bottom: 0.5px solid rgba(60, 60, 67, 0.1);
+  background: transparent;
+}
+.phone-screen .ios-call-list > button:last-child {
+  border-bottom: none;
+}
+
+/* 通话头像 — 更大更圆 */
+.phone-screen .ios-call-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* 通话记录文字 — 更大 */
+.phone-screen .ios-call-list strong {
+  font-size: 16px;
+  font-weight: 500;
+}
+.phone-screen .ios-call-list small {
+  font-size: 13px;
+  color: #8e8e93;
+  margin-top: 2px;
+}
+.phone-screen .ios-call-list time {
+  font-size: 14px;
+  color: #8e8e93;
+}
+
+/* 电话底部标签栏 — 圆角胶囊 */
+.phone-screen .ios-phone-bottom {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border-top: 0.5px solid rgba(60, 60, 67, 0.1);
+  padding: 10px 20px 20px;
+}
+.phone-screen .ios-phone-bottom span {
+  font-size: 11px;
+  gap: 4px;
+}
+
+/* ---------- 短信 App ---------- */
+.phone-screen .nf-extra {
+  background: linear-gradient(180deg, #f5f5f7 0%, #e8e8ed 100%);
+}
+
+/* 短信顶部栏 — Liquid Glass */
+.phone-screen .nf-extra-head {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border-bottom: 0.5px solid rgba(60, 60, 67, 0.1);
+  padding: 50px 16px 12px;
+}
+.phone-screen .nf-extra-head button,
+.phone-screen .nf-extra-head span {
+  font-size: 17px;
+  color: #007aff;
+}
+.phone-screen .nf-extra-head strong {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+/* 短信列表行 — 更大更圆润 */
+.phone-screen .nf-sms-row {
+  padding: 14px 16px;
+  background: transparent;
+}
+.phone-screen .nf-sms-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 18px;
+  font-weight: 600;
+}
+.phone-screen .nf-sms-row strong {
+  font-size: 16px;
+  font-weight: 500;
+}
+.phone-screen .nf-sms-row small {
+  font-size: 14px;
+  color: #8e8e93;
+  margin-top: 2px;
+}
+.phone-screen .nf-sms-row time {
+  font-size: 14px;
+  color: #8e8e93;
+}
+
+/* 短信气泡 — iOS 26 更圆润 */
+.phone-screen .nf-sms-bubble {
+  border-radius: 22px;
+  padding: 12px 16px;
+  font-size: 15px;
+  line-height: 1.4;
+}
+.phone-screen .nf-sms-bubble.mine {
+  background: linear-gradient(135deg, #0a84ff 0%, #0066cc 100%);
+  color: white;
+}
+.phone-screen .nf-sms-date {
+  font-size: 12px;
+  color: #8e8e93;
+  font-weight: 500;
+}
+
+/* 短信对话区域背景 */
+.phone-screen .nf-sms-conversation {
+  background: linear-gradient(180deg, #f5f5f7 0%, #e8e8ed 100%);
+}
+
+/* ---------- 锁屏通知图标 ---------- */
+.phone-screen[data-view="lock"] .ios-lock-note .mini-app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* Pann 通知图标 — 红色背景 */
+.phone-screen[data-view="lock"] .ios-lock-note .mini-app:not(.findmy) {
+  background: linear-gradient(145deg, #ff4757, #e63946);
+  color: white;
+}
+
+/* ============================================================
+   苹果默认 App 图标
+   ============================================================ */
+
+/* 电话图标 — 苹果默认绿色渐变 */
+.phone-screen .ios-app-icon.phone {
+  background: linear-gradient(145deg, #63dc74, #19ab42) !important;
+  color: white !important;
+}
+
+.phone-screen .ios-app-icon.phone .ios-phone-mark {
+  background: white;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  transform: none;
+}
+
+.phone-screen .ios-app-icon.phone .ios-phone-mark:before {
+  display: none;
+}
+
+/* 备忘录图标 — 苹果默认黄色顶部+白色 */
+.phone-screen .ios-app-icon.notes,
+.phone-screen .ios-app-icon.notebook {
+  background: linear-gradient(#ffd60a 0 15%, #ffffff 15%);
+  color: #8e8e93;
+  border-radius: 14px;
+}
+
+/* 照片图标 — 苹果默认白色背景+彩虹花朵 */
+.phone-screen .ios-app-icon.photos {
+  background: #ffffff;
+  border-radius: 14px;
+}
+
+/* ========== LYSN 原生风格 ========== */
+.phone-screen[data-product="lysn"] {
+  background: #f8f8f8;
+}
+.lysn-main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #f8f8f8;
+}
+.lysn-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  padding-top: 50px;
+  background: #fff;
+}
+.lysn-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.lysn-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #666;
+}
+.lysn-profile strong {
+  display: block;
+  font-size: 16px;
+  color: #1a1a1a;
+}
+.lysn-profile small {
+  font-size: 12px;
+  color: #8e8e93;
+}
+.lysn-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+.lysn-greeting {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 20px;
+  line-height: 1.4;
+}
+.lysn-subscriptions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.lysn-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  background: #fff;
+  border-radius: 16px;
+  border: none;
+  text-align: left;
+  position: relative;
+}
+.lysn-card-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.lysn-card-info {
+  flex: 1;
+  min-width: 0;
+}
+.lysn-card-info strong {
+  display: block;
+  font-size: 16px;
+  color: #1a1a1a;
+  margin-bottom: 2px;
+}
+.lysn-card-info small {
+  font-size: 12px;
+  color: #8e8e93;
+  display: block;
+  margin-bottom: 4px;
+}
+.lysn-card-info p {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lysn-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background: #ff3b30;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+}
+.lysn-section {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+}
+.lysn-section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.lysn-section-title strong {
+  font-size: 15px;
+  color: #1a1a1a;
+}
+.lysn-section-title button {
+  font-size: 13px;
+  color: #8e8e93;
+  background: none;
+  border: none;
+}
+.lysn-news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.lysn-news-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.lysn-news-item .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff3b30;
+  flex-shrink: 0;
+}
+.lysn-news-item p {
+  flex: 1;
+  font-size: 14px;
+  color: #1a1a1a;
+  margin: 0;
+}
+.lysn-news-item small {
+  font-size: 12px;
+  color: #8e8e93;
+}
+.lysn-tabs {
+  display: flex;
+  background: #fff;
+  border-top: 1px solid #eee;
+  padding: 8px 0 20px;
+}
+.lysn-tabs button {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  font-size: 11px;
+  color: #8e8e93;
+}
+.lysn-tabs button.active {
+  color: #ff6b6b;
+}
+.lysn-tabs button span {
+  font-size: 20px;
+}
+
+/* 天气小组件 */
+.ios-home-top .ios-weather-widget {
+  display: flex;
+  flex-direction: column;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  text-align: left;
+  width: 48%;
+}
+.ios-home-top .ios-weather-widget small {
+  font-size: 12px;
+  opacity: 0.8;
+  margin-bottom: 4px;
+}
+.ios-home-top .ios-weather-widget strong {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.ios-home-top .ios-weather-widget span {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* 上滑解锁 */
+.ios-lock {
+  touch-action: none;
+  overflow: hidden;
+}
+.ios-lock-content {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.ios-lock.dragging .ios-lock-content {
+  transition: none;
+}
+.ios-slide-hint {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.8);
+  font-size: 15px;
+  font-weight: 500;
+  animation: slideHint 2s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes slideHint {
+  0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.8; }
+  50% { transform: translateX(-50%) translateY(-10px); opacity: 1; }
+}
+
+/* ========== Apple Music 原生风格 ========== */
+.ios-music-app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #f8f8f8;
+}
+.ios-music-body::-webkit-scrollbar {
+  display: none;
+}
+.ios-music-body {
+  scrollbar-width: none;
+}
+.ios-music-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  padding-top: 50px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+.ios-music-head strong {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+.ios-music-head button {
+  font-size: 17px;
+  color: #ff3b30;
+  background: none;
+  border: none;
+}
+.ios-music-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+.ios-music-now {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  background: #fff;
+  border-radius: 16px;
+  margin-bottom: 24px;
+}
+.ios-music-cover {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #fff;
+  flex-shrink: 0;
+}
+.ios-music-info {
+  flex: 1;
+}
+.ios-music-info strong {
+  display: block;
+  font-size: 16px;
+  color: #1a1a1a;
+  margin-bottom: 2px;
+}
+.ios-music-info small {
+  font-size: 13px;
+  color: #8e8e93;
+}
+.ios-music-play {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #ff3b30;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+}
+.ios-music-section h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 12px;
+}
+.ios-music-list {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.ios-music-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.ios-music-item:last-child {
+  border-bottom: none;
+}
+.ios-music-item-cover {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.ios-music-item-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.ios-music-item-info {
+  flex: 1;
+  min-width: 0;
+}
+.ios-music-item-info strong {
+  display: block;
+  font-size: 14px;
+  color: #1a1a1a;
+  margin-bottom: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ios-music-item-info small {
+  font-size: 12px;
+  color: #8e8e93;
+}
+.ios-music-item-time {
+  font-size: 12px;
+  color: #8e8e93;
+}
+.ios-music-tabs {
+  display: flex;
+  background: #fff;
+  border-top: 1px solid #eee;
+  padding: 8px 0 20px;
+}
+.ios-music-tabs button {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  font-size: 10px;
+  color: #8e8e93;
+}
+.ios-music-tabs button.active {
+  color: #ff3b30;
+}
+.ios-music-tabs button span {
+  font-size: 20px;
+}
+
+/* ========== iOS 设置原生风格 ========== */
+.ios-settings-app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #f2f2f7;
+}
+.ios-settings-head {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  padding-top: 50px;
+  background: #f2f2f7;
+  border-bottom: 1px solid #e5e5ea;
+}
+.ios-settings-head strong {
+  flex: 1;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+.ios-settings-head button {
+  font-size: 17px;
+  color: #007aff;
+  background: none;
+  border: none;
+}
+.ios-settings-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 0;
+}
+.ios-settings-profile {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  background: #fff;
+  margin-bottom: 30px;
+}
+.ios-settings-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+}
+.ios-settings-profile-info {
+  flex: 1;
+}
+.ios-settings-profile-info strong {
+  display: block;
+  font-size: 17px;
+  color: #1a1a1a;
+  margin-bottom: 2px;
+}
+.ios-settings-profile-info small {
+  font-size: 12px;
+  color: #8e8e93;
+}
+.ios-settings-group {
+  background: #fff;
+  margin: 0 16px 20px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.ios-settings-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.ios-settings-item:last-child {
+  border-bottom: none;
+}
+.ios-settings-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+  color: #fff;
+}
+.ios-settings-label {
+  flex: 1;
+  font-size: 16px;
+  color: #1a1a1a;
+}
+.ios-settings-value {
+  font-size: 15px;
+  color: #8e8e93;
+}
+.ios-settings-arrow {
+  font-size: 16px;
+  color: #c7c7cc;
+}
+
+/* ========== LYSN Bubble 聊天界面 ========== */
+.bubble-chat {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #f2f2f7;
+}
+.bubble-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  padding-top: 50px;
+  background: #fff;
+  border-bottom: 1px solid #e5e5ea;
+}
+.bubble-header strong {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+.bubble-header button {
+  font-size: 17px;
+  color: #007aff;
+  background: none;
+  border: none;
+}
+.bubble-sub {
+  text-align: center;
+  padding: 12px;
+  font-size: 14px;
+  color: #8e8e93;
+}
+.bubble-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+.bubble-msg {
+  display: flex;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+.bubble-msg.artist {
+  flex-direction: row;
+}
+.bubble-msg.user {
+  flex-direction: row-reverse;
+}
+.bubble-avatar {
+  position: relative;
+  flex-shrink: 0;
+}
+.bubble-avatar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.bubble-artist-tag {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  background: linear-gradient(135deg, #af52de, #5e5ce6);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 8px;
+}
+.bubble-bubble-wrap {
+  display: flex;
+  flex-direction: column;
+  max-width: 75%;
+}
+.bubble-bubble {
+  padding: 12px 16px;
+  border-radius: 18px;
+}
+.artist-bubble {
+  background: #fff;
+  border-bottom-left-radius: 4px;
+}
+.user-bubble {
+  background: #af52de;
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+.bubble-korean {
+  font-size: 15px;
+  color: #1a1a1a;
+  margin: 0 0 8px;
+  line-height: 1.4;
+}
+.bubble-translation {
+  font-size: 14px;
+  color: #af52de;
+  margin: 0;
+  line-height: 1.4;
+}
+.bubble-time {
+  font-size: 11px;
+  color: #8e8e93;
+  margin-top: 4px;
+}
+.bubble-msg.user .bubble-time {
+  text-align: right;
+}
+.bubble-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  padding-bottom: 30px;
+  background: #fff;
+  border-top: 1px solid #e5e5ea;
+}
+.bubble-input input {
+  flex: 1;
+  border: none;
+  background: #f2f2f7;
+  border-radius: 20px;
+  padding: 10px 16px;
+  font-size: 15px;
+  outline: none;
+}
+.bubble-input button {
+  background: none;
+  border: none;
+  font-size: 20px;
+}
+
+/* ========== LYSN 登录界面 ========== */
+.lysn-login-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background: #fff;
+  padding: 40px;
+}
+.lysn-login-logo {
+  text-align: center;
+  margin-bottom: 60px;
+}
+.lysn-login-logo h1 {
+  font-size: 48px;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin: 0 0 10px;
+}
+.lysn-login-logo p {
+  font-size: 16px;
+  color: #8e8e93;
+  margin: 0;
+}
+.lysn-login-form {
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.lysn-login-form input {
+  border: 1px solid #e5e5ea;
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 16px;
+  outline: none;
+  background: #f2f2f7;
+}
+.lysn-login-form input:focus {
+  border-color: #af52de;
+}
+.lysn-login-btn {
+  background: #af52de;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+.lysn-login-footer {
+  position: absolute;
+  bottom: 40px;
+  display: flex;
+  gap: 30px;
+}
+.lysn-login-footer button {
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: #8e8e93;
+}
+
+/* ---------- KakaoTalk 原生聊天界面 ---------- */
+.kctalk-chat-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #F2E5C7;
+}
+
+.kctalk-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 16px;
+  padding-top: 50px;
+  background: #F2E5C7;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.kctalk-back-btn {
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #000;
+  cursor: pointer;
+}
+
+.kctalk-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.kctalk-title strong {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.kctalk-title small {
+  font-size: 11px;
+  color: #888;
+}
+
+.kctalk-more-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #000;
+  cursor: pointer;
+}
+
+.kctalk-date-divider {
+  text-align: center;
+  font-size: 11px;
+  color: #888;
+  padding: 15px 0;
+}
+
+.kctalk-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.kctalk-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.kctalk-message.me {
+  flex-direction: row-reverse;
+}
+
+.kctalk-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.kctalk-bubble {
+  max-width: 70%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.kctalk-message.them .kctalk-bubble {
+  background: #fff;
+  border-top-left-radius: 4px;
+}
+
+.kctalk-message.me .kctalk-bubble {
+  background: #FEE500;
+  border-top-right-radius: 4px;
+}
+
+.kctalk-input-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  padding-bottom: 30px;
+  background: #fff;
+  border-top: 1px solid #eee;
+}
+
+.kctalk-input-area {
+  flex: 1;
+  background: #f5f5f5;
+  border-radius: 20px;
+  padding: 8px 14px;
+}
+
+.kctalk-input-area input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  outline: none;
+}
+
+.kctalk-send-btn {
+  background: #FEE500;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.kctalk-footer {
+  padding: 20px;
+  text-align: center;
+  font-size: 13px;
+  color: #888;
+}
+

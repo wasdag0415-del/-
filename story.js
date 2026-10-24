@@ -165,13 +165,57 @@
     
     // 信息框预设回复
     let composer = '';
-    if(step === 0) composer = '<div class="pc-composer"><span>嗯，刚按完回来</span><button data-next-step="1">发送 ↑</button></div>';
-    else if(step === 1) composer = '<div class="pc-composer"><span>好</span><button data-next-step="2">发送 ↑</button></div>';
-    else if(step === 2) composer = '<div class="pc-composer"><span>好一点了，没刚才那么紧</span><button data-next-step="3">发送 ↑</button></div>';
-    else if(step === 3) composer = '<div class="pc-composer"><span>好啊</span><button data-next-step="4">发送 ↑</button></div>';
-    else composer = '<div class="pc-chat-footer">第一章 · 完</div>';
+    if(step === 0) composer = `<div class="kctalk-input-bar">
+      <div class="kctalk-input-area">
+        <input type="text" value="嗯，刚按完回来" readonly>
+      </div>
+      <button class="kctalk-send-btn" data-next-step="1">전송</button>
+    </div>`;
+    else if(step === 1) composer = `<div class="kctalk-input-bar">
+      <div class="kctalk-input-area">
+        <input type="text" value="好" readonly>
+      </div>
+      <button class="kctalk-send-btn" data-next-step="2">전송</button>
+    </div>`;
+    else if(step === 2) composer = `<div class="kctalk-input-bar">
+      <div class="kctalk-input-area">
+        <input type="text" value="好一点了，没刚才那么紧" readonly>
+      </div>
+      <button class="kctalk-send-btn" data-next-step="3">전송</button>
+    </div>`;
+    else if(step === 3) composer = `<div class="kctalk-input-bar">
+      <div class="kctalk-input-area">
+        <input type="text" value="好啊" readonly>
+      </div>
+      <button class="kctalk-send-btn" data-next-step="4">전송</button>
+    </div>`;
+    else composer = `<div class="kctalk-footer">第一章 · 完</div>`;
     
-    return wrap(`${head('组长老师','ktstory','<button data-route="sharedphotos" aria-label="共享照片">▧</button>')}<div class="nf-scroll nf-chat-scroll">${bubbles([{date:'9月19日 · 首场结束以后',who:'组长老师',lines}])}</div>${composer}`,'nf-story-chat');
+    // 标准KakaoTalk聊天界面HTML
+    return wrap(`
+      <div class="kctalk-chat-page">
+        <header class="kctalk-header">
+          <button class="kctalk-back-btn">‹</button>
+          <div class="kctalk-title">
+            <strong>组长老师</strong>
+            <small>오후 9:26</small>
+          </div>
+          <button class="kctalk-more-btn">≡</button>
+        </header>
+        <div class="kctalk-date-divider">9월 19일</div>
+        <div class="kctalk-messages">
+          ${lines.map(line => `
+            <div class="kctalk-message ${line.role}">
+              ${line.role === 'them' ? '<div class="kctalk-avatar">I</div>' : ''}
+              <div class="kctalk-bubble">
+                <p>${line.text}</p>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        ${composer}
+      </div>
+    `, 'nf-story-chat');
   }
   function sharedphotos() {
     if(!state.chapter.opening) return currentchat();
