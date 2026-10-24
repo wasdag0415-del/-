@@ -426,7 +426,7 @@
 
 /* 锁屏壁纸：比心双人照，上方压暗让白色时钟清晰 */
 .phone-screen .ios-lock-depth {
-  background: url("wp-lock.jpg") center top / cover no-repeat !important;
+  background: url("https://aka.doubaocdn.com/s/XjYkOFmMTt") center top / cover no-repeat !important;
   filter: none;
 }
 .phone-screen .ios-lock-depth:before {
@@ -436,9 +436,9 @@
   background: linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.15) 25%, transparent 50%, rgba(0,0,0,.2) 100%) !important;
 }
 
-/* 主屏幕壁纸：拼贴双人照 */
+/* 主屏幕壁纸：涩琪镜子自拍 */
 .phone-screen .ios-wallpaper {
-  background: url("wp-home.jpg") center center / cover no-repeat !important;
+  background: url("https://aka.doubaocdn.com/s/Wxdy2UTrVC") center center / cover no-repeat !important;
   filter: none;
 }
 
