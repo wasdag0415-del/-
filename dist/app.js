@@ -79,39 +79,39 @@ function storyProgress(){return Object.values(state.ios.clues).filter(Boolean).l
 function iosBack(title,actions=''){return `<header class="ios-app-header"><button data-view="phonehome" class="ios-back" aria-label="返回主屏幕">‹</button><h2>${esc(title)}</h2><div class="ios-head-actions">${actions}</div></header>`;}
 function iosApp(view,label,kind,mark,badge=''){return `<button class="ios-app-button" data-view="${view}" aria-label="打开${esc(label)}"><span class="ios-app-icon ${kind}">${mark}</span><span>${esc(label)}</span>${badge?`<i>${esc(badge)}</i>`:''}</button>`;}
 function storyContext(){return {screen,toast,navigate:render,confirm:confirmDialog};}
-function renderLockScreen(){const storyNow=JapanStory.storyTime();screen.innerHTML=`<div class="ios-lock ios-lost-lock"><div class="ios-lock-depth"></div><div class="ios-lock-content"><div class="ios-lock-date">9月19日 星期六</div><div class="ios-lock-time" id="home-clock">${storyNow}</div><div class="ios-lock-owner">S 的 iPhone · 遗失模式</div><div class="ios-lost-card"><span class="ios-lost-icon">⌖</span><div><small>遗失模式</small><strong>S 的 iPhone</strong><p>此 iPhone 已丢失。请保持设备开机，机主会通过此设备联系你。</p></div></div><div class="ios-lock-notifications"><div class="ios-lock-note ios-system-note"><span class="mini-app findmy">⌖</span><span><strong>查找</strong><small>现在</small><b>机主已将这台 iPhone 标记为丢失。</b></span><time>${storyNow}</time></div></div><div class="ios-slide-unlock"><div class="ios-slide-track"><span class="ios-slide-text">滑动来解锁</span><div class="ios-slide-thumb">⌃</div></div></div></div><div class="ios-lock-tools"><button aria-label="紧急呼叫">SOS</button><button aria-label="相机">◎</button></div></div>`;bindShared();initSlideUnlock();}
+function renderLockScreen(){const storyNow=JapanStory.storyTime();screen.innerHTML=`<div class="ios-lock ios-lost-lock"><div class="ios-lock-depth"></div><div class="ios-lock-content"><div class="ios-lock-date">9月19日 星期六</div><div class="ios-lock-time" id="home-clock">${storyNow}</div><div class="ios-lock-owner">S 的 iPhone · 遗失模式</div><div class="ios-lost-card"><span class="ios-lost-icon">⌖</span><div><small>遗失模式</small><strong>S 的 iPhone</strong><p>此 iPhone 已丢失。请保持设备开机，机主会通过此设备联系你。</p></div></div><div class="ios-lock-notifications"><div class="ios-lock-note ios-system-note"><span class="mini-app findmy">⌖</span><span><strong>查找</strong><small>现在</small><b>机主已将这台 iPhone 标记为丢失。</b></span><time>${storyNow}</time></div></div><div class="ios-slide-hint">上滑解锁</div></div><div class="ios-lock-tools"><button aria-label="紧急呼叫">SOS</button><button aria-label="相机">◎</button></div></div>`;bindShared();initSlideUnlock();}
 function renderPasscode(){const dots=Array.from({length:6},(_,index)=>`<i class="${index<passcodeInput.length?'filled':''}"></i>`).join('');screen.innerHTML=`<div class="ios-passcode"><div class="ios-lock-depth"></div><div class="ios-passcode-panel"><button class="ios-passcode-cancel" data-view="lock">取消</button><div class="ios-passcode-lock">⌑</div><h2>Enter Passcode</h2><p>seulgi的 iPhone</p><div class="ios-passcode-dots" aria-label="已输入 ${passcodeInput.length} 位密码">${dots}</div><div class="ios-passcode-error">${passcodeError||'请输入 6 位密码'}</div><div class="ios-keypad">${['1','2','3','4','5','6','7','8','9','','0','delete'].map(key=>key==='delete'?'<button data-passcode-delete aria-label="删除">⌫</button>':key?`<button data-passcode-digit="${key}"><b>${key}</b><small>${{2:'ABC',3:'DEF',4:'GHI',5:'JKL',6:'MNO',7:'PQRS',8:'TUV',9:'WXYZ'}[key]||''}</small></button>`:'<span></span>').join('')}</div><small class="ios-passcode-disclaimer">本密码仅用于虚构剧情，不读取设备数据。</small></div></div>`;bindShared();screen.querySelectorAll('[data-passcode-digit]').forEach(button=>button.onclick=()=>{if(passcodeInput.length>=6)return;passcodeInput+=button.dataset.passcodeDigit;passcodeError='';if(passcodeInput.length===6){if(passcodeInput==='910329'){passcodeInput='';render('forum');}else{passcodeInput='';passcodeError='密码错误，请重试';renderPasscode();}}else renderPasscode();});screen.querySelector('[data-passcode-delete]').onclick=()=>{passcodeInput=passcodeInput.slice(0,-1);passcodeError='';renderPasscode();};}
 function renderPhoneHome(){screen.innerHTML=`<div class="ios-home"><div class="ios-wallpaper"></div><div class="ios-home-content"><div class="ios-home-top"><button class="ios-date-widget" data-view="calendar"><small>FUKUOKA · 09.19</small><strong>首场结束以后</strong><span>点按日历回放已发现的剧情</span></button><button class="ios-weather-widget" data-view="weather"><small>福冈 · 23°</small><strong>⛅ 多云</strong><span>体感 21° · 湿度 68%</span></button></div><div class="ios-app-grid">${iosApp('forum','Pann','forum','판',JapanStory.badge())}${iosApp('ktstory','KakaoTalk','kakao','<span class="kt-bubble">TALK</span>',JapanStory.badge())}${iosApp('instagram','Instagram','instagram','<span class="ig-camera"></span>')}${iosApp('youtube','YouTube','youtube','<span class="yt-play">▶</span>')}${iosApp('lysn','LYSN','lysn','L')}${iosApp('weverse','Weverse','weverse','W')}${iosApp('calendar','日历','calendar','<span class="ios-calendar-mark"><small>9月</small><b>19</b></span>')}${iosApp('timeline','时间线','timeline','<span class="ios-timeline-mark"><i></i><i></i><i></i></span>')}${iosApp('album','照片','photos','<span class="photo-flower">✿</span>')}${iosApp('notebook','备忘录','notebook','<span class="ios-book-mark">▤</span>')}${iosApp('settings','设置','ios-settings','<span class="ios-gear-mark">⚙</span>')}</div><div class="ios-page-dots" aria-hidden="true"><i></i><i></i></div><div class="ios-dock">${iosApp('phone','电话','phone','<svg class="ios-phone-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 4c-2 1-3 3-2 6 3 9 9 15 18 18 3 1 5 0 6-2l-4-5c-1-1-2-1-3 0l-2 2c-4-2-7-5-10-10l2-2c1-1 1-2 0-3Z" fill="currentColor"/></svg>')}${iosApp('browser','Safari','safari','<span class="ios-safari-mark"><i></i></span>')}${iosApp('sms','信息','messages','<span class="ios-message-mark"></span>')}${iosApp('music','音乐','music','<span class="ios-music-mark">♫</span>')}</div></div></div>`;bindShared();}
 let chapterAudio;
 function musicAudio(){if(!chapterAudio){chapterAudio=new Audio('assets/chapter1/after-first-show.wav');chapterAudio.loop=true;chapterAudio.volume=.48;chapterAudio.addEventListener('play',updateMusic);chapterAudio.addEventListener('pause',updateMusic);}return chapterAudio;}
 
 function initSlideUnlock(){
-  const track=screen.querySelector('.ios-slide-track');
-  const thumb=screen.querySelector('.ios-slide-thumb');
-  if(!track||!thumb)return;
-  let startX=0,currentX=0,isDragging=false;
-  const maxX=track.offsetWidth-thumb.offsetWidth-8;
-  thumb.addEventListener('touchstart',(e)=>{
+  const lockScreen=screen.querySelector('.ios-lock');
+  const lockContent=screen.querySelector('.ios-lock-content');
+  if(!lockScreen||!lockContent)return;
+  let startY=0,currentY=0,isDragging=false;
+  const maxY=lockScreen.offsetHeight*0.6;
+  lockScreen.addEventListener('touchstart',(e)=>{
     isDragging=true;
-    startX=e.touches[0].clientX-thumb.offsetLeft;
-    track.classList.add('dragging');
+    startY=e.touches[0].clientY;
+    lockScreen.classList.add('dragging');
   });
-  thumb.addEventListener('touchmove',(e)=>{
+  lockScreen.addEventListener('touchmove',(e)=>{
     if(!isDragging)return;
-    currentX=e.touches[0].clientX-startX;
-    currentX=Math.max(0,Math.min(maxX,currentX));
-    thumb.style.transform=`translateX(${currentX}px)`;
-    track.style.setProperty('--slide-progress',currentX/maxX);
+    currentY=e.touches[0].clientY-startY;
+    if(currentY<0){
+      currentY=Math.max(currentY,-maxY);
+      lockContent.style.transform=`translateY(${currentY}px)`;
+    }
   });
-  thumb.addEventListener('touchend',()=>{
+  lockScreen.addEventListener('touchend',()=>{
     isDragging=false;
-    track.classList.remove('dragging');
-    if(currentX>maxX*0.6){
-      thumb.style.transform=`translateX(${maxX}px)`;
+    lockScreen.classList.remove('dragging');
+    if(-currentY>maxY*0.5){
+      lockContent.style.transform=`translateY(${-maxY}px)`;
       setTimeout(()=>render('passcode'),200);
     }else{
-      thumb.style.transform='translateX(0)';
-      track.style.setProperty('--slide-progress',0);
+      lockContent.style.transform='translateY(0)';
     }
   });
   // 鼠标支持
