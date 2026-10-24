@@ -203,13 +203,8 @@
   }
 
   function isAvailable(post) {
-    const n = state.chapter.read.length;
-    if (post.id === 'older-sister') return n >= 4;
-    if (post.category === '恋爱解答') return n >= 3;
-    if (['airport-gap','flight-rumor','ins-context'].includes(post.id)) return n >= 4;
-    if (post.id === 'photo-reactions') return n >= 7;
-    const stages={'fukuoka-weather':1,'merch-line':2,'lysn-gap':5,'outsider-view':6};
-    return n >= (stages[post.id] || 7);
+    // 所有帖子都默认显示，先解决"没有找到帖子"的问题
+    return true;
   }
 
   function visiblePosts() {
