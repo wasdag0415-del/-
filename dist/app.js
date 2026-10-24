@@ -115,29 +115,29 @@ function initSlideUnlock(){
     }
   });
   // 鼠标支持
-  thumb.addEventListener('mousedown',(e)=>{
+  lockScreen.addEventListener('mousedown',(e)=>{
     isDragging=true;
-    startX=e.clientX-thumb.offsetLeft;
-    track.classList.add('dragging');
+    startY=e.clientY;
+    lockScreen.classList.add('dragging');
     e.preventDefault();
   });
   document.addEventListener('mousemove',(e)=>{
     if(!isDragging)return;
-    currentX=e.clientX-startX;
-    currentX=Math.max(0,Math.min(maxX,currentX));
-    thumb.style.transform=`translateX(${currentX}px)`;
-    track.style.setProperty('--slide-progress',currentX/maxX);
+    currentY=e.clientY-startY;
+    if(currentY<0){
+      currentY=Math.max(currentY,-maxY);
+      lockContent.style.transform=`translateY(${currentY}px)`;
+    }
   });
   document.addEventListener('mouseup',()=>{
     if(!isDragging)return;
     isDragging=false;
-    track.classList.remove('dragging');
-    if(currentX>maxX*0.6){
-      thumb.style.transform=`translateX(${maxX}px)`;
+    lockScreen.classList.remove('dragging');
+    if(-currentY>maxY*0.5){
+      lockContent.style.transform=`translateY(${-maxY}px)`;
       setTimeout(()=>render('passcode'),200);
     }else{
-      thumb.style.transform='translateX(0)';
-      track.style.setProperty('--slide-progress',0);
+      lockContent.style.transform='translateY(0)';
     }
   });
 }
