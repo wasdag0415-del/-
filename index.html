@@ -3,7 +3,7 @@
 <head>
 <base href="./dist/">
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
-<meta name="theme-color" content="#101015"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="mobile-web-app-capable" content="yes"><meta name="description" content="Pocket Story · the same blank。解锁一部手机，从聊天记录、匿名论坛和公开动态整理福冈首场的时间线。">
+<meta name="theme-color" content="#101015"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="mobile-web-app-capable" content="yes"><meta name="description" content="Pocket Story · the same blank。解锁一部手机，从同担消息、匿名论坛和公开动态整理福冈首场的时间线。">
 <title>Pocket Story · the same blank</title><link rel="stylesheet" href="style.css?v=chapter1-v1"><link rel="stylesheet" href="ktalk.css?v=chapter1-v1"><link rel="stylesheet" href="features.css?v=chapter1-v1"><link rel="stylesheet" href="mobile.css?v=chapter1-v1"><link rel="stylesheet" href="ios.css?v=ios17-tools-r1"><link rel="stylesheet" href="ios17.css?v=calendar-merge-r1">
 <link rel="stylesheet" href="story.css?v=chapter1-v1">
 <link rel="stylesheet" href="pann.css?v=chapter1-v1">
@@ -15,14 +15,13 @@
 <link rel="stylesheet" href="kkt-native.css?v=kkt-layout-v2">
 <link rel="stylesheet" href="kkt-chat.css?v=kkt-chat-v1">
 <link rel="stylesheet" href="instagram-v2.css?v=ins-complete-v2">
-<link rel="stylesheet" href="chapter-one-flow.css?v=chapter-one-guided-v1">
 </head>
 <body>
 <div class="workspace">
 <aside class="editorial">
 <a class="wordmark" href="#" aria-label="互动手机首页"><span class="found-mark">17</span> POCKET STORY <span class="brand-en">INTERACTIVE STORY</span></a>
-<div class="intro"><div class="eyebrow"><i></i> FUKUOKA · 2026.09.19</div><h1>大家都在看，<br>却没有人看见全部<span>。</span></h1><p>福冈首场结束以后，你捡到一部处于遗失模式的备用手机。<br>输入密码后，屏幕上出现了一条新消息。</p><div class="intro-actions"><button class="primary" id="enter-chat">查看遗失手机 <span>↗</span></button><button class="quiet" id="customize">LYSN 自由聊天设置 →</button></div></div>
-<div class="tiny-story"><span class="orbit">20:52</span><div><p>“还在按吗？<br>一条演出结束后的关心消息。”</p><small>CHAPTER 01 · THE SAME BLANK</small></div></div>
+<div class="intro"><div class="eyebrow"><i></i> FUKUOKA · 2026.09.19</div><h1>大家都在看，<br>却没有人看见全部<span>。</span></h1><p>福冈首场结束以后，你捡到一部处于遗失模式的备用手机。<br>输入密码后，屏幕停在一篇正在升温的论坛讨论。</p><div class="intro-actions"><button class="primary" id="enter-chat">查看遗失手机 <span>↗</span></button><button class="quiet" id="customize">LYSN 自由聊天设置 →</button></div></div>
+<div class="tiny-story"><span class="orbit">20:52</span><div><p>“为什么没有一起飞？<br>福冈首场讨论正在升温。”</p><small>CHAPTER 01 · THE SAME BLANK</small></div></div>
 <footer>同人互动剧情原型 <span>·</span> 非官方模拟界面</footer>
 </aside>
 <main class="phone-stage">
@@ -35,13 +34,12 @@
 <button class="home-indicator" id="home" aria-label="返回手机桌面"></button>
 </div>
 </section>
-<div class="phone-caption"><span class="live-dot"></span> 从一条收到的消息开始</div>
+<div class="phone-caption"><span class="live-dot"></span> 从遗失模式与论坛开始</div>
 </main>
-<aside class="side-note"><div class="note-heading">POCKET STORY / CHAPTER 01</div><div class="drawn-star">Pann<span> 판 · fan story</span></div><p>一张机场图，一条 INS，<br>以及首场结束后的官方照片。<br>能确认的事，仍然很少。</p><span class="handwriting">read between the lines</span><div class="side-rule"></div><div class="guide"><span>01</span> 查看遗失模式，输入锁屏密码</div><div class="guide"><span>02</span> 查看消息，再翻阅留下的记录</div><div class="guide"><span>03</span> 翻看搜索、短信和通话留下的时间</div><button class="small-link" id="about">关于第一章 ↗</button></aside>
+<aside class="side-note"><div class="note-heading">POCKET STORY / CHAPTER 01</div><div class="drawn-star">Pann<span> 판 · fan story</span></div><p>一张机场图，一条 INS，<br>以及首场结束后的官方照片。<br>能确认的事，仍然很少。</p><span class="handwriting">read between the lines</span><div class="side-rule"></div><div class="guide"><span>01</span> 查看遗失模式，输入锁屏密码</div><div class="guide"><span>02</span> 从论坛进入，再对照公开记录</div><div class="guide"><span>03</span> 翻看搜索、短信和通话留下的时间</div><button class="small-link" id="about">关于第一章 ↗</button></aside>
 </div>
 <div id="toast" class="toast" role="status" hidden></div>
 <input type="file" id="avatar-upload" accept="image/*" hidden><input type="file" id="photo-upload" accept="image/*" multiple hidden>
 <dialog id="modal"><div id="modal-content"></div><button class="dialog-close" aria-label="关闭" id="close-modal">×</button></dialog>
-<script src="mobile.js?v=chapter1-v1"></script><script src="voice.js?v=chapter1-v1"></script><script src="story-data.js?v=prelude-text-v1"></script><script src="story-revision.js?v=chapter1-v1"></script><script src="instagram-data.js?v=avatars-v1"></script><script src="instagram-v2.js?v=ins-complete-v1"></script><script src="prelude-data.js?v=chapter-one-guided-v1"></script><script src="chapter-one-data.js?v=chapter-one-guided-v1"></script><script src="chapter-one-flow.js?v=chapter-one-guided-v1"></script><script src="story.js?v=chapter-one-guided-v1"></script><script src="app.js?v=chapter-one-guided-v1"></script>
+<script src="mobile.js?v=chapter1-v1"></script><script src="voice.js?v=chapter1-v1"></script><script src="story-data.js?v=aug-chat-v1"></script><script src="story-revision.js?v=chapter1-v1"></script><script src="instagram-data.js?v=avatars-v1"></script><script src="instagram-v2.js?v=ins-complete-v1"></script><script src="prelude-data.js?v=august-support-v1"></script><script src="story.js?v=aug-chat-v1"></script><script src="app.js?v=aug-chat-v1"></script>
 </body></html>
-
