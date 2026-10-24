@@ -144,46 +144,88 @@
   }
   function currentchat() {
     // 互动式聊天：一步步推进
-    // 福冈当晚开场：按摩后的关心，简短交流
+    // 珠泫突然抵日，涩琪有点意外但还是关心
     const step = state.chapter.step || 0;
     const lines = [];
     
     // 按步骤显示对话
-    if(step >= 0) lines.push({role:'them',text:'去按了吗？'});
-    if(step >= 1) lines.push({role:'me',text:'嗯，刚按完回来'});
-    if(step >= 1) lines.push({role:'them',text:'先休息一下，肩还紧吗？'});
-    if(step >= 2) lines.push({role:'me',text:'好一点了，没刚才那么硬了'});
-    if(step >= 2) lines.push({role:'them',text:'那就好。吃饭了吗？'});
-    if(step >= 3) lines.push({role:'me',text:'还没，不太饿'});
-    if(step >= 3) lines.push({role:'them',text:'等舒服点了再吃一点，别空着肚子睡'});
-    if(step >= 4) lines.push({role:'me',text:'知道了'});
-    if(step >= 4) lines.push({role:'them',text:'附近走走吗？就楼下便利店买点喝的，不走远'});
+    if(step >= 0) lines.push({role:'them',text:'嗯，刚进房间'});
+    if(step >= 0) lines.push({role:'them',text:'正想找你'});
+    if(step >= 1) lines.push({role:'me',text:'manager跟我说了'});
+    if(step >= 1) lines.push({role:'them',text:'本来想放好东西问你在哪'});
+    if(step >= 1) lines.push({role:'them',text:'你回来了？'});
+    if(step >= 2) lines.push({role:'me',text:'回来了'});
+    if(step >= 2) lines.push({role:'me',text:'今天路上还顺利吗？'});
+    if(step >= 2) lines.push({role:'them',text:'顺利，车上睡了一会儿'});
+    if(step >= 3) lines.push({role:'me',text:'还在感冒吗？'});
+    if(step >= 3) lines.push({role:'them',text:'好多了，还有一点鼻塞'});
+    if(step >= 3) lines.push({role:'them',text:'你吃饭了吗？'});
+    if(step >= 4) lines.push({role:'me',text:'吃了'});
+    if(step >= 4) lines.push({role:'me',text:'不知道你今天过来'});
+    if(step >= 4) lines.push({role:'them',text:'昨天才定下来，收完东西太晚了'});
+    if(step >= 4) lines.push({role:'them',text:'今天又一直在赶'});
+    if(step >= 5) lines.push({role:'me',text:'嗯'});
+    if(step >= 5) lines.push({role:'me',text:'还想着到了会告诉我'});
+    if(step >= 5) lines.push({role:'them',text:'这不是来找你了吗'});
+    if(step >= 5) lines.push({role:'them',text:'要不要一起坐一会儿？'});
+    if(step >= 6) lines.push({role:'me',text:'我刚把东西拿出来，想先看看明天改的地方'});
+    if(step >= 6) lines.push({role:'them',text:'我过去一起看？'});
+    if(step >= 7) lines.push({role:'me',text:'不用跑了，我发给你吧'});
+    if(step >= 7) lines.push({role:'them',text:'好'});
+    if(step >= 7) lines.push({role:'them',text:'看完有空就找我'});
+    if(step >= 8) lines.push({role:'me',text:'嗯'});
+    if(step >= 8) lines.push({role:'me',text:'你先吃点东西，别又拖晚了'});
+    if(step >= 8) lines.push({role:'them',text:'知道，已经在看了'});
     
     // 信息框预设回复
     let composer = '';
     if(step === 0) composer = `<div class="kctalk-input-bar">
       <div class="kctalk-input-area">
-        <input type="text" value="嗯，刚按完回来" readonly>
+        <input type="text" value="manager跟我说了" readonly>
       </div>
       <button class="kctalk-send-btn" data-next-step="1">전송</button>
     </div>`;
     else if(step === 1) composer = `<div class="kctalk-input-bar">
       <div class="kctalk-input-area">
-        <input type="text" value="好一点了，没刚才那么硬了" readonly>
+        <input type="text" value="回来了，今天路上还顺利吗？" readonly>
       </div>
       <button class="kctalk-send-btn" data-next-step="2">전송</button>
     </div>`;
     else if(step === 2) composer = `<div class="kctalk-input-bar">
       <div class="kctalk-input-area">
-        <input type="text" value="还没，不太饿" readonly>
+        <input type="text" value="还在感冒吗？" readonly>
       </div>
       <button class="kctalk-send-btn" data-next-step="3">전송</button>
     </div>`;
     else if(step === 3) composer = `<div class="kctalk-input-bar">
       <div class="kctalk-input-area">
-        <input type="text" value="知道了" readonly>
+        <input type="text" value="吃了，不知道你今天过来" readonly>
       </div>
       <button class="kctalk-send-btn" data-next-step="4">전송</button>
+    </div>`;
+    else if(step === 4) composer = `<div class="kctalk-input-bar">
+      <div class="kctalk-input-area">
+        <input type="text" value="嗯，还想着到了会告诉我" readonly>
+      </div>
+      <button class="kctalk-send-btn" data-next-step="5">전송</button>
+    </div>`;
+    else if(step === 5) composer = `<div class="kctalk-input-bar">
+      <div class="kctalk-input-area">
+        <input type="text" value="我刚把东西拿出来，想先看看明天改的地方" readonly>
+      </div>
+      <button class="kctalk-send-btn" data-next-step="6">전송</button>
+    </div>`;
+    else if(step === 6) composer = `<div class="kctalk-input-bar">
+      <div class="kctalk-input-area">
+        <input type="text" value="不用跑了，我发给你吧" readonly>
+      </div>
+      <button class="kctalk-send-btn" data-next-step="7">전송</button>
+    </div>`;
+    else if(step === 7) composer = `<div class="kctalk-input-bar">
+      <div class="kctalk-input-area">
+        <input type="text" value="嗯，你先吃点东西，别又拖晚了" readonly>
+      </div>
+      <button class="kctalk-send-btn" data-next-step="8">전송</button>
     </div>`;
     else composer = `<div class="kctalk-footer">第一章 · 完</div>`;
     
@@ -194,11 +236,11 @@
           <button class="kctalk-back-btn">‹</button>
           <div class="kctalk-title">
             <strong>组长老师</strong>
-            <small>오후 9:26</small>
+            <small>오후 9:42</small>
           </div>
           <button class="kctalk-more-btn">≡</button>
         </header>
-        <div class="kctalk-date-divider">9월 19일 · 福冈首场结束以后</div>
+        <div class="kctalk-date-divider">9월 19일 · 珠泫抵日当晚</div>
         <div class="kctalk-messages">
           ${lines.map(line => `
             <div class="kctalk-message ${line.role}">
