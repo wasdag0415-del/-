@@ -54,7 +54,7 @@ else if(['opening','forum','notebook','ktstory','couplechat','storychat','offici
 else if(view==='youtube')renderYouTube();
 else if(view==='instagram')renderInstagram();
 else if(view==='lysn')renderLysn();
-else if(view==='weverse')renderWeverse();
+else if(view==='weather')renderWeather();
 else if(view==='music')renderMusic();
 else if(view==='calendar')renderCalendar();
 else if(view==='timeline')renderTimeline();
@@ -81,7 +81,7 @@ function iosApp(view,label,kind,mark,badge=''){return `<button class="ios-app-bu
 function storyContext(){return {screen,toast,navigate:render,confirm:confirmDialog};}
 function renderLockScreen(){const storyNow=JapanStory.storyTime();screen.innerHTML=`<div class="ios-lock ios-lost-lock"><div class="ios-lock-depth"></div><div class="ios-lock-content"><div class="ios-lock-date">9月19日 星期六</div><div class="ios-lock-time" id="home-clock">${storyNow}</div><div class="ios-lock-owner">S 的 iPhone · 遗失模式</div><div class="ios-lost-card"><span class="ios-lost-icon">⌖</span><div><small>遗失模式</small><strong>S 的 iPhone</strong><p>此 iPhone 已丢失。请保持设备开机，机主会通过此设备联系你。</p></div></div><div class="ios-lock-notifications"><div class="ios-lock-note ios-system-note"><span class="mini-app findmy">⌖</span><span><strong>查找</strong><small>现在</small><b>机主已将这台 iPhone 标记为丢失。</b></span><time>${storyNow}</time></div></div><div class="ios-slide-hint">上滑解锁</div></div><div class="ios-lock-tools"><button aria-label="紧急呼叫">SOS</button><button aria-label="相机">◎</button></div></div>`;bindShared();initSlideUnlock();}
 function renderPasscode(){const dots=Array.from({length:6},(_,index)=>`<i class="${index<passcodeInput.length?'filled':''}"></i>`).join('');screen.innerHTML=`<div class="ios-passcode"><div class="ios-lock-depth"></div><div class="ios-passcode-panel"><button class="ios-passcode-cancel" data-view="lock">取消</button><div class="ios-passcode-lock">⌑</div><h2>Enter Passcode</h2><p>seulgi的 iPhone</p><div class="ios-passcode-dots" aria-label="已输入 ${passcodeInput.length} 位密码">${dots}</div><div class="ios-passcode-error">${passcodeError||'请输入 6 位密码'}</div><div class="ios-keypad">${['1','2','3','4','5','6','7','8','9','','0','delete'].map(key=>key==='delete'?'<button data-passcode-delete aria-label="删除">⌫</button>':key?`<button data-passcode-digit="${key}"><b>${key}</b><small>${{2:'ABC',3:'DEF',4:'GHI',5:'JKL',6:'MNO',7:'PQRS',8:'TUV',9:'WXYZ'}[key]||''}</small></button>`:'<span></span>').join('')}</div><small class="ios-passcode-disclaimer">本密码仅用于虚构剧情，不读取设备数据。</small></div></div>`;bindShared();screen.querySelectorAll('[data-passcode-digit]').forEach(button=>button.onclick=()=>{if(passcodeInput.length>=6)return;passcodeInput+=button.dataset.passcodeDigit;passcodeError='';if(passcodeInput.length===6){if(passcodeInput==='910329'){passcodeInput='';render('forum');}else{passcodeInput='';passcodeError='密码错误，请重试';renderPasscode();}}else renderPasscode();});screen.querySelector('[data-passcode-delete]').onclick=()=>{passcodeInput=passcodeInput.slice(0,-1);passcodeError='';renderPasscode();};}
-function renderPhoneHome(){screen.innerHTML=`<div class="ios-home"><div class="ios-wallpaper"></div><div class="ios-home-content"><div class="ios-home-top"><button class="ios-date-widget" data-view="calendar"><small>FUKUOKA · 09.19</small><strong>首场结束以后</strong><span>点按日历回放已发现的剧情</span></button><button class="ios-weather-widget" data-view="weather"><small>福冈 · 23°</small><strong>⛅ 多云</strong><span>体感 21° · 湿度 68%</span></button></div><div class="ios-app-grid">${iosApp('forum','Pann','forum','판',JapanStory.badge())}${iosApp('ktstory','KakaoTalk','kakao','<span class="kt-bubble">TALK</span>',JapanStory.badge())}${iosApp('instagram','Instagram','instagram','<span class="ig-camera"></span>')}${iosApp('youtube','YouTube','youtube','<span class="yt-play">▶</span>')}${iosApp('lysn','LYSN','lysn','L')}${iosApp('weverse','Weverse','weverse','W')}${iosApp('calendar','日历','calendar','<span class="ios-calendar-mark"><small>9月</small><b>19</b></span>')}${iosApp('timeline','时间线','timeline','<span class="ios-timeline-mark"><i></i><i></i><i></i></span>')}${iosApp('album','照片','photos','<span class="photo-flower">✿</span>')}${iosApp('notebook','备忘录','notebook','<span class="ios-book-mark">▤</span>')}${iosApp('settings','设置','ios-settings','<span class="ios-gear-mark">⚙</span>')}</div><div class="ios-page-dots" aria-hidden="true"><i></i><i></i></div><div class="ios-dock">${iosApp('phone','电话','phone','<svg class="ios-phone-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 4c-2 1-3 3-2 6 3 9 9 15 18 18 3 1 5 0 6-2l-4-5c-1-1-2-1-3 0l-2 2c-4-2-7-5-10-10l2-2c1-1 1-2 0-3Z" fill="currentColor"/></svg>')}${iosApp('browser','Safari','safari','<span class="ios-safari-mark"><i></i></span>')}${iosApp('sms','信息','messages','<span class="ios-message-mark"></span>')}${iosApp('music','音乐','music','<span class="ios-music-mark">♫</span>')}</div></div></div>`;bindShared();}
+function renderPhoneHome(){screen.innerHTML=`<div class="ios-home"><div class="ios-wallpaper"></div><div class="ios-home-content"><div class="ios-home-top"><button class="ios-date-widget" data-view="calendar"><small>FUKUOKA · 09.19</small><strong>首场结束以后</strong><span>点按日历回放已发现的剧情</span></button><button class="ios-weather-widget" data-view="weather"><small>福冈 · 23°</small><strong>⛅ 多云</strong><span>体感 21° · 湿度 68%</span></button></div><div class="ios-app-grid">${iosApp('forum','Pann','forum','판',JapanStory.badge())}${iosApp('ktstory','KakaoTalk','kakao','<span class="kt-bubble">TALK</span>',JapanStory.badge())}${iosApp('instagram','Instagram','instagram','<span class="ig-camera"></span>')}${iosApp('youtube','YouTube','youtube','<span class="yt-play">▶</span>')}${iosApp('lysn','LYSN','lysn','L')}${iosApp('weather','天气','weather','<span class="ios-weather-mark">☀️</span>')}${iosApp('calendar','日历','calendar','<span class="ios-calendar-mark"><small>9月</small><b>19</b></span>')}${iosApp('timeline','时间线','timeline','<span class="ios-timeline-mark"><i></i><i></i><i></i></span>')}${iosApp('album','照片','photos','<span class="photo-flower">✿</span>')}${iosApp('notebook','备忘录','notebook','<span class="ios-book-mark">▤</span>')}${iosApp('settings','设置','ios-settings','<span class="ios-gear-mark">⚙</span>')}</div><div class="ios-page-dots" aria-hidden="true"><i></i><i></i></div><div class="ios-dock">${iosApp('phone','电话','phone','<svg class="ios-phone-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 4c-2 1-3 3-2 6 3 9 9 15 18 18 3 1 5 0 6-2l-4-5c-1-1-2-1-3 0l-2 2c-4-2-7-5-10-10l2-2c1-1 1-2 0-3Z" fill="currentColor"/></svg>')}${iosApp('browser','Safari','safari','<span class="ios-safari-mark"><i></i></span>')}${iosApp('sms','信息','messages','<span class="ios-message-mark"></span>')}${iosApp('music','音乐','music','<span class="ios-music-mark">♫</span>')}</div></div></div>`;bindShared();}
 let chapterAudio;
 function musicAudio(){if(!chapterAudio){chapterAudio=new Audio('assets/chapter1/after-first-show.wav');chapterAudio.loop=true;chapterAudio.volume=.48;chapterAudio.addEventListener('play',updateMusic);chapterAudio.addEventListener('pause',updateMusic);}return chapterAudio;}
 
@@ -248,7 +248,25 @@ bindShared();
 }
 function renderYouTube(){window.youtubeChannel='feed';window.youtubeVideo='';JapanStory.open('youtube',storyContext());}
 function renderInstagram(){JapanStory.open('instagram',storyContext());}
-function renderLysn(){customApp=true;view='lysn-home';renderLysnHome();}
+function renderLysn(){customApp=true;view='lysn-login';renderLysnLogin();}
+function renderLysnLogin(){
+ screen.innerHTML=`<div class="page lysn-login-page">
+  <div class="lysn-login-logo">
+   <h1>lysn</h1>
+   <p>Your favorite artist, just for you.</p>
+  </div>
+  <div class="lysn-login-form">
+   <input type="email" placeholder="이메일" aria-label="이메일">
+   <input type="password" placeholder="비밀번호" aria-label="비밀번호">
+   <button class="lysn-login-btn" data-lysn-login>로그인</button>
+  </div>
+  <div class="lysn-login-footer">
+   <button>회원가입</button>
+   <button>비밀번호 찾기</button>
+  </div>
+ </div>`;
+ screen.querySelector('[data-lysn-login]').onclick=()=>renderLysnHome();
+}
 function renderLysnHome(){
  screen.innerHTML=`<div class="page lysn-main">
   <header class="lysn-header">
@@ -355,7 +373,24 @@ function renderLysnBubbleChat(who){
   bindShared();
   screen.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>render(b.dataset.view));
 }
-function renderWeverse(){JapanStory.open('weverse',storyContext());}
+function renderWeather(){
+ screen.innerHTML=`<div class="ios-native-app ios-weather-app">
+  ${iosBack('天气')}
+  <div class="ios-weather-content">
+   <h2>福冈</h2>
+   <div class="ios-weather-temp">23°</div>
+   <p>⛅ 多云</p>
+   <p>体感 21° · 湿度 68%</p>
+   <div class="ios-weather-hourly">
+    <div class="ios-weather-hour"><small>现在</small><b>⛅</b><span>23°</span></div>
+    <div class="ios-weather-hour"><small>18:00</small><b>⛅</b><span>22°</span></div>
+    <div class="ios-weather-hour"><small>19:00</small><b>🌙</b><span>21°</span></div>
+    <div class="ios-weather-hour"><small>20:00</small><b>🌙</b><span>20°</span></div>
+   </div>
+  </div>
+ </div>`;
+ bindShared();
+}
 function appHeader(title,subtitle,buttons=''){return `<header class="kt-header"><div><h2>${esc(title)}</h2><small>${esc(subtitle)}</small></div><div class="head-right">${buttons}</div></header>`;}
 function searchButton(){return `<button class="icon-button" id="toggle-search" aria-label="搜索">${uiIcon('search')}</button>`;}
 function uiIcon(n){const svg={search:'<circle cx="13" cy="13" r="7"/><path d="m18 18 6 6"/>',add:'<path d="M16 4v24M4 16h24"/>',more:'<circle cx="6" cy="16" r="1.6"/><circle cx="16" cy="16" r="1.6"/><circle cx="26" cy="16" r="1.6"/>',smile:'<circle cx="16" cy="16" r="12"/><path d="M11 12h.1M21 12h.1M10 19q6 7 12 0"/>',contacts:paths.profile,home:'<path d="M25 5H7a4 4 0 0 0-4 4v11a4 4 0 0 0 4 4h3l-1 5 7-5h9a4 4 0 0 0 4-4V9a4 4 0 0 0-4-4Z"/>',favorites:paths.favorites};return `<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${svg[n]||svg.more}</svg>`;}
@@ -536,7 +571,7 @@ function renderSms(){const rows=Object.entries(SMS_THREADS).map(([id,item])=>`<b
 function renderSmsChat(){const thread=SMS_THREADS[smsThread]||SMS_THREADS.parcel,messages=thread.messages.map(([date,text])=>`<div class="nf-sms-date">${date}</div><div class="nf-sms-bubble">${text}</div>`).join('');screen.innerHTML=`<div class="ios-native-app nf-extra"><header class="nf-extra-head"><button data-view="sms" aria-label="返回短信列表">‹</button><strong>${thread.name}</strong><span>···</span></header><div class="nf-extra-scroll nf-sms-conversation">${messages}</div><div class="nf-sms-service-note">服务通知 · 无法回复 · 同人虚构</div></div>`;bindShared();}
 
 /* Home and Calendar are intentionally redefined here so the story timeline lives in one native-feeling app. */
-function renderPhoneHome(){screen.innerHTML=`<div class="ios-home"><div class="ios-wallpaper"></div><div class="ios-home-content ios-home-real"><div class="ios-home-widget-row"><button class="ios-widget-calendar" data-view="calendar"><span><small>星期六</small><b>19</b></span><div><strong>日历</strong><p>福冈首场结束以后</p><em>3 个剧情节点</em></div></button><button class="ios-widget-pann" data-view="forum"><header><i>판</i><strong>Pann</strong><small>现在</small></header><p>“她们是不是有点不一样？”</p><span>1 条新讨论</span></button></div><div class="ios-app-grid ios-app-grid-merged">${iosApp('forum','Pann','forum','판',JapanStory.badge())}${iosApp('ktstory','KakaoTalk','kakao','<span class="kt-bubble">TALK</span>',JapanStory.badge())}${iosApp('instagram','Instagram','instagram','<span class="ig-camera"></span>')}${iosApp('youtube','YouTube','youtube','<span class="yt-play">▶</span>')}${iosApp('lysn','LYSN','lysn','L')}${iosApp('weverse','Weverse','weverse','W')}${iosApp('calendar','日历','calendar','<span class="ios-calendar-mark"><small>9月</small><b>19</b></span>')}${iosApp('album','照片','photos','<span class="photo-flower">✿</span>')}${iosApp('notebook','备忘录','notebook','<span class="ios-book-mark">▤</span>')}${iosApp('settings','设置','ios-settings','<span class="ios-gear-mark">⚙</span>')}</div><div class="ios-page-dots" aria-hidden="true"><i></i><i></i></div><div class="ios-dock">${iosApp('phone','电话','phone','<svg class="ios-phone-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 4c-2 1-3 3-2 6 3 9 9 15 18 18 3 1 5 0 6-2l-4-5c-1-1-2-1-3 0l-2 2c-4-2-7-5-10-10l2-2c1-1 1-2 0-3Z" fill="currentColor"/></svg>')}${iosApp('browser','Safari','safari','<span class="ios-safari-mark"><i></i></span>')}${iosApp('sms','信息','messages','<span class="ios-message-mark"></span>')}${iosApp('music','音乐','music','<span class="ios-music-mark">♫</span>')}</div><p class="ios-sim-caption">姜涩琪的 iPhone · 遗失模式 · 同人虚构</p></div></div>`;bindShared();}
+function renderPhoneHome(){screen.innerHTML=`<div class="ios-home"><div class="ios-wallpaper"></div><div class="ios-home-content ios-home-real"><div class="ios-home-widget-row"><button class="ios-widget-calendar" data-view="calendar"><span><small>星期六</small><b>19</b></span><div><strong>日历</strong><p>福冈首场结束以后</p><em>3 个剧情节点</em></div></button><button class="ios-widget-pann" data-view="forum"><header><i>판</i><strong>Pann</strong><small>现在</small></header><p>“她们是不是有点不一样？”</p><span>1 条新讨论</span></button></div><div class="ios-app-grid ios-app-grid-merged">${iosApp('forum','Pann','forum','판',JapanStory.badge())}${iosApp('ktstory','KakaoTalk','kakao','<span class="kt-bubble">TALK</span>',JapanStory.badge())}${iosApp('instagram','Instagram','instagram','<span class="ig-camera"></span>')}${iosApp('youtube','YouTube','youtube','<span class="yt-play">▶</span>')}${iosApp('lysn','LYSN','lysn','L')}${iosApp('weather','天气','weather','<span class="ios-weather-mark">☀️</span>')}${iosApp('calendar','日历','calendar','<span class="ios-calendar-mark"><small>9月</small><b>19</b></span>')}${iosApp('album','照片','photos','<span class="photo-flower">✿</span>')}${iosApp('notebook','备忘录','notebook','<span class="ios-book-mark">▤</span>')}${iosApp('settings','设置','ios-settings','<span class="ios-gear-mark">⚙</span>')}</div><div class="ios-page-dots" aria-hidden="true"><i></i><i></i></div><div class="ios-dock">${iosApp('phone','电话','phone','<svg class="ios-phone-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 4c-2 1-3 3-2 6 3 9 9 15 18 18 3 1 5 0 6-2l-4-5c-1-1-2-1-3 0l-2 2c-4-2-7-5-10-10l2-2c1-1 1-2 0-3Z" fill="currentColor"/></svg>')}${iosApp('browser','Safari','safari','<span class="ios-safari-mark"><i></i></span>')}${iosApp('sms','信息','messages','<span class="ios-message-mark"></span>')}${iosApp('music','音乐','music','<span class="ios-music-mark">♫</span>')}</div><p class="ios-sim-caption">姜涩琪的 iPhone · 遗失模式 · 同人虚构</p></div></div>`;bindShared();}
 function renderCalendar(){const progress=JapanStory.getState(),done=progress.chapterComplete,items=[
  ['09.14','机场公开图','只能确认涩琪独自出现在照片中',progress.seen.includes('airport-seulgi-0914'),'forum'],
  ['09.16','Instagram 更新','公开内容围绕专辑与练习',progress.igSaved.includes('sg-260916'),'instagram'],
