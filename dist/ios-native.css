@@ -1097,3 +1097,155 @@ body {
   0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.8; }
   50% { transform: translateX(-50%) translateY(-10px); opacity: 1; }
 }
+
+/* ========== Apple Music 原生风格 ========== */
+.ios-music-app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #f8f8f8;
+}
+.ios-music-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  padding-top: 50px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+.ios-music-head strong {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+.ios-music-head button {
+  font-size: 17px;
+  color: #ff3b30;
+  background: none;
+  border: none;
+}
+.ios-music-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+.ios-music-now {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  background: #fff;
+  border-radius: 16px;
+  margin-bottom: 24px;
+}
+.ios-music-cover {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #fff;
+  flex-shrink: 0;
+}
+.ios-music-info {
+  flex: 1;
+}
+.ios-music-info strong {
+  display: block;
+  font-size: 16px;
+  color: #1a1a1a;
+  margin-bottom: 2px;
+}
+.ios-music-info small {
+  font-size: 13px;
+  color: #8e8e93;
+}
+.ios-music-play {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #ff3b30;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+}
+.ios-music-section h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 12px;
+}
+.ios-music-list {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.ios-music-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.ios-music-item:last-child {
+  border-bottom: none;
+}
+.ios-music-item-cover {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.ios-music-item-info {
+  flex: 1;
+  min-width: 0;
+}
+.ios-music-item-info strong {
+  display: block;
+  font-size: 14px;
+  color: #1a1a1a;
+  margin-bottom: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ios-music-item-info small {
+  font-size: 12px;
+  color: #8e8e93;
+}
+.ios-music-item-time {
+  font-size: 12px;
+  color: #8e8e93;
+}
+.ios-music-tabs {
+  display: flex;
+  background: #fff;
+  border-top: 1px solid #eee;
+  padding: 8px 0 20px;
+}
+.ios-music-tabs button {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  font-size: 10px;
+  color: #8e8e93;
+}
+.ios-music-tabs button.active {
+  color: #ff3b30;
+}
+.ios-music-tabs button span {
+  font-size: 20px;
+}

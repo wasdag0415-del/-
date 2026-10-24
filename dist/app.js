@@ -142,7 +142,58 @@ function initSlideUnlock(){
   });
 }
 function updateMusic(){const button=screen.querySelector('[data-music-toggle]');if(button){button.textContent=chapterAudio&&!chapterAudio.paused?'Ⅱ 暂停':'▶ 播放';button.setAttribute('aria-label',chapterAudio&&!chapterAudio.paused?'暂停音乐':'播放音乐');}}
-function renderMusic(){screen.innerHTML=`<div class="ios-native-app nf-extra"><header class="nf-extra-head"><button data-view="phonehome" aria-label="返回桌面">‹</button><strong>音乐</strong><span>♬</span></header><div class="nf-extra-scroll"><small class="nf-extra-kicker">POCKET STORY · PLAYER</small><div class="nf-record-art"><span>09.19</span><b>首场<br>以后</b><i>the same blank</i></div><div class="nf-track-title"><h2>首场以后</h2><p>原创氛围曲 · 00:24 循环播放</p></div><button class="nf-play" data-music-toggle aria-label="播放音乐">▶ 播放</button><p class="nf-extra-hint">点播放后可以返回桌面继续听。音乐不会触发或改变剧情。</p></div></div>`;bindShared();const button=screen.querySelector('[data-music-toggle]');button.onclick=async()=>{const audio=musicAudio();if(audio.paused){try{await audio.play();}catch{toast('浏览器暂时无法播放，请再点一次。');}}else audio.pause();updateMusic();};updateMusic();}
+function renderMusic(){
+  const songs = [
+    {title: 'Your Dog Loves Me', artist: 'Aseul', cover: '🎧', duration: '3:24'},
+    {title: 'Nobody', artist: 'Mitski', cover: '🎸', duration: '3:14'},
+    {title: 'Automatic', artist: 'Red Velvet', cover: '💿', duration: '3:31'},
+    {title: 'Bad Boy', artist: 'Red Velvet', cover: '💿', duration: '3:31'},
+    {title: 'Psycho', artist: 'Red Velvet', cover: '💿', duration: '3:30'},
+    {title: 'Cool World', artist: 'Aseul', cover: '🎧', duration: '4:02'},
+    {title: 'Star Shopping', artist: 'Lil Peep', cover: '⭐', duration: '2:24'},
+    {title: 'Sweater Weather', artist: 'The Neighbourhood', cover: '🧶', duration: '3:55'}
+  ];
+  screen.innerHTML=`<div class="ios-music-app">
+    <header class="ios-music-head">
+      <button data-view="phonehome" aria-label="返回桌面">‹</button>
+      <strong>资料库</strong>
+      <span>🔍</span>
+    </header>
+    <div class="ios-music-body">
+      <div class="ios-music-now">
+        <div class="ios-music-cover">🎧</div>
+        <div class="ios-music-info">
+          <strong>Your Dog Loves Me</strong>
+          <small>Aseul</small>
+        </div>
+        <button class="ios-music-play">▶</button>
+      </div>
+      <div class="ios-music-section">
+        <h3>播放列表</h3>
+        <div class="ios-music-list">
+          ${songs.map((song, i) => `
+            <div class="ios-music-item">
+              <span class="ios-music-item-cover">${song.cover}</span>
+              <div class="ios-music-item-info">
+                <strong>${song.title}</strong>
+                <small>${song.artist}</small>
+              </div>
+              <small class="ios-music-item-time">${song.duration}</small>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+    <nav class="ios-music-tabs">
+      <button class="active"><span>🏠</span><small>资料库</small></button>
+      <button><span>▶️</span><small>现在播放</small></button>
+      <button><span>🌐</span><small>浏览</small></button>
+      <button><span>📻</span><small>广播</small></button>
+      <button><span>🔍</span><small>搜索</small></button>
+    </nav>
+  </div>`;
+  bindShared();
+}
 function renderCalendar(){const progress=JapanStory.getState(),done=progress.chapterComplete;screen.innerHTML=`<div class="ios-native-app ios-calendar-app">${iosBack('日历')}<div class="ios-app-scroll"><div class="ios-calendar-title"><span>2026年</span><strong>9月</strong><button data-view="opening">回放本章</button></div><div class="ios-weekdays">${['日','一','二','三','四','五','六'].map(day=>`<span>${day}</span>`).join('')}</div><div class="ios-month-grid">${Array.from({length:30},(_,index)=>{const day=index+1,marked=[14,16,19].includes(day);return `<button class="${day===19?'today ':''}${marked?'marked':''}" ${marked?`data-calendar-day="${day}"`:''}><span>${day}</span>${marked?'<i></i>':''}</button>`;}).join('')}</div><section class="ios-day-events"><small>9月19日 · 星期六</small><h3>福冈首场结束以后</h3><button data-view="forum"><time>20:43</time><span><strong>Pann 热帖</strong><small>有人觉得舞台上的气氛变了</small></span><b>›</b></button><button data-view="ktstory"><time>20:52</time><span><strong>KakaoTalk</strong><small>同担发来了讨论链接</small></span><b>›</b></button><button data-view="${done?'chapterend':'notebook'}"><time>21:22</time><span><strong>${done?'章节记录':'尚未完成'}</strong><small>${done?'回看第一章的结论':'继续寻找关键节点'}</small></span><b>›</b></button></section></div></div>`;bindShared();screen.querySelectorAll('[data-calendar-day]').forEach(button=>button.onclick=()=>{const day=button.dataset.calendarDay;if(day==='14')render('forum');else if(day==='16')render('instagram');else screen.querySelector('.ios-day-events')?.scrollIntoView({behavior:'smooth'});});}
 function renderTimeline(){const progress=JapanStory.getState(),items=[['09.14','机场公开图','只能确认涩琪独自出现在照片中',progress.seen.includes('airport-seulgi-0914'),'forum'],['09.16','Instagram 更新','公开内容围绕专辑与练习',progress.igSaved.includes('sg-260916'),'instagram'],['09.19 · 20:43','论坛出现疑问','不同座位的人留下相反的现场感受',progress.read.includes('coldwar'),'forum'],['09.19 · 21:15','官方照片发布','照片确认同台，无法解释台下沉默',progress.officialUnlocked,'official'],['09.19 · 21:22','第一章记录','已知事实和无法确认的部分被分开保存',progress.chapterComplete,'chapterend']];screen.innerHTML=`<div class="ios-native-app ios-timeline-app">${iosBack('关键时间线')}<div class="ios-app-scroll"><header><small>POCKET STORY · EVIDENCE LOG</small><h2>时间不会替任何人解释，<br>但它会留下顺序。</h2><p>只有玩家已经看过的节点会完整显示。</p></header><div class="ios-timeline-list">${items.map(([date,title,copy,open,route],index)=>`<button class="${open?'unlocked':'locked'}" ${open?`data-view="${route}"`:''}><span class="ios-timeline-dot">${open?'✓':index+1}</span><time>${date}</time><strong>${open?title:'尚未发现'}</strong><small>${open?copy:'继续探索其他应用来解锁'}</small></button>`).join('')}</div></div></div>`;bindShared();}
 function renderBrowser(){const results=[{test:/机场|14/,title:'14号机场图到底能说明什么？',copy:'Pann · 公开资料核对',view:'forum'},{test:/巡演|冷战|不一样|舞台/,title:'只有我觉得这次日本巡演有点不一样吗？',copy:'Pann · 热门讨论',view:'forum'},{test:/照片|ins|instagram|16/,title:'9月16日公开 Instagram 存档',copy:'Instagram · 已保存页面',view:'instagram'},{test:/时间|节点|记录/,title:'Pocket Story 关键时间线',copy:'本机记录 · 已发现证据',view:'timeline'}],matches=browserQuery?results.filter(item=>item.test.test(browserQuery)):[];screen.innerHTML=`<div class="ios-native-app ios-safari-app"><div class="ios-safari-toolbar"><span>ᴀA</span><form id="ios-search-form"><i>⌕</i><input id="ios-search-input" value="${esc(browserQuery)}" placeholder="搜索网页或输入关键词" aria-label="搜索网页"><button aria-label="搜索">前往</button></form><button data-view="phonehome" aria-label="返回主屏幕">完成</button></div><div class="ios-app-scroll">${browserQuery?`<section class="ios-search-results"><small>本机搜索结果</small><h2>${matches.length} 个相关结果</h2>${matches.map(item=>`<button data-view="${item.view}"><span class="ios-search-favicon">PS</span><span><strong>${item.title}</strong><small>${item.copy}</small></span><b>›</b></button>`).join('')||'<p>没有找到相关记录。试试“机场”“巡演”“照片”或“时间”。</p>'}</section>`:`<section class="ios-browser-start"><div class="ios-browser-compass"><i></i></div><h2>Safari</h2><p>搜索记录会把玩家带回已经出现过的公开线索，不会连接真实账号。</p><div class="ios-browser-suggestions"><button data-search="机场">机场</button><button data-search="日本巡演">日本巡演</button><button data-search="照片">照片</button><button data-search="时间节点">时间节点</button></div></section>`}</div><nav class="ios-safari-bottom"><button>‹</button><button>›</button><button>□</button><button>▱</button></nav></div>`;bindShared();screen.querySelector('#ios-search-form').onsubmit=e=>{e.preventDefault();browserQuery=screen.querySelector('#ios-search-input').value.trim();renderBrowser();};screen.querySelectorAll('[data-search]').forEach(button=>button.onclick=()=>{browserQuery=button.dataset.search;renderBrowser();});}
