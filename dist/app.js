@@ -144,14 +144,14 @@ function initSlideUnlock(){
 function updateMusic(){const button=screen.querySelector('[data-music-toggle]');if(button){button.textContent=chapterAudio&&!chapterAudio.paused?'Ⅱ 暂停':'▶ 播放';button.setAttribute('aria-label',chapterAudio&&!chapterAudio.paused?'暂停音乐':'播放音乐');}}
 function renderMusic(){
   const songs = [
-    {title: 'Your Dog Loves Me', artist: 'Aseul', cover: '🎧', duration: '3:24'},
-    {title: 'Nobody', artist: 'Mitski', cover: '🎸', duration: '3:14'},
-    {title: 'Automatic', artist: 'Red Velvet', cover: '💿', duration: '3:31'},
-    {title: 'Bad Boy', artist: 'Red Velvet', cover: '💿', duration: '3:31'},
-    {title: 'Psycho', artist: 'Red Velvet', cover: '💿', duration: '3:30'},
-    {title: 'Cool World', artist: 'Aseul', cover: '🎧', duration: '4:02'},
-    {title: 'Star Shopping', artist: 'Lil Peep', cover: '⭐', duration: '2:24'},
-    {title: 'Sweater Weather', artist: 'The Neighbourhood', cover: '🧶', duration: '3:55'}
+    {title: 'Your Dog Loves Me', artist: 'Aseul', gradient: 'linear-gradient(135deg,#667eea,#764ba2)', duration: '3:24'},
+    {title: 'Nobody', artist: 'Mitski', gradient: 'linear-gradient(135deg,#f093fb,#f5576c)', duration: '3:14'},
+    {title: 'Automatic', artist: 'Red Velvet', gradient: 'linear-gradient(135deg,#4facfe,#00f2fe)', duration: '3:31'},
+    {title: 'Bad Boy', artist: 'Red Velvet', gradient: 'linear-gradient(135deg,#43e97b,#38f9d7)', duration: '3:31'},
+    {title: 'Psycho', artist: 'Red Velvet', gradient: 'linear-gradient(135deg,#fa709a,#fee140)', duration: '3:30'},
+    {title: 'Cool World', artist: 'Aseul', gradient: 'linear-gradient(135deg,#30cfd0,#330867)', duration: '4:02'},
+    {title: 'Star Shopping', artist: 'Lil Peep', gradient: 'linear-gradient(135deg,#a8edea,#fed6e3)', duration: '2:24'},
+    {title: 'Sweater Weather', artist: 'The Neighbourhood', gradient: 'linear-gradient(135deg,#ff9a9e,#fecfef)', duration: '3:55'}
   ];
   screen.innerHTML=`<div class="ios-music-app">
     <header class="ios-music-head">
@@ -173,7 +173,7 @@ function renderMusic(){
         <div class="ios-music-list">
           ${songs.map((song, i) => `
             <div class="ios-music-item">
-              <span class="ios-music-item-cover">${song.cover}</span>
+              <span class="ios-music-item-cover" style="background:${song.gradient}"></span>
               <div class="ios-music-item-info">
                 <strong>${song.title}</strong>
                 <small>${song.artist}</small>
