@@ -79,6 +79,7 @@
   }
 
   function badge() {
+    if(root.ChapterOneFlow)return root.ChapterOneFlow.badge();
     if (!state.introRead) return '1';
     if (state.read.includes('coldwar') && !state.read.includes('stage-counter')) return '1';
     if (ready() && !state.officialUnlocked) return '1';
@@ -121,6 +122,7 @@
 
   function render() {
     if (!context) return;
+    if (root.ChapterOneFlow?.render(route, context)) return;
     const views = {
       opening, feed, post: thread, airportphoto: airportPhoto, official: officialPost,
       chapterend: chapterEnd, notebook: enrichedNotebook, ktstory, storychat: enrichedManagerChat, instagram,
@@ -184,206 +186,10 @@
     return wrap(`${head('Manager', 'ktstory', '<button data-route="ktstory" aria-label="聊天列表">☰</button>')}<div class='nf-scroll nf-chat-scroll'><div class='nf-chat-date'>9月13日 · 出发前</div><div class='nf-chat-message them'><small>Manager · 18:32</small><p>明天个人行程，你先按原计划飞日本。</p></div><div class='nf-chat-message them'><small>Manager · 18:33</small><p>珠泫那边的航班还没定，确认以后我再告诉你。</p></div><div class='nf-chat-message me'><small>你 · 18:36</small><p>好。</p></div><div class='nf-chat-date'>9月14日 · 涩琪抵达日本</div><div class='nf-chat-message them'><small>Manager · 15:08</small><p>车在出口等。到酒店以后先休息，晚一点再确认明天的拍摄。</p></div><div class='nf-chat-message me'><small>你 · 15:09</small><p>知道了。</p></div><div class='nf-chat-date'>9月16日</div><div class='nf-chat-message them'><small>Manager · 17:42</small><p>珠泫已经落地了，稍后直接回酒店。</p></div><div class='nf-chat-message them'><small>Manager · 17:42</small><p>明天彩排时间不变。</p></div><div class='nf-chat-message me'><small>你 · 17:44</small><p>她今天过来的吗？</p></div><div class='nf-chat-message them'><small>Manager · 17:44</small><p>嗯，刚到。</p></div><div class='nf-chat-message me'><small>你 · 17:45</small><p>好，我知道了。</p></div><div class='nf-chat-date'>9月19日 · 福冈首场结束后</div><div class='nf-chat-message them'><small>Manager · 20:48</small><p>首场结束辛苦了。车在 B1，十五分钟后出发。</p></div><div class='nf-chat-message them'><small>Manager · 20:49</small><p>网上有一篇帖子在讨论你们为什么没有一起飞，也有人在问珠泫是什么时候到日本的。</p></div><div class='nf-chat-message them'><small>Manager · 20:49</small><p>先不要回应，也不要用个人账号解释。官方照片等日本运营发。</p><button class='nf-inline' data-open-post='coldwar'>查看正在升温的讨论 →</button></div><div class='nf-chat-message them'><small>Manager · 20:50</small><p>明天集合提前十五分钟。今晚先休息。</p></div></div><div class='nf-story-chat-tools'><button data-route='ktstory'>消息列表</button><button data-route='notebook'>备忘录</button></div>`, 'nf-story-chat');
   }
 
-  function couplechat() {
-    // 互动步骤：0=刚开始，1=第一条回复后，2=第二条回复后，3=全部结束
-    const steps = [
-      // Step 0: 到组长老师问"你这两天是不是在躲我？"
-      {
-        prompt: '没有啊，最近一直在做皮肤管理和身材管理',
-        nextMessages: [
-          ['me', '23:11', '没有啊，最近一直在做皮肤管理和身材管理'],
-          ['them', '23:12', '那你怎么回消息这么慢？']
-        ]
-      },
-      // Step 1: 回复"最近太忙了..."
-      {
-        prompt: '最近太忙了，昨天还去看了个电影',
-        nextMessages: [
-          ['me', '23:13', '最近太忙了，昨天还去看了个电影'],
-          ['them', '23:13', '哦'],
-          ['them', '23:14', '那你早点休息']
-        ]
-      },
-      // Step 2: 回复"欧尼，你不问问我为什么忙吗"
-      {
-        prompt: '欧尼，你不问问我为什么忙吗',
-        nextMessages: [
-          ['me', '23:16', '欧尼，你不问问我为什么忙吗'],
-          ['them', '23:16', '啊？你为什么忙？'],
-          ['me', '23:17', '……没什么'],
-          ['them', '23:17', '涩琪，你最近有点奇怪'],
-          ['me', '23:18', '我哪里奇怪了'],
-          ['them', '23:18', '你以前不会这样'],
-          ['me', '23:19', '我哪样了'],
-          ['them', '23:20', '就是……你好像在躲什么'],
-          ['me', '23:21', '我没有'],
-          ['them', '23:21', '好，你说没有就没有'],
-          ['them', '23:22', '那你早点睡吧'],
-          ['me', '23:23', '……'],
-          ['me', '23:24', '欧尼你已经撑了够久了'],
-          ['them', '23:24', '嗯？什么？'],
-          ['me', '23:25', '没什么。晚安']
-        ]
-      }
-    ];
+  function couplechat() { return ''; }
 
-    const step = coupleChatStep;
-    const currentStep = steps[step];
-    
-    // 前面的聊天记录（到9月7日）
-    const beforeMessages = `
-<div class='nf-chat-date'>8月1日 · Fan-Con第一天</div>
-<div class='nf-chat-message them'><small>组长老师 · 22:30</small><p>今天演出结束了，辛苦了</p></div>
-<div class='nf-chat-message me'><small>你 · 22:33</small><p>欧尼也辛苦了</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 22:34</small><p>你今天跳得很好</p></div>
-<div class='nf-chat-message me'><small>你 · 22:35</small><p>真的吗</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 22:36</small><p>真的。早点回去休息</p></div>
-<div class='nf-chat-message me'><small>你 · 22:37</small><p>好</p></div>
-
-<div class='nf-chat-date'>8月3日</div>
-<div class='nf-chat-message them'><small>组长老师 · 20:15</small><p>吃饭了吗</p></div>
-<div class='nf-chat-message me'><small>你 · 20:18</small><p>吃了</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 20:19</small><p>吃的什么</p></div>
-<div class='nf-chat-message me'><small>你 · 20:20</small><p>自己随便做了点</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 20:21</small><p>哦。明天还要彩排吗</p></div>
-<div class='nf-chat-message me'><small>你 · 20:22</small><p>嗯</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 20:23</small><p>那你早点睡</p></div>
-<div class='nf-chat-message me'><small>你 · 20:24</small><p>好</p></div>
-
-<div class='nf-chat-date'>8月10日</div>
-<div class='nf-chat-message them'><small>组长老师 · 23:40</small><p>到家了吗</p></div>
-<div class='nf-chat-message me'><small>你 · 23:43</small><p>刚到</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 23:44</small><p>冰箱第二层有我上周回大邱带回来的大枣，记得煮着喝</p></div>
-<div class='nf-chat-message me'><small>你 · 23:45</small><p>你什么时候放的？</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 23:46</small><p>下午过去的时候。今天彩排是不是又站太久了</p></div>
-<div class='nf-chat-message me'><small>你 · 23:47</small><p>还好</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 23:48</small><p>还好？我看你下台的时候腿都在抖</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 23:49</small><p>喝完拍给我看，我检查一下你有没有认真吃</p></div>
-<div class='nf-chat-message me'><small>你 · 23:50</small><p>……知道了</p></div>
-<div class='nf-chat-message me'><small>你 · 23:51</small><p>欧尼你也早点休息，最近行程太满了</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 23:52</small><p>我没事</p></div>
-<div class='nf-chat-message me'><small>你 · 23:53</small><p>你辛苦了</p></div>
-
-<div class='nf-chat-date'>8月15日 · 欧尼录节目之前</div>
-<div class='nf-chat-message them'><small>组长老师 · 14:30</small><p>明天要去录那个节目了</p></div>
-<div class='nf-chat-message me'><small>你 · 14:32</small><p>哪个？</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 14:33</small><p>虽然没准备什么菜</p></div>
-<div class='nf-chat-message me'><small>你 · 14:34</small><p>啊~~~泳知小姐那个吗</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 14:35</small><p>嗯</p></div>
-<div class='nf-chat-message me'><small>你 · 14:36</small><p>欧尼紧张吗</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 14:37</small><p>有点</p></div>
-<div class='nf-chat-message me'><small>你 · 14:38</small><p>没事的！那边出来喝醉的人也很多，没关系的！</p></div>
-<div class='nf-chat-message me'><small>你 · 14:39</small><p>泳知小姐会做得很好的~~~</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 14:40</small><p>你怎么比我还紧张</p></div>
-<div class='nf-chat-message me'><small>你 · 14:41</small><p>我就是担心嘛ㅋㅋ</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 14:42</small><p>知道了。明天录完告诉你</p></div>
-<div class='nf-chat-message me'><small>你 · 14:43</small><p>好！加油欧尼！</p></div>
-
-<div class='nf-chat-date'>8月20日</div>
-<div class='nf-chat-message them'><small>组长老师 · 22:15</small><p>最近是不是又没睡好？我看你今天状态不太对</p></div>
-<div class='nf-chat-message me'><small>你 · 22:18</small><p>还好吧，最近一直在做皮肤管理</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 22:19</small><p>哦。你是不是又偷偷哭了</p></div>
-<div class='nf-chat-message me'><small>你 · 22:21</small><p>没有</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 22:22</small><p>涩琪</p></div>
-<div class='nf-chat-message me'><small>你 · 22:23</small><p>我先睡了，明天还要去做身材管理</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 22:24</small><p>……好</p></div>
-
-<div class='nf-chat-date'>8月29日 · 欧尼回大邱开球</div>
-<div class='nf-chat-message them'><small>组长老师 · 18:30</small><p>今天回大邱开球结束了</p></div>
-<div class='nf-chat-message me'><small>你 · 18:32</small><p>辛苦了，今天真好看</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 18:33</small><p>就那样吧。我妈说让我多带点大枣给你</p></div>
-<div class='nf-chat-message me'><small>你 · 18:34</small><p>……替我谢谢阿姨</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 18:35</small><p>你吃饭了吗</p></div>
-<div class='nf-chat-message me'><small>你 · 18:36</small><p>吃了</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 18:37</small><p>吃的什么</p></div>
-<div class='nf-chat-message me'><small>你 · 18:38</small><p>便利店</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 18:39</small><p>……</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 18:39</small><p>你以前不是说便利店的饭团不好吃吗</p></div>
-<div class='nf-chat-message me'><small>你 · 18:40</small><p>今天饿了</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 18:41</small><p>哦</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 18:41</small><p>那你早点睡吧</p></div>
-
-<div class='nf-chat-date'>9月7日 · Dior活动当天</div>
-<div class='nf-chat-message them'><small>组长老师 · 22:30</small><p>活动结束了</p></div>
-<div class='nf-chat-message me'><small>你 · 22:32</small><p>辛苦了，今天真漂亮</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 22:33</small><p>嗯，刚上车</p></div>
-<div class='nf-chat-message me'><small>你 · 22:35</small><p>我把日本空下来的时间整理好了</p></div>
-<div class='nf-chat-message me'><small>你 · 22:35</small><p>福冈有个展，结束早的话可以一起去。还可以拍一段两个人挑唱片的</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 22:39</small><p>到时候看吧</p></div>
-<div class='nf-chat-message me'><small>你 · 22:41</small><p>你不想拍也没关系，我可以改成一个人的</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 22:44</small><p>不是不想。我现在有点累，晚一点再看</p></div>
-<div class='nf-chat-message me'><small>你 · 22:47</small><p>好，我发给你</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 22:51</small><p>嗯</p></div>
-
-<div class='nf-chat-date'>9月10日 · 矛盾爆发</div>
-<div class='nf-chat-message them'><small>组长老师 · 23:06</small><p>你这两天是不是在躲我？</p></div>
-`;
-
-    // 当前步骤已经显示的消息
-    let shownMessages = '';
-    for (let i = 0; i < step; i++) {
-      shownMessages += steps[i].nextMessages.map(([type, time, text]) => 
-        `<div class='nf-chat-message ${type==='me'?'me':'them'}'><small>${type==='me'?'你':'组长老师'} · ${time}</small><p>${text}</p></div>`
-      ).join('');
-    }
-
-    // 后面的聊天记录（如果互动结束了）
-    const afterMessages = step >= steps.length ? `
-<div class='nf-chat-date'>9月12日 · 冷战第二天</div>
-<div class='nf-chat-message them'><small>组长老师 · 08:12</small><p>早餐吃了吗？</p></div>
-<div class='nf-chat-message me'><small>你 · 08:16</small><p>嗯</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 08:16</small><p>吃了什么？</p></div>
-<div class='nf-chat-message me'><small>你 · 08:20</small><p>等一下吃</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 08:21</small><p>别空腹吃药</p></div>
-<div class='nf-chat-message me'><small>你 · 08:24</small><p>知道了</p></div>
-
-<div class='nf-chat-date'>9月14日 · 你先出发</div>
-<div class='nf-chat-message them'><small>组长老师 · 09:03</small><p>你已经出发了吗？</p></div>
-<div class='nf-chat-message me'><small>你 · 09:08</small><p>嗯</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 09:09</small><p>怎么没告诉我？</p></div>
-<div class='nf-chat-message me'><small>你 · 09:14</small><p>Manager知道</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 09:15</small><p>我问的不是工作安排</p></div>
-<div class='nf-chat-message me'><small>你 · 09:21</small><p>到了再说吧</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 09:22</small><p>落地以后把外套穿上。那边下雨</p></div>
-<div class='nf-chat-message me'><small>你 · 09:24</small><p>好</p></div>
-
-<div class='nf-chat-date'>9月19日 · 福冈首场结束后</div>
-<div class='nf-chat-message me'><small>你 · 21:20</small><p>你到了为什么没告诉我？</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 21:21</small><p>Manager不是告诉你了吗？</p></div>
-<div class='nf-chat-message me'><small>你 · 21:21</small><p>说了。</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 21:22</small><p>那你知道了。</p></div>
-<div class='nf-chat-message me'><small>你 · 21:22</small><p>我想听你告诉我。</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 21:23</small><p>你走的时候也没有告诉我。</p></div>
-<div class='nf-chat-message me'><small>你 · 21:23</small><p>……</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 21:24</small><p>今天台上你一直在躲我。</p></div>
-<div class='nf-chat-message me'><small>你 · 21:24</small><p>没有。</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 21:25</small><p>那你看着我说。</p></div>
-<div class='nf-chat-message me'><small>你 · 21:26</small><p>你已经回房间了吗？</p></div>
-<div class='nf-chat-message them'><small>组长老师 · 21:26</small><p>嗯。</p></div>
-<div class='nf-chat-message me'><small>你 · 21:27</small><p>门别锁。</p></div>
-` : '';
-
-    // 输入框
-    const inputBar = currentStep 
-      ? `<div class='nf-chat-input-bar'><div class='nf-chat-input-preset'>${currentStep.prompt}</div><button class='nf-chat-send' data-couple-send>发送</button></div>`
-      : '';
-
-    return wrap(`${head('组长老师', 'ktstory')}<div class='nf-scroll nf-chat-scroll nf-couple-chat'>${beforeMessages}${shownMessages}${afterMessages}</div>${inputBar}<div class='nf-story-chat-tools'><button data-route='ktstory'>消息列表</button><button data-route='feed'>论坛</button></div>`, 'nf-story-chat');
-  }
-
-  function groupchat() {
-    return wrap(`${head('Red Velvet', 'ktstory')}<div class='nf-scroll nf-chat-scroll'><div class='nf-chat-date'>9月14日</div><div class='nf-chat-message them'><small>Wendy · 10:28</small><p>涩琪先出发了吗？</p></div><div class='nf-chat-message me'><small>你 · 10:31</small><p>嗯，有个人拍摄。</p></div><div class='nf-chat-message them'><small>Yeri · 10:32</small><p>到日本帮我看便利店新品！！</p></div><div class='nf-chat-message them'><small>Joy · 10:34</small><p>她先落地再说ㅋㅋ</p></div><div class='nf-chat-date'>9月19日 · 福冈首场结束后</div><div class='nf-chat-message them'><small>Wendy · 21:12</small><p>首场顺利结束了吗？</p></div><div class='nf-chat-message them'><small>Joy · 21:13</small><p>我刚看到日本账号发预告了ㅠㅠ</p></div><div class='nf-chat-message them'><small>Yeri · 21:13</small><p>结束以后记得吃饭！！</p></div><div class='nf-chat-message them'><small>组长老师 · 21:14</small><p>刚结束，大家辛苦了。</p></div><div class='nf-chat-message me'><small>你 · 21:14</small><p>结束了ㅎㅎ</p></div><div class='nf-chat-message them'><small>Wendy · 21:15</small><p>你们两个回复怎么像工作报告</p></div><div class='nf-chat-message them'><small>Joy · 21:15</small><p>让她们先喘口气吧ㅋㅋ</p></div><div class='nf-chat-message them'><small>Yeri · 21:16</small><p>合照发群里！</p></div><div class='nf-chat-message them'><small>组长老师 · 21:16</small><p>等官方发。</p></div><div class='nf-chat-message me'><small>你 · 21:17</small><p>嗯。</p></div></div><div class='nf-story-chat-tools'><button data-route='ktstory'>消息列表</button></div>`, 'nf-story-chat');
-  }
-
-  function enrichedManagerChat() {
-    const later = `<div class='nf-chat-date'>9月14日 · 涩琪抵达日本</div><div class='nf-chat-message them'><small>Manager · 15:08</small><p>车在出口等。到酒店以后先休息，晚一点再确认明天的拍摄。</p></div><div class='nf-chat-message me'><small>你 · 15:09</small><p>知道了。</p></div><div class='nf-chat-date'>9月16日</div><div class='nf-chat-message them'><small>Manager · 17:42</small><p>珠泫已经落地了，稍后直接回酒店。</p></div><div class='nf-chat-message them'><small>Manager · 17:42</small><p>明天彩排时间不变。</p></div><div class='nf-chat-message me'><small>你 · 17:44</small><p>她今天过来的吗？</p></div><div class='nf-chat-message them'><small>Manager · 17:44</small><p>嗯，刚到。</p></div><div class='nf-chat-message me'><small>你 · 17:45</small><p>好，我知道了。</p></div><div class='nf-chat-date'>9月19日 · 福冈首场结束后</div><div class='nf-chat-message them'><small>Manager · 20:48</small><p>首场结束辛苦了。车在 B1，十五分钟后出发。</p></div><div class='nf-chat-message them'><small>Manager · 20:49</small><p>网上有一篇帖子在讨论你们为什么没有一起飞，也有人在问珠泫是什么时候到日本的。</p></div><div class='nf-chat-message them'><small>Manager · 20:49</small><p>先不要回应，也不要用个人账号解释。官方照片等日本运营发。</p><button class='nf-inline' data-open-post='coldwar'>查看正在升温的讨论 →</button></div><div class='nf-chat-message them'><small>Manager · 20:50</small><p>明天集合提前十五分钟。今晚先休息。</p></div>`;
-    return wrap(`${head('Manager', 'ktstory', '<button data-route="ktstory" aria-label="聊天列表">☰</button>')}<div class='nf-scroll nf-chat-scroll'>${root.PreludeData?.chatHtml('manager') || ''}${later}</div><div class='nf-story-chat-tools'><button data-route='ktstory'>消息列表</button><button data-route='notebook'>备忘录</button></div>`, 'nf-story-chat');
-  }
-
-  function enrichedCoupleChat() {
-    const later = `<div class='nf-chat-date'>9月14日 · 你先出发</div><div class='nf-chat-message them'><small>组长老师 · 09:03</small><p>你已经出发了吗？</p></div><div class='nf-chat-message me'><small>你 · 09:08</small><p>嗯</p></div><div class='nf-chat-message them'><small>组长老师 · 09:09</small><p>怎么没告诉我？</p></div><div class='nf-chat-message me'><small>你 · 09:14</small><p>Manager知道</p></div><div class='nf-chat-message them'><small>组长老师 · 09:15</small><p>我问的不是工作安排</p></div><div class='nf-chat-message me'><small>你 · 09:21</small><p>到了再说吧</p></div><div class='nf-chat-message them'><small>组长老师 · 09:22</small><p>落地以后把外套穿上。那边下雨</p></div><div class='nf-chat-message me'><small>你 · 09:24</small><p>好</p></div><div class='nf-chat-date'>9月19日 · 福冈首场结束后</div><div class='nf-chat-message me'><small>你 · 21:20</small><p>你到了为什么没告诉我？</p></div><div class='nf-chat-message them'><small>组长老师 · 21:21</small><p>Manager不是告诉你了吗？</p></div><div class='nf-chat-message me'><small>你 · 21:21</small><p>说了。</p></div><div class='nf-chat-message them'><small>组长老师 · 21:22</small><p>那你知道了。</p></div><div class='nf-chat-message me'><small>你 · 21:22</small><p>我想听你告诉我。</p></div><div class='nf-chat-message them'><small>组长老师 · 21:23</small><p>你走的时候也没有告诉我。</p></div><div class='nf-chat-message me'><small>你 · 21:23</small><p>……</p></div><div class='nf-chat-message them'><small>组长老师 · 21:24</small><p>今天台上你一直在躲我。</p></div><div class='nf-chat-message me'><small>你 · 21:24</small><p>没有。</p></div><div class='nf-chat-message them'><small>组长老师 · 21:25</small><p>那你看着我说。</p></div><div class='nf-chat-message me'><small>你 · 21:26</small><p>你已经回房间了吗？</p></div><div class='nf-chat-message them'><small>组长老师 · 21:26</small><p>嗯。</p></div><div class='nf-chat-message me'><small>你 · 21:27</small><p>门别锁。</p></div>`;
-    return wrap(`${head('组长老师', 'ktstory', '<button data-route="callhistory" aria-label="通话记录">☎</button>')}<div class='nf-scroll nf-chat-scroll nf-couple-chat'>${root.PreludeData?.chatHtml('couple') || ''}${later}</div><div class='nf-story-chat-tools'><button data-route='ktstory'>消息列表</button><button data-route='feed'>论坛</button></div>`, 'nf-story-chat');
-  }
+  function enrichedManagerChat() { return ''; }
+  function enrichedCoupleChat() { return ''; }
 
   function callhistory() {
     const calls=(root.PreludeData?.calls||[]).filter(item=>item[1]==='组长老师');
@@ -401,7 +207,7 @@
 
   function enrichedNotebook() {
     const memoDates=['2026-08-21T20:48:00','2026-08-05T15:00:00','2026-08-07T18:20:00','2026-08-22T18:26:00','2026-08-26T17:52:00','2026-08-24T19:42:00','2026-08-24T19:52:00','2026-09-02T19:18:00','2026-09-13T15:30:00','2026-08-20T09:40:00','2026-08-27T18:14:00','2026-08-13T14:00:00','2026-09-13T15:18:00','2026-09-10T23:46:00','2026-09-12T22:07:00'];
-    const originals=(root.PreludeData?.memos||[]).map(([title,body],index)=>({id:'original-'+index,title,body,at:memoDates[index],folder:/日本|日语|行李|唱片/.test(title)?'日本':/练习|声乐|录制/.test(title)?'工作':'日常'}));
+    const originals=(root.PreludeData?.memos||[]).filter(([title])=>!(/无标题|未发送|地点_v2|两个人挑唱片/.test(title))&&(!/日本想去/.test(title)||root.ChapterOneFlow?.gate(3))).map(([title,body],index)=>({id:'original-'+index,title,body,at:memoDates[index],folder:/日本|日语|行李|唱片/.test(title)?'日本':/练习|声乐|录制/.test(title)?'工作':'日常'}));
     const all=[...originals,...personalMemos.map(item=>({...item,folder:'我的记录',editable:true}))];
     const folders=['所有备忘录','工作','日常','日本','我的记录'];
     const note=all.find(item=>item.id===memoId);
@@ -800,3 +606,4 @@
   };
   if (typeof module !== 'undefined') module.exports = root.JapanStory;
 })(typeof window === 'undefined' ? globalThis : window);
+
