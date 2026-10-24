@@ -306,7 +306,7 @@ function renderLysnChats(){customApp=true;view='home';renderChatList();}
 function renderLysnBubbleChat(who){
   const isSeulgi = who === 'seulgi';
   const name = isSeulgi ? '깡스루기 🐻' : '주현이 🐰';
-  const avatar = isSeulgi ? 'https://aka.doubaocdn.com/s/WAFdPSClGb' : 'https://aka.doubaocdn.com/s/PgSnumfXMB';
+  const avatar = isSeulgi ? 'https://aka.doubaocdn.com/s/zTBEkeViQi' : 'https://aka.doubaocdn.com/s/n7l4i6wdmw';
   const messages = isSeulgi ? [
     {type: 'artist', korean: '오늘 하루 어땠어?', translation: '今天过得怎么样？', time: '오후 09:09'}
   ] : [
